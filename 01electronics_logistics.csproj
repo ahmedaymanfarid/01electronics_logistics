@@ -55,6 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SignInPage.xaml.cs" />
+    <Compile Include="SignInWindow.xaml.cs" />
+    <Compile Include="SignUpPage.xaml.cs" />
+    <Compile Include="SQLServer.cs" />
+    <Compile Include="UserPortalPage.xaml.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,10 +68,37 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BASIC_MACROS.cs" />
+    <Compile Include="BASIC_STRUCTS.cs" />
+    <Compile Include="CommonFunctions.cs" />
+    <Compile Include="CommonQueries.cs" />
+    <Compile Include="Company.cs" />
+    <Compile Include="COMPANY_ORGANISATION_MACROS.cs" />
+    <Compile Include="COMPANY_WORK_MACROS.cs" />
+    <Compile Include="Contact.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="FTPServer.cs" />
+    <Compile Include="IntegrityChecks.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SignInPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SignInWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SignUpPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserPortalPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -93,6 +125,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="login_cover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
