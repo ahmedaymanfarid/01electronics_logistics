@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Security.Cryptography;
+using _01electronics_erp;
 
 namespace _01electronics_logistics
 {
@@ -49,7 +50,7 @@ namespace _01electronics_logistics
             if (!integrityChecker.CheckEmployeePasswordEditBox(employeePassword, loggedInUser.GetEmployeeId()))
                 return;
 
-            PortalWindow portalWindowOpen = new PortalWindow(ref loggedInUser);
+            MainWindow portalWindowOpen = new MainWindow(ref loggedInUser);
             portalWindowOpen.Show();
         }
 

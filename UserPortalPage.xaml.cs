@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using _01electronics_erp;
 
 namespace _01electronics_logistics
 {
@@ -32,7 +33,7 @@ namespace _01electronics_logistics
 
             InitializeEmployeeDashboard();
         }
-        
+
         private void InitializeEmployeeDashboard()
         {
             employeeNameLabel.Content = loggedInUser.GetEmployeeName();
@@ -50,37 +51,5 @@ namespace _01electronics_logistics
             this.NavigationService.Navigate(userPortal);
         }
 
-        private void OnButtonClickedEmployees(object sender, RoutedEventArgs e)
-        {
-            EmployeesPage employees = new EmployeesPage(ref loggedInUser);
-            this.NavigationService.Navigate(employees);
-        }
-
-        private void OnButtonClickedPayrollInfo(object sender, RoutedEventArgs e)
-        {
-            PayrollInfoPage payrollInfo = new PayrollInfoPage(ref loggedInUser);
-            this.NavigationService.Navigate(payrollInfo);
-        }
-
-        private void OnButtonClickedSalaries(object sender, RoutedEventArgs e)
-        {
-            SalariesPage salaries = new SalariesPage(ref loggedInUser);
-            this.NavigationService.Navigate(salaries);
-        }
-
-        private void OnButtonClickedAbsence(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void OnButtonClickedVacations(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void OnEmployeeInfoDoubleClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-    }
+    }       
 }

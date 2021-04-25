@@ -27,11 +27,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="MyProfileLabel" Text="My Profile" MouseLeftButtonDown="OnButtonClickedMyProfile"/>
-            <TextBlock Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="EmployeesLabel" Text="Employees" MouseLeftButtonDown="OnButtonClickedEmployees"/>
-            <TextBlock Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="OrgnChartLabel" Text="Payroll Info" MouseLeftButtonDown="OnButtonClickedPayrollInfo"/>
-            <TextBlock Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="SalariesLabel" Text="Salaries" MouseLeftButtonDown="OnButtonClickedSalaries"/>
-            <TextBlock Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="AbsenceLabel" Text="Absence" MouseLeftButtonDown="OnButtonClickedAbsence"/>
-            <TextBlock Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="VacationsLabel" Text="Vacations" MouseLeftButtonDown="OnButtonClickedVacations"/>
+            
 
         </Grid>
 
@@ -68,7 +64,7 @@
 
                         <WrapPanel Grid.Row="0">
                             <Label Style="{StaticResource tableItemLabel}" Content="Employee Name"/>
-                            <Label Style="{StaticResource tableItemValue}" Name="employeeNameLabel" MouseDoubleClick="OnEmployeeInfoDoubleClick"/>
+                            <Label Style="{StaticResource tableItemValue}" Name="employeeNameLabel"/>
                         </WrapPanel>
 
                         <WrapPanel Grid.Row="1">
@@ -105,20 +101,7 @@
                 </WrapPanel>
             </ScrollViewer>
            
-            <!--<Grid Grid.Row="1" Margin="48,24,48,48">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.25*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="0.25*"/>
-                </Grid.RowDefinitions>
-
-            </Grid>-->
-            
+        
         </Grid>
 
     </Grid>
