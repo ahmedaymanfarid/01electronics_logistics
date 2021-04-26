@@ -50,6 +50,10 @@ namespace _01electronics_logistics
             UserPortalPage userPortal = new UserPortalPage(ref loggedInUser);
             this.NavigationService.Navigate(userPortal);
         }
-
+        private void OnButtonClickedWorkOrders(object sender, RoutedEventArgs e)
+        {
+            WorkOrdersPage workOrdersPage = new WorkOrdersPage(ref loggedInUser);
+            this.NavigationService.Navigate(workOrdersPage);
+        }
     }       
 }

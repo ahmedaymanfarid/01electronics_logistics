@@ -67,10 +67,10 @@ namespace _01electronics_erp
 		employees_info.employee_department, 
 		employees_info.employee_team, 
 		employees_info.employee_position, 
-		employees_info.graduation_year, 
 
-		educational_degrees.id, 
-		educational_majors.id, 
+		employees_educational_qualifications.graduation_year, 
+		employees_educational_qualifications.certificate, 
+		employees_educational_qualifications.major, 
 
         banks_names.id,
         employees_payroll_info.payroll_id,
@@ -115,10 +115,12 @@ namespace _01electronics_erp
 		on employees_info.employee_id = employees_personal_phones.id 
 		left join erp_system.dbo.employees_initials 
 		on employees_info.employee_id = employees_initials.id 
+		left join erp_system.dbo.employees_educational_qualifications
+		on employees_info.employee_id = employees_educational_qualifications.employee_id
 		left join erp_system.dbo.educational_degrees 
-		on employees_info.educational_degree = educational_degrees.id 
+		on employees_educational_qualifications.certificate = educational_degrees.id 
 		left join erp_system.dbo.educational_majors 
-		on employees_info.major = educational_majors.id 
+		on employees_educational_qualifications.major = educational_majors.id 
         left join erp_system.dbo.employees_salaries
         on employees_info.employee_id = employees_salaries.id
         left join erp_system.dbo.employees_payroll_info

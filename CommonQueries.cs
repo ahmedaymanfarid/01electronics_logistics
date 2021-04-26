@@ -2581,6 +2581,10 @@ namespace _01electronics_erp
         
                 COMPANY_WORK_MACROS.WORK_ORDER_MAX_STRUCT orderItem = new COMPANY_WORK_MACROS.WORK_ORDER_MAX_STRUCT();
 
+                orderItem.products_type = new List<COMPANY_WORK_MACROS.PRODUCT_STRUCT>();
+                orderItem.products_brand = new List<COMPANY_WORK_MACROS.BRAND_STRUCT>();
+                orderItem.products_model = new List<COMPANY_WORK_MACROS.MODEL_STRUCT>();
+
                 COMPANY_WORK_MACROS.PRODUCT_STRUCT tempProductItem;// = new COMPANY_WORK_MACROS.PRODUCT_STRUCT();
                 COMPANY_WORK_MACROS.BRAND_STRUCT tempBrandItem;// = new COMPANY_WORK_MACROS.BRAND_STRUCT();
                 COMPANY_WORK_MACROS.MODEL_STRUCT tempModelItem;// = new COMPANY_WORK_MACROS.MODEL_STRUCT();
@@ -2617,15 +2621,15 @@ namespace _01electronics_erp
 
                 if (i > 0 && returnVector.Last().sales_person_id == orderItem.sales_person_id && returnVector.Last().order_serial == orderItem.order_serial)
         		{
-                    returnVector.Last().products_type[product_number - 1] = tempProductItem;
-                    returnVector.Last().products_brand[product_number - 1] = tempBrandItem;
-                    returnVector.Last().products_model[product_number - 1] = tempModelItem;
+                    returnVector.Last().products_type.Add(tempProductItem);
+                    returnVector.Last().products_brand.Add(tempBrandItem);
+                    returnVector.Last().products_model.Add(tempModelItem);
         		}
         		else
         		{
-                    orderItem.products_type[product_number - 1] = tempProductItem;
-                    orderItem.products_brand[product_number - 1] = tempBrandItem;
-                    orderItem.products_model[product_number - 1] = tempModelItem;
+                    orderItem.products_type.Add(tempProductItem);
+                    orderItem.products_brand.Add(tempBrandItem);
+                    orderItem.products_model.Add(tempModelItem);
 
                     orderItem.contract_type_id = commonQueriesSqlObject.rows[i].sql_int[numericCount++];
         			orderItem.order_status_id = commonQueriesSqlObject.rows[i].sql_int[numericCount++];
