@@ -56,6 +56,10 @@ namespace _01electronics_logistics
 
 
             quarterCombo.IsEnabled = false;
+            quarterCombo.Items.Add("First");
+            quarterCombo.Items.Add("Second");
+            quarterCombo.Items.Add("Third");
+            quarterCombo.Items.Add("Fourth");
 
             employeeCombo.IsEnabled = false;
             for (int i = 0; i < listOfOrders.Count; i++)
@@ -124,6 +128,7 @@ namespace _01electronics_logistics
 
             UpdateStatus(statusCombo);
             UpdateYear(yearCombo);
+            UpdateQuarter(quarterCombo);
             UpdateEmployee(employeeCombo);
             UpdateProduct(productCombo);
             UpdateBrand(brandCombo);
@@ -261,6 +266,29 @@ namespace _01electronics_logistics
                         listOfOrders.RemoveAt(i);
                         i--;
                     }
+        }
+        
+        private void OnQuarterComboBoxChange(object sender, RoutedEventArgs e)
+        {
+            InitializeOrderList();
+            UpdateList();
+        }
+        private void UpdateQuarter(object sender)
+        {
+            if (((ComboBox)sender).SelectedItem != null)
+            {
+                int quarter = ((ComboBox)sender).Items.IndexOf(((ComboBox)sender).SelectedItem);
+                for (int i = 0; i < listOfOrders.Count; i++)
+                {
+                    int month = Int16.Parse(listOfOrders[i].issue_date.Substring(0,1));
+                    if (!((quarter*3) <= month && ((quarter+1)*3) >month))
+                    {
+                        listOfOrders.RemoveAt(i);
+                        i--;
+                    }
+
+                }
+            }
         }
 
         private void OnYearComboBoxChange(object sender = null, EventArgs e = null)
