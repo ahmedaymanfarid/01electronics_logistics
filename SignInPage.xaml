@@ -1,0 +1,78 @@
+﻿<Page x:Class="_01electronics_logistics.SignInPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_01electronics_logistics"
+      mc:Ignorable="d" 
+      Title="SignInPage">
+
+    <Grid Name="PrimaryGrid" Background="#FFFFFF">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Name="SpareColumn1"/>
+            <ColumnDefinition Name="LoginPhotoColumn" Width="600"/>
+            <ColumnDefinition Name="SpareColumn2"/>
+            <ColumnDefinition Name="LoginControlsColumn" Width="400"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Name="SpareRow1"/>
+            <RowDefinition Name="PrimaryRow" Height="600"/>
+            <RowDefinition Name="SpareRow2"/>
+        </Grid.RowDefinitions>
+
+        <Label Name="Column0Row0Label" Grid.Column="0" Grid.Row="0" Background="#105A97"/>
+        <Label Name="Column0Row1Label" Grid.Column="0" Grid.Row="1" Background="#105A97"/>
+        <Label Name="Column0Row2Label" Grid.Column="0" Grid.Row="2" Background="#105A97"/>
+
+        <Label Name="Column1Row0Label" Grid.Column="1" Grid.Row="0" Background="#105A97"/>
+        <Label Name="Column1Row2Label" Grid.Column="1" Grid.Row="2" Background="#105A97"/>
+
+        <Label Name="Column2Row0Label" Grid.Column="2" Grid.Row="0" Background="#105A97"/>
+        <Label Name="Column2Row1Label" Grid.Column="2" Grid.Row="1" Background="#105A97"/>
+        <Label Name="Column2Row2Label" Grid.Column="2" Grid.Row="2" Background="#105A97"/>
+
+        <Label Name="Column3Row0Label" Grid.Column="3" Grid.Row="0" Background="#FFFFFF"/>
+        <Label Name="Column3Row2Label" Grid.Column="3" Grid.Row="2" Background="#FFFFFF"/>
+
+        <Label Name="BackgroundImageLabel" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Label.Background>
+                <ImageBrush ImageSource="login_cover.png"/>
+            </Label.Background>
+        </Label>
+
+        <Grid Name="SecondaryGrid" Grid.Column="3" Grid.Row="1" Height="400">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Name="SignInHeaderRow" Height="1*"/>
+                <RowDefinition Name="EmailAndPasswordRow" Height="1.5*"/>
+                <RowDefinition Name="SignInButtonRow" Height="1*"/>
+                <RowDefinition Name="ForgotPasswordRow" Height="0.25*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Sign In!" FontFamily="Copperplate Gothic Bold" FontSize="48" Foreground="#105A97">
+            </Label>
+
+            <Label Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="15,30,0,90" Padding="10" Content="Email" FontFamily="Copperplate Gothic Light" Foreground="#105A97" FontSize="14" />
+            <TextBox Name="employeeEmailTextBox" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,30,30,90" Width="200" Padding="0,5" />
+
+            <Label Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="15,90,0,30" Padding="10" Content="Password" FontFamily="Copperplate Gothic Light" Foreground="#105A97" FontSize="14" />
+            <TextBox Name="employeePasswordTextBox" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,90,30,30" Width="200" Padding="0,5"/>
+
+
+            <Button Name="SignInButton" Grid.Row="2" Content="Sign In" Margin="60,15,60,0" Width="150" Padding="0,5" VerticalAlignment="Top" FontFamily="Copperplate Gothic Bold" FontSize="20" Background="#FF105A97" Foreground="White" Click="OnButtonClickedSignIn"/>
+            <Button Name="SignUpButton" Grid.Row="2" Content="Sign Up" Margin="60,0,60,15" Width="150" Padding="0,5" VerticalAlignment="Bottom" FontFamily="Copperplate Gothic Bold" FontSize="20" Background="#FF105A97" Foreground="White" Click="OnButtonClickedSignUp"/>
+
+            <Label Name="ForgotPasswordLabel" Grid.Row="3" Content="Forgot Password?" HorizontalAlignment="Center" Foreground="#FF105A97"/>
+        </Grid>
+
+        <!--
+        
+        -->
+    </Grid>
+</Page>

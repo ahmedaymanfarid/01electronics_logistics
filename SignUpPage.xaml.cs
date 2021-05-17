@@ -16,17 +16,21 @@ using _01electronics_erp;
 
 namespace _01electronics_logistics
 {
+    
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SignUpPage.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
-    {
-        public MainWindow(ref Employee mLoggedInUser)
+    public partial class SignUpPage : Page
+    { 
+        public SignUpPage()
         {
             InitializeComponent();
+        }
 
-            UserPortalPage userPortal = new UserPortalPage(ref mLoggedInUser);
-            this.NavigationService.Navigate(userPortal);
+        private void OnButtonClickedSignUp(object sender, RoutedEventArgs e)
+        {
+            SQLServer sqlServer = new SQLServer();
+            
         }
     }
 }
