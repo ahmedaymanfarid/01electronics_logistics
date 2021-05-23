@@ -67,7 +67,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <CheckBox Grid.Row="0" Grid.Column="0"  Content="Year" Style="{StaticResource checkBoxStyle}"/>
+                    <CheckBox Grid.Row="0" Grid.Column="0"  Content="Yeasr" Style="{StaticResource checkBoxStyle}"/>
                     <ComboBox Grid.Row="0" Grid.Column="1" Style="{StaticResource comboBoxStyle}"/>
 
                     <CheckBox Grid.Row="1" Grid.Column="0" Content="Quarter" Style="{StaticResource checkBoxStyle}"/>
