@@ -72,12 +72,6 @@ namespace _01electronics_erp
 		employees_educational_qualifications.certificate, 
 		employees_educational_qualifications.major, 
 
-        banks_names.id,
-        employees_payroll_info.payroll_id,
-        employees_payroll_info.account_id,
-
-        employees_salaries.salary,
-
 		employees_info.birth_date, 
 		employees_info.join_date, 
 
@@ -94,9 +88,7 @@ namespace _01electronics_erp
 		educational_degrees.educational_degree, 
 		educational_majors.educational_major, 
 
-        employees_initials.employee_initial,
-
-		banks_names.bank_name
+        employees_initials.employee_initial
 
 		from erp_system.dbo.employees_info 
 		inner join erp_system.dbo.departments_type 
@@ -121,12 +113,6 @@ namespace _01electronics_erp
 		on employees_educational_qualifications.certificate = educational_degrees.id 
 		left join erp_system.dbo.educational_majors 
 		on employees_educational_qualifications.major = educational_majors.id 
-        left join erp_system.dbo.employees_salaries
-        on employees_info.employee_id = employees_salaries.id
-        left join erp_system.dbo.employees_payroll_info
-        on employees_info.employee_id = employees_payroll_info.employee_id
-        inner join erp_system.dbo.banks_names
-        on employees_payroll_info.bank_id = banks_names.id
 		where employees_business_emails.email = '";
             String sqlQueryPart2 = "';";
 
@@ -137,11 +123,11 @@ namespace _01electronics_erp
 
             BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT queryColumns = new BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT();
 
-            queryColumns.sql_int = 9;
-            queryColumns.sql_bigint = 1;
-            queryColumns.sql_money = 1;
+            queryColumns.sql_int = 7;
+            queryColumns.sql_bigint = 0;
+            queryColumns.sql_money = 0;
             queryColumns.sql_datetime = 2;
-            queryColumns.sql_string = 12;
+            queryColumns.sql_string = 11;
 
             if (!initializationObject.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
                 return false;
@@ -154,8 +140,6 @@ namespace _01electronics_erp
 
             educationalQualificationId = initializationObject.rows[0].sql_int[5];
             majorId = initializationObject.rows[0].sql_int[6];
-
-            salary = initializationObject.rows[0].sql_money[0];
 
             birthDateStruct = initializationObject.rows[0].sql_datetime[0];
             joinDateStruct = initializationObject.rows[0].sql_datetime[1];
@@ -178,21 +162,6 @@ namespace _01electronics_erp
             major = initializationObject.rows[0].sql_string[9];
 
             initials = initializationObject.rows[0].sql_string[10];
-
-            payrollInfo = new List<COMPANY_ORGANISATION_MACROS.BANK_STRUCT>();
-
-            for (int i = 0; i < initializationObject.rows.Count; i++)
-            {
-                COMPANY_ORGANISATION_MACROS.BANK_STRUCT tempItem = new COMPANY_ORGANISATION_MACROS.BANK_STRUCT();
-
-                tempItem.bank_id = initializationObject.rows[i].sql_int[7];
-                tempItem.payroll_id = initializationObject.rows[i].sql_int[8];
-                tempItem.account_id = (ulong)initializationObject.rows[i].sql_bigint[0];
-
-                tempItem.bank_name = initializationObject.rows[i].sql_string[11];
-                
-                payrollInfo.Add(tempItem);
-            }
 
             return true;
         }

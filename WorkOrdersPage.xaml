@@ -86,7 +86,7 @@
                     <ComboBox Grid.Row="5" Grid.Column="1" Style="{StaticResource comboBoxStyle}"/>
                 </Grid>
                 
-                <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,48" MinHeight="400" >
+                <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,48" MinHeight="400" MinWidth="360" >
                     <StackPanel Name="OrdersStackPanel" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FFFFFF"/>
                 </ScrollViewer>
             </Grid>

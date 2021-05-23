@@ -38,7 +38,7 @@
 
         <Label Name="BackgroundImageLabel" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Label.Background>
-                <ImageBrush ImageSource="login_cover.png"/>
+                <ImageBrush ImageSource="../login_cover.png"/>
             </Label.Background>
         </Label>
 
