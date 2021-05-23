@@ -28,7 +28,8 @@
 
             <TextBlock Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="MyProfileLabel" Text="My Profile" MouseLeftButtonDown="OnButtonClickedMyProfile"/>
             <TextBlock Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="WorkOrdersLabel" Text="Work Orders" MouseLeftButtonDown="OnButtonClickedWorkOrders"/>
-            <TextBlock Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="AgentsLabel" Text="Agents" MouseLeftButtonDown="OnButtonClickedAgents"/>
+            <TextBlock Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="FreightAgentsLabel" Text="Freight Agents" MouseLeftButtonDown="OnButtonClickedAgents"/>
+            <TextBlock Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="CustomsAgentsLabel" Text="Customs Agents" MouseLeftButtonDown="OnButtonClickedAgents"/>
 
         </Grid>
 
@@ -49,7 +50,7 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.35*"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.35*"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0" Margin="48,24,48,48">
