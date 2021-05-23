@@ -83,7 +83,6 @@ namespace _01electronics_logistics
                 if (!statusCombo.Items.Contains(listOfOrders[i].order_status))
                     statusCombo.Items.Add(listOfOrders[i].order_status);
 
-        }
 
         private void UpdateList()
         {
@@ -368,5 +367,5 @@ namespace _01electronics_logistics
 
     }
 
-
+    
 }
