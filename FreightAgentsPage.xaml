@@ -72,17 +72,17 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <CheckBox Grid.Row="0" Grid.Column="0"  Content="Country" Style="{StaticResource checkBoxStyle}"/>
-                    <ComboBox Grid.Row="0" Grid.Column="1" Style="{StaticResource comboBoxStyle}"/>
+                    <CheckBox Grid.Row="0" Grid.Column="0" Click="OnCountriesCheckBoxClick"  Content="Country" Style="{StaticResource checkBoxStyle}"/>
+                    <ComboBox Grid.Row="0" Grid.Column="1" x:Name="countriesCombo" SelectionChanged="OnCountriesComboBoxClick" Style="{StaticResource comboBoxStyle}" IsEnabled="False"/>
 
-                    <CheckBox Grid.Row="1" Grid.Column="0" Content="State" Style="{StaticResource checkBoxStyle}"/>
-                    <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource comboBoxStyle}"/>
+                    <CheckBox Grid.Row="1" Grid.Column="0" Click="OnStateCheckBoxClick" Content="State" Style="{StaticResource checkBoxStyle}"/>
+                    <ComboBox Grid.Row="1" Grid.Column="1" x:Name="statesCombo" SelectionChanged="OnStatesComboBoxClick" Style="{StaticResource comboBoxStyle}" IsEnabled="False"/>
 
-                    <CheckBox Grid.Row="2" Grid.Column="0" Content="City" Style="{StaticResource checkBoxStyle}"/>
-                    <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource comboBoxStyle}"/>
+                    <CheckBox Grid.Row="2" Grid.Column="0" Click="OnCityCheckBoxClick" Content="City" Style="{StaticResource checkBoxStyle}"/>
+                    <ComboBox Grid.Row="2" Grid.Column="1" x:Name="citiesCombo" SelectionChanged="OnCitiesComboBoxClick" Style="{StaticResource comboBoxStyle}" IsEnabled="False"/>
 
-                    <CheckBox Grid.Row="3" Grid.Column="0" Content="District" Style="{StaticResource checkBoxStyle}"/>
-                    <ComboBox Grid.Row="3" Grid.Column="1" Style="{StaticResource comboBoxStyle}"/>
+                    <CheckBox Grid.Row="3" Grid.Column="0" Click="OnDistrictCheckBoxClick" Content="District" Style="{StaticResource checkBoxStyle}"/>
+                    <ComboBox Grid.Row="3" Grid.Column="1" x:Name="districtsCombo" Style="{StaticResource comboBoxStyle}" IsEnabled="False"/>
                 </Grid>
 
                 <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,48" MinHeight="400" MinWidth="360">
