@@ -58,6 +58,8 @@
     <Compile Include="Agents.xaml.cs">
       <DependentUpon>Agents.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AGENT_MACROS.cs" />
+    <Compile Include="LogisticsQueries.cs" />
     <Compile Include="SignInPage.xaml.cs" />
     <Compile Include="SignInWindow.xaml.cs" />
     <Compile Include="SignUpPage.xaml.cs" />
