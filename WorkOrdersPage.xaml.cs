@@ -82,6 +82,7 @@ namespace _01electronics_logistics
             for (int i = 0; i < listOfOrders.Count; i++)
                 if (!statusCombo.Items.Contains(listOfOrders[i].order_status))
                     statusCombo.Items.Add(listOfOrders[i].order_status);
+        }
 
 
         private void UpdateList()
