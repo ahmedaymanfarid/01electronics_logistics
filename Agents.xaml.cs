@@ -27,8 +27,8 @@ namespace _01electronics_logistics
 
         private LogisticsQueries LogisticsQueryObject = new LogisticsQueries();
 
-        private StackPanel previousSelectedOrderStackPanel;
-        private StackPanel currentSelectedOrderStackPanel;
+        private StackPanel previousSelectedAgentStackPanel;
+        private StackPanel currentSelectedAgentStackPanel;
 
         public Agents(ref Employee mLoggedInUser)
         {
@@ -47,12 +47,12 @@ namespace _01electronics_logistics
             if (!LogisticsQueryObject.GetAgentsSerialsAndNames(ref listOfAgents))
                 return;
 
-            OrdersStackPanel.Children.Clear();
+            AgentsStackPanel.Children.Clear();
             for (int i = 0; i < listOfAgents.Count; i++)
             {
-                System.Windows.Controls.StackPanel selectedOrderStackPanel = new StackPanel();
-                selectedOrderStackPanel.Height = 80;
-                selectedOrderStackPanel.MouseLeftButtonDown += OnMouseLeftButtonDownOrderItem;
+                System.Windows.Controls.StackPanel selectedAgentStackPanel = new StackPanel();
+                selectedAgentStackPanel.Height = 80;
+                selectedAgentStackPanel.MouseLeftButtonDown += OnMouseLeftButtonDownOrderItem;
 
                 System.Windows.Controls.Label currentEmployeeName = new Label();
                 currentEmployeeName.Content = listOfAgents[i].agent_serial;
@@ -62,10 +62,10 @@ namespace _01electronics_logistics
                 currentEmployeeDepartment.Content = listOfAgents[i].agent_name;
                 currentEmployeeDepartment.Style = (Style)FindResource("stackPanelItemBody");
 
-                selectedOrderStackPanel.Children.Add(currentEmployeeName);
-                selectedOrderStackPanel.Children.Add(currentEmployeeDepartment);
+                selectedAgentStackPanel.Children.Add(currentEmployeeName);
+                selectedAgentStackPanel.Children.Add(currentEmployeeDepartment);
 
-                OrdersStackPanel.Children.Add(selectedOrderStackPanel);
+                AgentsStackPanel.Children.Add(selectedAgentStackPanel);
             }
         }
 
@@ -87,21 +87,21 @@ namespace _01electronics_logistics
 
         private void OnMouseLeftButtonDownOrderItem(object sender, RoutedEventArgs e)
         {
-            previousSelectedOrderStackPanel = currentSelectedOrderStackPanel;
-            currentSelectedOrderStackPanel = (StackPanel)sender;
+            previousSelectedAgentStackPanel = currentSelectedAgentStackPanel;
+            currentSelectedAgentStackPanel = (StackPanel)sender;
             BrushConverter brush = new BrushConverter();
 
-            if (previousSelectedOrderStackPanel != null)
+            if (previousSelectedAgentStackPanel != null)
             {
-                previousSelectedOrderStackPanel.Background = (Brush)brush.ConvertFrom("#FFFFFF");
+                previousSelectedAgentStackPanel.Background = (Brush)brush.ConvertFrom("#FFFFFF");
 
-                foreach (Label childLabel in previousSelectedOrderStackPanel.Children)
+                foreach (Label childLabel in previousSelectedAgentStackPanel.Children)
                     childLabel.Foreground = (Brush)brush.ConvertFrom("#000000");
             }
 
-            currentSelectedOrderStackPanel.Background = (Brush)brush.ConvertFrom("#105A97");
+            currentSelectedAgentStackPanel.Background = (Brush)brush.ConvertFrom("#105A97");
 
-            foreach (Label childLabel in currentSelectedOrderStackPanel.Children)
+            foreach (Label childLabel in currentSelectedAgentStackPanel.Children)
                 childLabel.Foreground = (Brush)brush.ConvertFrom("#FFFFFF");
         }
 
@@ -115,7 +115,18 @@ namespace _01electronics_logistics
         }
         private void OnDelete(object sender, RoutedEventArgs e)
         {
-
+            if(currentSelectedAgentStackPanel != null)
+            {
+                Label myLa = new Label();
+                myLa.Content = Int32.Parse(currentSelectedAgentStackPanel.Children[0].ToString());
+                AgentsStackPanel.Children.Add(myLa);
+            }
+            
+            //            String deleteQuery = "delete from agent_field_of_work where agent_serial = " + currentSelectedAgentStackPanel +
+            //"delete from agent_telephone where branch_serial = " + currentSelectedAgentStackPanel +
+            //"delete from agent_fax where branch_serial = " + currentSelectedAgentStackPanel +
+            //"delete from agent_address where agent_serial = " + currentSelectedAgentStackPanel +
+            //"delete from agent_name where agent_serial = " + currentSelectedAgentStackPanel;
         }
     }
 }
