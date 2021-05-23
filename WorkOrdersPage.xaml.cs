@@ -247,13 +247,6 @@ namespace _01electronics_logistics
         private void OnStatusComboBoxChange(object sender, RoutedEventArgs e)
         {
             InitializeOrderList();
-            //if (((ComboBox)sender).SelectedItem == null)
-            //{
-            //    UpdateList();
-            //    return;
-            //}
-            //OrdersStackPanel.Children.Clear();
-            //UpdateStatus(sender);
             UpdateList();
 
         }
@@ -271,7 +264,6 @@ namespace _01electronics_logistics
         private void OnQuarterComboBoxChange(object sender, RoutedEventArgs e)
         {
             InitializeOrderList();
-            UpdateList();
         }
         private void UpdateQuarter(object sender)
         {
@@ -286,7 +278,6 @@ namespace _01electronics_logistics
                         listOfOrders.RemoveAt(i);
                         i--;
                     }
-
                 }
             }
         }
@@ -294,14 +285,6 @@ namespace _01electronics_logistics
         private void OnYearComboBoxChange(object sender = null, EventArgs e = null)
         {
             InitializeOrderList();
-            //if (((ComboBox)sender).SelectedItem == null)
-            //{
-            //    UpdateList();
-            //    return;
-            //}
-            //OrdersStackPanel.Children.Clear();
-            //UpdateYear(sender);
-            UpdateList();
         }
         private void UpdateYear(object sender)
         {
@@ -317,14 +300,6 @@ namespace _01electronics_logistics
         private void OnEmployeeComboBoxChange(object sender, RoutedEventArgs e)
         {
             InitializeOrderList();
-            //if (((ComboBox)sender).SelectedItem == null)
-            //{
-            //    UpdateList();
-            //    return;
-            //}
-            //OrdersStackPanel.Children.Clear();
-            //UpdateEmployee(sender);
-            UpdateList();
         }
         private void UpdateEmployee(object sender)
         {
@@ -341,14 +316,6 @@ namespace _01electronics_logistics
         private void OnProductComboBoxChange(object sender, RoutedEventArgs e)
         {
             InitializeOrderList();
-            //if (((ComboBox)sender).SelectedItem == null)
-            //{
-            //    UpdateList();
-            //    return;
-            //}
-            //OrdersStackPanel.Children.Clear();
-            //UpdateProduct(sender);
-            UpdateList();
         }
         private void UpdateProduct(object sender)
         {
@@ -372,15 +339,6 @@ namespace _01electronics_logistics
         private void OnBrandComboBoxChange(object sender, RoutedEventArgs e)
         {
             InitializeOrderList();
-            //if (((ComboBox)sender).SelectedItem == null)
-            //{
-            //    UpdateList();
-            //    return;
-            //}
-            //OrdersStackPanel.Children.Clear();
-
-            //UpdateBrand(sender);
-            UpdateList();
         }
         private void UpdateBrand(object sender)
         {
