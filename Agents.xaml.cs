@@ -24,6 +24,8 @@ namespace _01electronics_logistics
         private Employee loggedInUser;
         public Agents(ref Employee mLoggedInUser)
         {
+            loggedInUser = mLoggedInUser;
+
             InitializeComponent();
         }
 
