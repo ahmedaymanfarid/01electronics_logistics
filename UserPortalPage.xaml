@@ -28,6 +28,7 @@
 
             <TextBlock Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="MyProfileLabel" Text="My Profile" MouseLeftButtonDown="OnButtonClickedMyProfile"/>
             <TextBlock Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="WorkOrdersLabel" Text="Work Orders" MouseLeftButtonDown="OnButtonClickedWorkOrders"/>
+            <TextBlock Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource sideNavigationItemStyle}" Name="AgentsLabel" Text="Agents" MouseLeftButtonDown="OnButtonClickedAgents"/>
 
         </Grid>
 

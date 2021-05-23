@@ -17,32 +17,14 @@ using _01electronics_erp;
 namespace _01electronics_logistics
 {
     /// <summary>
-    /// Interaction logic for UserPortalPage.xaml
+    /// Interaction logic for Agents.xaml
     /// </summary>
-    /// 
-    public partial class UserPortalPage : Page
+    public partial class Agents : Page
     {
-
         private Employee loggedInUser;
-
-        public UserPortalPage(ref Employee mLoggedInUser)
+        public Agents(ref Employee mLoggedInUser)
         {
             InitializeComponent();
-
-            loggedInUser = mLoggedInUser;
-
-            InitializeEmployeeDashboard();
-        }
-
-        private void InitializeEmployeeDashboard()
-        {
-            employeeNameLabel.Content = loggedInUser.GetEmployeeName();
-            employeeBirthdateLabel.Content = loggedInUser.GetEmployeeBirthDate();
-            employeeJoiningDateLabel.Content = loggedInUser.GetEmployeeJoinDate();
-            employeeDepartmentLabel.Content = loggedInUser.GetEmployeeDepartment();
-            employeeTeamLabel.Content = loggedInUser.GetEmployeeTeam();
-            employeeBusinessEmailLabel.Content = loggedInUser.GetEmployeeBusinessEmail();
-            employeePersonalEmailLabel.Content = loggedInUser.GetEmployeePersonalEmail();
         }
 
         private void OnButtonClickedMyProfile(object sender, RoutedEventArgs e)
@@ -60,5 +42,18 @@ namespace _01electronics_logistics
             Agents agentsPage = new Agents(ref loggedInUser);
             this.NavigationService.Navigate(agentsPage);
         }
-    }       
+
+        private void OnAdd(object sender,RoutedEventArgs e)
+        {
+
+        }
+        private void OnModify(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void OnDelete(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 }

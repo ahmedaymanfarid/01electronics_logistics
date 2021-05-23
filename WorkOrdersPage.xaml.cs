@@ -166,6 +166,11 @@ namespace _01electronics_logistics
             WorkOrdersPage workOrdersPage = new WorkOrdersPage(ref loggedInUser);
             this.NavigationService.Navigate(workOrdersPage);
         }
+        private void OnButtonClickedAgents(object sender, RoutedEventArgs e)
+        {
+            Agents agentsPage = new Agents(ref loggedInUser);
+            this.NavigationService.Navigate(agentsPage);
+        }
 
         /***********************************************************************************
         ***********************************************************************************
