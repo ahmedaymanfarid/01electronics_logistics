@@ -17,9 +17,9 @@ using _01electronics_erp;
 namespace _01electronics_logistics
 {
     /// <summary>
-    /// Interaction logic for Agents.xaml
+    /// Interaction logic for FreightAgents.xaml
     /// </summary>
-    public partial class Agents : Page
+    public partial class FreightAgentsPage : Page
     {
         private Employee loggedInUser;
 
@@ -30,7 +30,7 @@ namespace _01electronics_logistics
         private StackPanel previousSelectedAgentStackPanel;
         private StackPanel currentSelectedAgentStackPanel;
 
-        public Agents(ref Employee mLoggedInUser)
+        public FreightAgentsPage(ref Employee mLoggedInUser)
         {
             loggedInUser = mLoggedInUser;
 

@@ -9,9 +9,6 @@ namespace _01electronics_logistics
 {
     class AGENT_MACROS
     {
-        private String sqlQuery;
-        private SQLServer commonQueriesSqlObject;
-
         // AGENTS STRUCTS
         public struct AGENT_STRUCT
         {
