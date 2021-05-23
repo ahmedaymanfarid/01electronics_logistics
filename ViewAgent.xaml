@@ -1,0 +1,24 @@
+﻿<Window x:Class="_01electronics_logistics.ViewAgent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_01electronics_logistics"
+        mc:Ignorable="d"
+        Background="#EDEDED"
+        Title="ViewAgent" Height="630" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" x:Name="agentName" Style="{StaticResource primaryHeaderTextStyle}"/>
+        <TextBlock Grid.Row="1" x:Name="employeeName" Style="{StaticResource primaryHeaderTextStyle}"/>
+        <TextBlock Grid.Row="2" x:Name="district" Style="{StaticResource primaryHeaderTextStyle}"/>
+        <TextBlock Grid.Row="3" x:Name="telephone" Style="{StaticResource primaryHeaderTextStyle}"/>
+
+    </Grid>
+</Window>

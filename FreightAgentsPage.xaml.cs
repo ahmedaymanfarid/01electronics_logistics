@@ -46,7 +46,9 @@ namespace _01electronics_logistics
                 return;
             for (int i = 0; i < listOfAgents.Count; i++)
             {
-                agentsTree.Items.Add(listOfAgents[i].agent_name);
+                TreeViewItem item = new TreeViewItem();
+                item.Header = listOfAgents[i].agent_name;
+                agentsTree.Items.Add(item);
             }
             List<BASIC_STRUCTS.COUNTRY_STRUCT> countries = new List<BASIC_STRUCTS.COUNTRY_STRUCT>();
             CommonQueriesObject.GetAllCountries(ref countries);
@@ -132,7 +134,11 @@ namespace _01electronics_logistics
             for (int i = 0; i < districts.Count; i++)
                 districtsCombo.Items.Add(districts[i].district_name);
         }
-
+        /***********************************************************************************
+        ***********************************************************************************
+        *********************************Buttons OnClick Listeners ************************
+        ***********************************************************************************
+        ***********************************************************************************/
         private void OnButtonClickedMyProfile(object sender, RoutedEventArgs e)
         {
             UserPortalPage userPortal = new UserPortalPage(ref loggedInUser);
@@ -151,11 +157,11 @@ namespace _01electronics_logistics
 
         private void OnBtnClickedAdd(object sender, RoutedEventArgs e)
         {
-            InitializeList();
+            
         }
         private void OnBtnClickedView(object sender, RoutedEventArgs e)
         {
-
+            //ViewAgent va = new ViewAgent(agentsTreeagentsTree.SelectedItem);
         }
 
     }

@@ -49,5 +49,31 @@ namespace _01electronics_logistics
             return true;
         }
 
+
+        public bool GetFullAgentInfo(int agentId,ref AGENT_MACROS.AGENT_FULL_INFO agent)
+        {
+            String sqlQueryPart1 = @"select agent_name.agent_name,[name],district,agent_telephone.telephone_number
+from agent_name,agent_address,districts,employees_info,agent_telephone
+where agent_address.[address] = districts.id 
+AND agent_name.added_by = employees_info.employee_id
+AND agent_name.agent_serial = agent_address.agent_serial
+AND agent_telephone.branch_serial = agent_address.address_serial
+AND agent_name.agent_serial = " + agentId;
+
+            BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT queryColumns = new BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT();
+
+            queryColumns.sql_string = 4;
+
+            if (!commonQueriesSqlObject.GetRows(sqlQuery, queryColumns))
+                return false;
+
+            agent.agent_name = commonQueriesSqlObject.rows[0].sql_string[0];
+            agent.employee_name = commonQueriesSqlObject.rows[0].sql_string[1];
+            agent.district = commonQueriesSqlObject.rows[0].sql_string[2];
+            agent.telephone = commonQueriesSqlObject.rows[0].sql_string[3];
+
+            return true;
+        }
+
     }
 }
