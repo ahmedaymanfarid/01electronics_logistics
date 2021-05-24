@@ -230,7 +230,13 @@ namespace _01electronics_logistics
 
         }
 
-
+        private void OnTreeSelectionChange(object sender,RoutedEventArgs e)
+        {
+            if (agentsTree.SelectedItem == null)
+                viewButton.IsEnabled = false;
+            else
+                viewButton.IsEnabled = true;
+        }
         private void OnBtnClickedAdd(object sender, RoutedEventArgs e)
         {
             // -1 is an indication that there is no agent passed therefore the ViewAgent constructor
