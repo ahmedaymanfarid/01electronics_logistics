@@ -82,7 +82,7 @@
                     <ComboBox Grid.Row="2" Grid.Column="1" x:Name="citiesCombo" SelectionChanged="OnCitiesComboBoxClick" Style="{StaticResource comboBoxStyle}" IsEnabled="False"/>
 
                     <CheckBox Grid.Row="3" Grid.Column="0" Click="OnDistrictCheckBoxClick" Content="District" Style="{StaticResource checkBoxStyle}"/>
-                    <ComboBox Grid.Row="3" Grid.Column="1" x:Name="districtsCombo" Style="{StaticResource comboBoxStyle}" IsEnabled="False"/>
+                    <ComboBox Grid.Row="3" Grid.Column="1" x:Name="districtsCombo"  SelectionChanged="OnDistrictsComboBoxClick" Style="{StaticResource comboBoxStyle}" IsEnabled="False"/>
                 </Grid>
 
                 <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,48" MinHeight="400" MinWidth="360">
@@ -93,7 +93,7 @@
             </Grid>
 
             <Button Grid.Row="2" HorizontalAlignment="Left"  Margin="200,0" Content="Add" Style="{StaticResource buttonStyle}" Click="OnBtnClickedAdd"/>
-            <Button Grid.Row="2" HorizontalAlignment="Right" Margin="200,0" Content="View" Style="{StaticResource buttonStyle}" Click="OnBtnClickedView"/>
+            <Button Grid.Row="2" Name="viewButton" HorizontalAlignment="Right" Margin="200,0" Content="View" Style="{StaticResource buttonStyle}" Click="OnBtnClickedView"/>
 
 
 

@@ -11,14 +11,58 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="3*"/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" x:Name="agentName" Style="{StaticResource primaryHeaderTextStyle}"/>
-        <TextBlock Grid.Row="1" x:Name="employeeName" Style="{StaticResource primaryHeaderTextStyle}"/>
-        <TextBlock Grid.Row="2" x:Name="district" Style="{StaticResource primaryHeaderTextStyle}"/>
-        <TextBlock Grid.Row="3" x:Name="telephone" Style="{StaticResource primaryHeaderTextStyle}"/>
-
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <CheckBox Click="OnAgentCheckBoxClick"  Content="Agent Name" Style="{StaticResource checkBoxStyle}"/>
+            <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,12,12,12" x:Name="agentNameTextBox" Style="{StaticResource textBoxStyle}" IsEnabled="False"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <CheckBox Click="OnEmployeesCheckBoxClick"  Content="Employee" Style="{StaticResource checkBoxStyle}"/>
+            <ComboBox x:Name="employeesCombo" Style="{StaticResource comboBoxStyle}" Margin="30,12,12,12" Width="384" IsEnabled="False"/>
+        </StackPanel>
+        <Grid Grid.Row="2">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <CheckBox Click="OnCountriesCheckBoxClick"  Content="Country" Style="{StaticResource checkBoxStyle}"/>
+                <ComboBox x:Name="countriesCombo" SelectionChanged="OnCountriesComboBoxClick"  Margin="30,12,12,12" Width="384"
+                          Style="{StaticResource comboBoxStyle}" IsEnabled="False"/>
+            </StackPanel>
+            
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <CheckBox Click="OnStateCheckBoxClick" Content="State" Style="{StaticResource checkBoxStyle}"/>
+                <ComboBox x:Name="statesCombo" SelectionChanged="OnStatesComboBoxClick"  Margin="30,12,12,12" Width="384" 
+                          Style="{StaticResource comboBoxStyle}" IsEnabled="False"/>
+            </StackPanel>
+            
+            <StackPanel  Grid.Row="2" Orientation="Horizontal">
+                <CheckBox Click="OnCityCheckBoxClick" Content="City" Style="{StaticResource checkBoxStyle}"/>
+                <ComboBox x:Name="citiesCombo" SelectionChanged="OnCitiesComboBoxClick"  Margin="30,12,12,12" Width="384" 
+                          Style="{StaticResource comboBoxStyle}" IsEnabled="False"/>
+            </StackPanel>
+            
+            <StackPanel  Grid.Row="3" Orientation="Horizontal">
+                <CheckBox Click="OnDistrictCheckBoxClick" Content="District" Style="{StaticResource checkBoxStyle}"/>
+                <ComboBox x:Name="districtsCombo" Style="{StaticResource comboBoxStyle}" 
+                          Margin="30,12,12,12" Width="384"  IsEnabled="False"/>
+            </StackPanel>
+            
+        </Grid>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <CheckBox Click="OnTelephoneCheckBoxClick"  Content="Telephone" Style="{StaticResource checkBoxStyle}"/>
+            <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="telephoneTextBox" Style="{StaticResource textBoxStyle}" IsEnabled="False"/>
+        </StackPanel>
+        
+        <Button Grid.Row="4" Click="OnDoneButtonClick" Style="{StaticResource buttonStyle}" Content="Done"/>
     </Grid>
 </Window>

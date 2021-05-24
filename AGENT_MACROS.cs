@@ -20,7 +20,14 @@ namespace _01electronics_logistics
         {
             public String agent_name;
             public String employee_name;
+
+            public String country;
+            public String state;
+            public String city;
             public String district;
+
+            public int addressId;
+
             public String telephone;
         }
 
