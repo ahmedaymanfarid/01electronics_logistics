@@ -27,13 +27,30 @@ namespace _01electronics_logistics
         private StackPanel currentSelectedOrderStackPanel;
 
         private CommonQueries CommonQueriesObject = new CommonQueries();
+        private CommonFunctions CommonFunctionObject = new CommonFunctions();
 
         private Employee loggedInUser;
         private Employee selectedEmployee;
 
+        private List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT> marketingEmployees = new List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT>();
+        private List<COMPANY_WORK_MACROS.PRODUCT_STRUCT> productTypes = new List<COMPANY_WORK_MACROS.PRODUCT_STRUCT>();
+        private List<COMPANY_WORK_MACROS.BRAND_STRUCT> brandsTypes = new List<COMPANY_WORK_MACROS.BRAND_STRUCT>();
+
         public WorkOrdersPage(ref Employee mLoggedInUser)
         {
             loggedInUser = mLoggedInUser;
+
+            //DISABLING COMBOBOXES SHALL BE SEPARATE FROM INITIALIZATION FUNCTIONS
+            //EITHER YOU DO THEM IN RESET FUNCTION
+            //OR DO IT IN THE CONSTRUCTOR
+            //BUT IT IS PREFERED TO DO IT IN RESET FUNCTIONS
+
+            yearCombo.IsEnabled = false;
+            quarterCombo.IsEnabled = false; 
+            employeeCombo.IsEnabled = false;
+            productCombo.IsEnabled = false;
+            brandCombo.IsEnabled = false;
+            statusCombo.IsEnabled = false;
 
             InitializeComponent();
 
@@ -42,43 +59,79 @@ namespace _01electronics_logistics
             InitializeComboBoxes();
         }
 
-        private void InitializeComboBoxes()
+        private void InitializeYearsComboBox()
         {
-
-            yearCombo.IsEnabled = false;
+            
             int initialYear = 2020;
             int finalYear = Int32.Parse(DateTime.Now.Year.ToString());
             for (; initialYear <= finalYear; initialYear++)
                 yearCombo.Items.Add(initialYear);
+        }
+        private void InitializeQuartersComboBox()
+        {
+            //INSTEAD OF HARD CODING YOUR COMBO, 
+            //THIS FUNCTION IS BETTER SO EVERYTIME IN OUR PROJECT WE NEED TO LIST QUARTERS
+            //WE ARE SURE THAT ALL HAVE THE SAME FORMAT
+            for (int i = 0; i < BASIC_MACROS.NO_OF_QUARTERS; i++)
+                quarterCombo.Items.Add(CommonFunctionObject.GetQuarterName(i + 1));
+            //ALSO IF YOU NOTICE, I DIDN'T EVEN USE i < 4, I USED A PRE-DEFINED MACRO INSTEAD, SO THE CODE IS ALWAYS READABLE
+        }
+        
+        //THIS FUNCTIONS ACCESS SQL SERVER, SO YOU SHALL ALWAYS CHECK IF THE QUERY IS COMPLETED SUCCESSFULLY
+        // IF NOT YOU SHALL STOP DATA ACCESS FOR THE CODE NOT TO CRASH
+        private bool InitializeProductsComboBox()
+        {
+            if (!CommonQueriesObject.GetCompanyProducts(ref productTypes))
+                return false;
 
-
-            quarterCombo.IsEnabled = false;
-            quarterCombo.Items.Add("First");
-            quarterCombo.Items.Add("Second");
-            quarterCombo.Items.Add("Third");
-            quarterCombo.Items.Add("Fourth");
-
-            employeeCombo.IsEnabled = false;
-            List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT> marketingEmployees = new List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT>();
-            CommonQueriesObject.GetDepartmentEmployees(102,ref marketingEmployees);
-            for (int i = 0; i < marketingEmployees.Count; i++)
-                    employeeCombo.Items.Add(marketingEmployees[i].employee_name);
-
-            productCombo.IsEnabled = false;
-            List<COMPANY_WORK_MACROS.PRODUCT_STRUCT> productTypes = new List<COMPANY_WORK_MACROS.PRODUCT_STRUCT>();
-            CommonQueriesObject.GetCompanyProducts(ref productTypes);
             for (int i = 0; i < productTypes.Count; i++)
                 productCombo.Items.Add(productTypes[i].typeName);
 
-            brandCombo.IsEnabled = false;
-            List<COMPANY_WORK_MACROS.BRAND_STRUCT> brandsTypes = new List<COMPANY_WORK_MACROS.BRAND_STRUCT>();
-            CommonQueriesObject.GetCompanyBrands(ref brandsTypes);
+            return true;
+        }
+
+        private bool InitializeBrandsComboBox()
+        {
+            if (!CommonQueriesObject.GetCompanyBrands(ref brandsTypes))
+                return false;
+
             for (int i = 0; i < brandsTypes.Count; i++)
                 brandCombo.Items.Add(brandsTypes[i].brandName);
 
-            statusCombo.IsEnabled = false;
+            return true;
+        }
+
+        private bool InitialzieEmployeesComboBox()
+        {
+            //YOU CAN'T USE DIGITS IN YOUR CODE, OTHERWISE IF WE CHANGED THE IDs LATER, YOU WILL FACE A HARD TIME MANAGING YOUR CODE
+            //ALSO IT IS UNREADABLE
+            if (!CommonQueriesObject.GetDepartmentEmployees(COMPANY_ORGANISATION_MACROS.MARKETING_AND_SALES_DEPARTMENT_ID, ref marketingEmployees))
+                return false;
+
+            for (int i = 0; i < marketingEmployees.Count; i++)
+                employeeCombo.Items.Add(marketingEmployees[i].employee_name);
+
+            return true;
+        }
+        private bool InitializeComboBoxes()
+        {
+            InitializeYearsComboBox();
+            InitializeQuartersComboBox();
+
+            if (!InitializeProductsComboBox())
+                return false;
+
+            if (!InitializeBrandsComboBox())
+                return false;
+
+            if (!InitialzieEmployeesComboBox())
+                return false;
+
+            //PLEASE CREATE A FUNCTION IN COMMON QUERIES FOR THIS QUERY
             statusCombo.Items.Add("Open");
             statusCombo.Items.Add("Closed");
+
+            return true;
         }
 
 
