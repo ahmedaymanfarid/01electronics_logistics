@@ -86,8 +86,8 @@
                     <CheckBox Grid.Row="5" Grid.Column="0" Click="OnStatusCheckBoxClick" Name="statusCheck" Content="Status" Style="{StaticResource checkBoxStyle}"/>
                     <ComboBox Grid.Row="5" Grid.Column="1" Name="statusCombo" SelectionChanged="OnStatusComboBoxChange" Style="{StaticResource comboBoxStyle}"/>
                 </Grid>
-
-                <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,48" MinHeight="400" >
+                
+                <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,48" MinHeight="400" MinWidth="360" >
                     <StackPanel Name="OrdersStackPanel" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FFFFFF"/>
                 </ScrollViewer>
             </Grid>

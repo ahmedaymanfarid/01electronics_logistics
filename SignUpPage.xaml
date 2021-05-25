@@ -39,7 +39,7 @@
 
         <Label Name="BackgroundImageLabel" Grid.Column="1" Grid.Row="1">
             <Label.Background>
-                <ImageBrush ImageSource="login_cover1.png"/>
+                <ImageBrush ImageSource="../login_cover.png"/>
             </Label.Background>
         </Label>
 
@@ -60,16 +60,16 @@
             </Label>
 
             <Label Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="15,15,0,160" Padding="10" Content="Email" FontFamily="Copperplate Gothic Light" Foreground="#105A97" FontSize="14" />
-            <TextBox Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,15,30,160" Width="200" Padding="0,5" />
+            <TextBox Name="businessEmailTextBox" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,15,30,160" Width="200" Padding="0,5" />
 
             <Label Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="15,60,0,115" Padding="10" Content="Password" FontFamily="Copperplate Gothic Light" Foreground="#105A97" FontSize="14" />
-            <TextBox Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,60,30,115" Width="200" Padding="0,5"/>
+            <TextBox Name="passwordTextBox" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,60,30,115" Width="200" Padding="0,5"/>
 
             <Label Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="15,105,0,70" Padding="10" Content="Confirm Password" FontFamily="Copperplate Gothic Light" Foreground="#105A97" FontSize="14" />
-            <TextBox Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,105,30,70" Width="200" Padding="0,5" />
+            <TextBox Name="confirmPasswordTextBox" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,105,30,70" Width="200" Padding="0,5" />
 
             <Label Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="15,150,0,25" Padding="10" Content="Personal Email" FontFamily="Copperplate Gothic Light" Foreground="#105A97" FontSize="14" />
-            <TextBox Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,150,30,25" Width="200" Padding="0,5"/>
+            <TextBox Name="personalEmailTextBox" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,150,30,25" Width="200" Padding="0,5"/>
 
             <Button Name="SignUpButton" Grid.Row="2" Content="Sign Up" Width="150" Padding="0,5" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Copperplate Gothic Bold" FontSize="20" Background="#FF105A97" Foreground="White" Click="OnButtonClickedSignUp"/>
 

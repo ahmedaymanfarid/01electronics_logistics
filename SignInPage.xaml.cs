@@ -50,8 +50,8 @@ namespace _01electronics_logistics
             if (!integrityChecker.CheckEmployeePasswordEditBox(employeePassword, loggedInUser.GetEmployeeId()))
                 return;
 
-            MainWindow portalWindowOpen = new MainWindow(ref loggedInUser);
-            portalWindowOpen.Show();
+            MainWindow mainWindowOpen = new MainWindow(ref loggedInUser);
+            mainWindowOpen.Show();
         }
 
         private void OnButtonClickedSignUp(object sender, RoutedEventArgs e)
