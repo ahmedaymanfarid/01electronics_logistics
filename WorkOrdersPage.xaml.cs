@@ -46,13 +46,10 @@ namespace _01electronics_logistics
         {
 
             yearCombo.IsEnabled = false;
-            for (int i = 0; i < listOfOrders.Count; i++)
-            {
-                string year = listOfOrders[i].issue_date.Substring(listOfOrders[i].issue_date
-                    .LastIndexOf('/') + 1, 4);
-                if (!yearCombo.Items.Contains(year))
-                    yearCombo.Items.Add(year);
-            }
+            int initialYear = 2020;
+            int finalYear = Int32.Parse(DateTime.Now.Year.ToString());
+            for (; initialYear <= finalYear; initialYear++)
+                yearCombo.Items.Add(initialYear);
 
 
             quarterCombo.IsEnabled = false;
@@ -62,26 +59,26 @@ namespace _01electronics_logistics
             quarterCombo.Items.Add("Fourth");
 
             employeeCombo.IsEnabled = false;
-            for (int i = 0; i < listOfOrders.Count; i++)
-                if (!employeeCombo.Items.Contains(listOfOrders[i].sales_person_name))
-                    employeeCombo.Items.Add(listOfOrders[i].sales_person_name);
+            List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT> marketingEmployees = new List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT>();
+            CommonQueriesObject.GetDepartmentEmployees(102,ref marketingEmployees);
+            for (int i = 0; i < marketingEmployees.Count; i++)
+                    employeeCombo.Items.Add(marketingEmployees[i].employee_name);
 
             productCombo.IsEnabled = false;
-            for (int i = 0; i < listOfOrders.Count; i++)
-                for (int j = 0; j < listOfOrders[i].products_type.Count; j++)
-                    if (!productCombo.Items.Contains(listOfOrders[i].products_type[j].typeName))
-                        productCombo.Items.Add(listOfOrders[i].products_type[j].typeName);
+            List<COMPANY_WORK_MACROS.PRODUCT_STRUCT> productTypes = new List<COMPANY_WORK_MACROS.PRODUCT_STRUCT>();
+            CommonQueriesObject.GetCompanyProducts(ref productTypes);
+            for (int i = 0; i < productTypes.Count; i++)
+                productCombo.Items.Add(productTypes[i].typeName);
 
             brandCombo.IsEnabled = false;
-            for (int i = 0; i < listOfOrders.Count; i++)
-                for (int j = 0; j < listOfOrders[i].products_brand.Count; j++)
-                    if (!brandCombo.Items.Contains(listOfOrders[i].products_brand[j].brandName))
-                        brandCombo.Items.Add(listOfOrders[i].products_brand[j].brandName);
+            List<COMPANY_WORK_MACROS.BRAND_STRUCT> brandsTypes = new List<COMPANY_WORK_MACROS.BRAND_STRUCT>();
+            CommonQueriesObject.GetCompanyBrands(ref brandsTypes);
+            for (int i = 0; i < brandsTypes.Count; i++)
+                brandCombo.Items.Add(brandsTypes[i].brandName);
 
             statusCombo.IsEnabled = false;
-            for (int i = 0; i < listOfOrders.Count; i++)
-                if (!statusCombo.Items.Contains(listOfOrders[i].order_status))
-                    statusCombo.Items.Add(listOfOrders[i].order_status);
+            statusCombo.Items.Add("Open");
+            statusCombo.Items.Add("Closed");
         }
 
 
@@ -168,7 +165,7 @@ namespace _01electronics_logistics
         }
         private void OnButtonClickedAgents(object sender, RoutedEventArgs e)
         {
-            Agents agentsPage = new Agents(ref loggedInUser);
+            FreightAgentsPage agentsPage = new FreightAgentsPage(ref loggedInUser);
             this.NavigationService.Navigate(agentsPage);
         }
 

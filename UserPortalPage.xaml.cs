@@ -57,7 +57,7 @@ namespace _01electronics_logistics
         }
         private void OnButtonClickedAgents(object sender, RoutedEventArgs e)
         {
-            Agents agentsPage = new Agents(ref loggedInUser);
+            FreightAgentsPage agentsPage = new FreightAgentsPage(ref loggedInUser);
             this.NavigationService.Navigate(agentsPage);
         }
     }       

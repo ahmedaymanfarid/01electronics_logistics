@@ -16,6 +16,21 @@ namespace _01electronics_logistics
             public int agent_serial;
         };
 
+        public struct AGENT_FULL_INFO
+        {
+            public String agent_name;
+            public String employee_name;
+
+            public String country;
+            public String state;
+            public String city;
+            public String district;
+
+            public int addressId;
+
+            public String telephone;
+        }
+
         
     }
 }
