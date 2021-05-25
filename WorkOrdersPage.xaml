@@ -73,7 +73,7 @@
                     <ComboBox Grid.Row="0" Grid.Column="1" SelectionChanged="OnYearComboBoxChange" Name="yearCombo" Style="{StaticResource comboBoxStyle}"/>
 
                     <CheckBox Grid.Row="1" Grid.Column="0" Click="OnQuarterCheckBoxClick" Name="quarterCheck" Content="Quarter" Style="{StaticResource checkBoxStyle}"/>
-                    <ComboBox Grid.Row="1" Grid.Column="1" Name="quarterCombo" Style="{StaticResource comboBoxStyle}"/>
+                    <ComboBox Grid.Row="1" Grid.Column="1" SelectionChanged="OnQuarterComboBoxChange" Name="quarterCombo" Style="{StaticResource comboBoxStyle}"/>
 
                     <CheckBox Grid.Row="2" Grid.Column="0" Click="OnEmployeeCheckBoxClick" Name="employeeCheck" Content="Employee" Style="{StaticResource checkBoxStyle}"/>
                     <ComboBox Grid.Row="2" Grid.Column="1" SelectionChanged="OnEmployeeComboBoxChange" Name="employeeCombo" Style="{StaticResource comboBoxStyle}"/>
