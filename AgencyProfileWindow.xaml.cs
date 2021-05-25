@@ -20,7 +20,7 @@ namespace _01electronics_logistics
     /// </summary>
     public partial class AgencyProfileWindow : Window
     {
-        AGENT_MACROS.AGENT_FULL_INFO agency = new AGENT_MACROS.AGENT_FULL_INFO();
+        AGENCY_MACROS.AGENCY_FULL_INFO agency = new AGENCY_MACROS.AGENCY_FULL_INFO();
 
         private CommonQueries CommonQueriesObject = new CommonQueries();
 
@@ -77,7 +77,7 @@ namespace _01electronics_logistics
             agencyNameLabel.Visibility = Visibility.Visible;
             agencyNameTextBox.Visibility = Visibility.Collapsed;
 
-            if (agencyNameTextBox.Text != agency.agent_name)
+            if (agencyNameTextBox.Text != agency.agency_name)
             {
                 BrushConverter brush = new BrushConverter();
 

@@ -56,10 +56,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AGENCY_MACROS.cs" />
     <Compile Include="FreightAgentsPage.xaml.cs">
       <DependentUpon>FreightAgentsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AGENT_MACROS.cs" />
     <Compile Include="FreightAgentsPage.xaml.cs">
       <DependentUpon>FreightAgentsPage.xaml</DependentUpon>
     </Compile>

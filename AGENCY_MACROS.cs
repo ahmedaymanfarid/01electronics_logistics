@@ -7,18 +7,18 @@ using _01electronics_erp;
 
 namespace _01electronics_logistics
 {
-    class AGENT_MACROS
+    class AGENCY_MACROS
     {
-        // AGENTS STRUCTS
-        public struct AGENT_STRUCT
+        // AGENCIES STRUCTS
+        public struct AGENCY_STRUCT
         {
-            public String agent_name;
-            public int agent_serial;
+            public String agency_name;
+            public int agency_serial;
         };
 
-        public struct AGENT_FULL_INFO
+        public struct AGENCY_FULL_INFO
         {
-            public String agent_name;
+            public String agency_name;
             public String employee_name;
 
             public String country;

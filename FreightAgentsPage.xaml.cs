@@ -23,9 +23,9 @@ namespace _01electronics_logistics
     {
         private Employee loggedInUser;
 
-        private List<AGENT_MACROS.AGENT_STRUCT> listOfAgents = new List<AGENT_MACROS.AGENT_STRUCT>();
-        private List<AGENT_MACROS.AGENT_FULL_INFO> listOfFullInfoAgents =
-            new List<AGENT_MACROS.AGENT_FULL_INFO>();
+        private List<AGENCY_MACROS.AGENCY_STRUCT> listOfAgents = new List<AGENCY_MACROS.AGENCY_STRUCT>();
+        private List<AGENCY_MACROS.AGENCY_FULL_INFO> listOfFullInfoAgents =
+            new List<AGENCY_MACROS.AGENCY_FULL_INFO>();
 
         private LogisticsQueries LogisticsQueryObject = new LogisticsQueries();
         private CommonQueries CommonQueriesObject = new CommonQueries();
@@ -56,10 +56,10 @@ namespace _01electronics_logistics
             for (int i = 0; i < listOfAgents.Count; i++)
             {
                 // To get full info about each agent
-                AGENT_MACROS.AGENT_FULL_INFO tempAgent = new AGENT_MACROS.AGENT_FULL_INFO();
-                LogisticsQueryObject.GetFullAgentInfo(listOfAgents[i].agent_serial,ref tempAgent);
+                AGENCY_MACROS.AGENCY_FULL_INFO tempAgent = new AGENCY_MACROS.AGENCY_FULL_INFO();
+                LogisticsQueryObject.GetFullAgentInfo(listOfAgents[i].agency_serial, ref tempAgent);
                 listOfFullInfoAgents.Add(tempAgent);
-            }          
+            }
         }
 
         private void UpdateTree()
@@ -68,7 +68,7 @@ namespace _01electronics_logistics
             for (int i = 0; i < listOfAgents.Count; i++)
             {
                 TreeViewItem item = new TreeViewItem();
-                item.Header = listOfAgents[i].agent_name;
+                item.Header = listOfAgents[i].agency_name;
                 agentsTree.Items.Add(item);
             }
         }
@@ -116,7 +116,7 @@ namespace _01electronics_logistics
                 statesCombo.IsEnabled = true;
                 citiesCheckBox.IsEnabled = true;
             }
-                
+
             else
             {
                 statesCombo.SelectedIndex = -1;
@@ -250,7 +250,7 @@ namespace _01electronics_logistics
             UpdateTree();
         }
 
-        private void OnDistrictsComboBoxClick(object send,RoutedEventArgs e)
+        private void OnDistrictsComboBoxClick(object send, RoutedEventArgs e)
         {
             if (districtsCombo.SelectedItem == null)
                 return;
@@ -291,7 +291,7 @@ namespace _01electronics_logistics
 
         }
 
-        private void OnTreeSelectionChange(object sender,RoutedEventArgs e)
+        private void OnTreeSelectionChange(object sender, RoutedEventArgs e)
         {
             if (agentsTree.SelectedItem == null)
                 viewButton.IsEnabled = false;
@@ -313,10 +313,10 @@ namespace _01electronics_logistics
         {
             if (agentsTree.SelectedItem == null)
                 return;
-            int agentSerial = listOfAgents[agentsTree.Items.IndexOf(agentsTree.SelectedItem)].agent_serial;
+            int agentSerial = listOfAgents[agentsTree.Items.IndexOf(agentsTree.SelectedItem)].agency_serial;
             AgencyProfileWindow va = new AgencyProfileWindow(agentSerial);
             va.Show();
-            va.Closed += (sender1,e1) =>
+            va.Closed += (sender1, e1) =>
             {
                 InitializeWholeView();
             };
@@ -324,13 +324,28 @@ namespace _01electronics_logistics
 
         private void InitializeWholeView()
         {
+            ResetFilters();
             InitializeLists();
             UpdateTree();
+        }
 
+        private void ResetFilters()
+        {
             countriesCombo.SelectedIndex = -1;
             statesCombo.SelectedIndex = -1;
+            statesCombo.IsEnabled = false;
             citiesCombo.SelectedIndex = -1;
+            citiesCombo.IsEnabled = false;
             districtsCombo.SelectedIndex = -1;
+            districtsCombo.IsEnabled = false;
+
+            countriesCheckBox.IsChecked = false;
+            statesCheckBox.IsEnabled = false;
+            statesCheckBox.IsChecked = false;
+            citiesCheckBox.IsEnabled = false;
+            citiesCheckBox.IsChecked = false;
+            districtCheckBox.IsEnabled = false;
+            districtCheckBox.IsChecked = false;
         }
     }
 }
