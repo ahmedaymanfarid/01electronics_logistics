@@ -302,7 +302,7 @@ namespace _01electronics_logistics
         {
             // -1 is an indication that there is no agent passed therefore the ViewAgent constructor
             // acts as a page to create a new agent
-            ViewAgent va = new ViewAgent(-1);
+            AgencyProfileWindow va = new AgencyProfileWindow(-1);
             va.Show();
             va.Closed += (sender1, e1) =>
             {
@@ -314,7 +314,7 @@ namespace _01electronics_logistics
             if (agentsTree.SelectedItem == null)
                 return;
             int agentSerial = listOfAgents[agentsTree.Items.IndexOf(agentsTree.SelectedItem)].agent_serial;
-            ViewAgent va = new ViewAgent(agentSerial);
+            AgencyProfileWindow va = new AgencyProfileWindow(agentSerial);
             va.Show();
             va.Closed += (sender1,e1) =>
             {
