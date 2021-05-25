@@ -69,8 +69,8 @@
     <Compile Include="SignUpPage.xaml.cs" />
     <Compile Include="SQLServer.cs" />
     <Compile Include="UserPortalPage.xaml.cs" />
-    <Compile Include="ViewAgent.xaml.cs">
-      <DependentUpon>ViewAgent.xaml</DependentUpon>
+    <Compile Include="AgencyProfileWindow.xaml.cs">
+      <DependentUpon>AgencyProfileWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkOrdersPage.xaml.cs">
       <DependentUpon>WorkOrdersPage.xaml</DependentUpon>
@@ -117,7 +117,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ViewAgent.xaml">
+    <Page Include="AgencyProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

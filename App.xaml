@@ -113,7 +113,7 @@
             <Setter Property="Width" Value="384" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Margin" Value="30,12,12,12"/>
+            <Setter Property="Margin" Value="12,12,12,12"/>
             <Setter Property="FontFamily" Value="Sans Serif" />
             <Setter Property="FontWeight" Value="DemiBold" />
             <Setter Property="FontSize" Value="16" />
