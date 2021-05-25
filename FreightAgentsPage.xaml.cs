@@ -81,31 +81,78 @@ namespace _01electronics_logistics
         private void OnCountriesCheckBoxClick(object sender, RoutedEventArgs e)
         {
             if (((CheckBox)sender).IsChecked == true)
+            {
                 countriesCombo.IsEnabled = true;
+                statesCheckBox.IsEnabled = true;
+            }
             else
             {
                 countriesCombo.SelectedIndex = -1;
                 countriesCombo.IsEnabled = false;
+
+                statesCombo.SelectedIndex = -1;
+                statesCombo.IsEnabled = false;
+                statesCheckBox.IsEnabled = false;
+                statesCheckBox.IsChecked = false;
+
+                citiesCombo.SelectedIndex = -1;
+                citiesCombo.IsEnabled = false;
+                citiesCheckBox.IsEnabled = false;
+                citiesCheckBox.IsChecked = false;
+
+                districtsCombo.SelectedIndex = -1;
+                districtsCombo.IsEnabled = false;
+                districtCheckBox.IsEnabled = false;
+                districtCheckBox.IsChecked = false;
+
+                InitializeLists();
+                UpdateTree();
             }
         }
         private void OnStateCheckBoxClick(object sender, RoutedEventArgs e)
         {
             if (((CheckBox)sender).IsChecked == true)
+            {
                 statesCombo.IsEnabled = true;
+                citiesCheckBox.IsEnabled = true;
+            }
+                
             else
             {
                 statesCombo.SelectedIndex = -1;
                 statesCombo.IsEnabled = false;
+
+                citiesCombo.SelectedIndex = -1;
+                citiesCombo.IsEnabled = false;
+                citiesCheckBox.IsEnabled = false;
+                citiesCheckBox.IsChecked = false;
+
+                districtsCombo.SelectedIndex = -1;
+                districtsCombo.IsEnabled = false;
+                districtCheckBox.IsEnabled = false;
+                districtCheckBox.IsChecked = false;
+
+                CountriesComboBoxFunction();
             }
         }
         private void OnCityCheckBoxClick(object sender, RoutedEventArgs e)
         {
             if (((CheckBox)sender).IsChecked == true)
+            {
                 citiesCombo.IsEnabled = true;
+                districtCheckBox.IsEnabled = true;
+            }
             else
             {
                 citiesCombo.SelectedIndex = -1;
                 citiesCombo.IsEnabled = false;
+
+                districtsCombo.SelectedIndex = -1;
+                districtsCombo.IsEnabled = false;
+                districtCheckBox.IsEnabled = false;
+                districtCheckBox.IsChecked = false;
+
+                StatesComboBoxFunction();
             }
         }
         private void OnDistrictCheckBoxClick(object sender, RoutedEventArgs e)
@@ -116,6 +163,8 @@ namespace _01electronics_logistics
             {
                 districtsCombo.SelectedIndex = -1;
                 districtsCombo.IsEnabled = false;
+
+                CitiesComboBoxFunction();
             }
         }
 
@@ -126,6 +175,10 @@ namespace _01electronics_logistics
         ***********************************************************************************/
         private void OnCountriesComboBoxClick(object sender, RoutedEventArgs e)
         {
+            CountriesComboBoxFunction();
+        }
+        private void CountriesComboBoxFunction()
+        {
             InitializeLists();
 
             statesCombo.Items.Clear();
@@ -135,7 +188,7 @@ namespace _01electronics_logistics
                 statesCombo.Items.Add(states[i].state_name);
 
             for (int i = 0; i < listOfFullInfoAgents.Count; i++)
-                if(!(listOfFullInfoAgents[i].addressId / 1000000 == countriesCombo.SelectedIndex))
+                if (!(listOfFullInfoAgents[i].addressId / 1000000 == countriesCombo.SelectedIndex))
                 {
                     listOfAgents.RemoveAt(i);
                     listOfFullInfoAgents.RemoveAt(i);
@@ -146,17 +199,21 @@ namespace _01electronics_logistics
 
         private void OnStatesComboBoxClick(object sender, RoutedEventArgs e)
         {
+            StatesComboBoxFunction();
+        }
+        private void StatesComboBoxFunction()
+        {
             InitializeLists();
 
             citiesCombo.Items.Clear();
             List<BASIC_STRUCTS.CITY_STRUCT> cities = new List<BASIC_STRUCTS.CITY_STRUCT>();
-            CommonQueriesObject.GetAllStateCities(countriesCombo.SelectedIndex*100
+            CommonQueriesObject.GetAllStateCities(countriesCombo.SelectedIndex * 100
                 + statesCombo.SelectedIndex, ref cities);
             for (int i = 0; i < cities.Count; i++)
                 citiesCombo.Items.Add(cities[i].city_name);
 
             for (int i = 0; i < listOfFullInfoAgents.Count; i++)
-                if (!(listOfFullInfoAgents[i].addressId / 10000 %100 == statesCombo.SelectedIndex
+                if (!(listOfFullInfoAgents[i].addressId / 10000 % 100 == statesCombo.SelectedIndex
                     && listOfFullInfoAgents[i].addressId / 1000000 == countriesCombo.SelectedIndex))
                 {
                     listOfAgents.RemoveAt(i);
@@ -167,11 +224,15 @@ namespace _01electronics_logistics
         }
         private void OnCitiesComboBoxClick(object sender, RoutedEventArgs e)
         {
+            CitiesComboBoxFunction();
+        }
+        private void CitiesComboBoxFunction()
+        {
             InitializeLists();
 
             districtsCombo.Items.Clear();
             List<BASIC_STRUCTS.DISTRICT_STRUCT> districts = new List<BASIC_STRUCTS.DISTRICT_STRUCT>();
-            int cityId = ((countriesCombo.SelectedIndex*100 + statesCombo.SelectedIndex) * 100)
+            int cityId = ((countriesCombo.SelectedIndex * 100 + statesCombo.SelectedIndex) * 100)
                 + citiesCombo.SelectedIndex;
             CommonQueriesObject.GetAllCityDistricts(cityId, ref districts);
             for (int i = 0; i < districts.Count; i++)

@@ -72,16 +72,16 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <CheckBox Grid.Row="0" Grid.Column="0" Click="OnCountriesCheckBoxClick"  Content="Country" Style="{StaticResource checkBoxStyle}"/>
+                    <CheckBox Grid.Row="0" Grid.Column="0" Name="countriesCheckBox" Click="OnCountriesCheckBoxClick"  Content="Country" Style="{StaticResource checkBoxStyle}"/>
                     <ComboBox Grid.Row="0" Grid.Column="1" x:Name="countriesCombo" SelectionChanged="OnCountriesComboBoxClick" Style="{StaticResource comboBoxStyle}" IsEnabled="False"/>
 
-                    <CheckBox Grid.Row="1" Grid.Column="0" Click="OnStateCheckBoxClick" Content="State" Style="{StaticResource checkBoxStyle}"/>
+                    <CheckBox Grid.Row="1" Grid.Column="0" Name="statesCheckBox" IsEnabled="False" Click="OnStateCheckBoxClick" Content="State" Style="{StaticResource checkBoxStyle}"/>
                     <ComboBox Grid.Row="1" Grid.Column="1" x:Name="statesCombo" SelectionChanged="OnStatesComboBoxClick" Style="{StaticResource comboBoxStyle}" IsEnabled="False"/>
 
-                    <CheckBox Grid.Row="2" Grid.Column="0" Click="OnCityCheckBoxClick" Content="City" Style="{StaticResource checkBoxStyle}"/>
+                    <CheckBox Grid.Row="2" Grid.Column="0" Name="citiesCheckBox" IsEnabled="False" Click="OnCityCheckBoxClick" Content="City" Style="{StaticResource checkBoxStyle}"/>
                     <ComboBox Grid.Row="2" Grid.Column="1" x:Name="citiesCombo" SelectionChanged="OnCitiesComboBoxClick" Style="{StaticResource comboBoxStyle}" IsEnabled="False"/>
 
-                    <CheckBox Grid.Row="3" Grid.Column="0" Click="OnDistrictCheckBoxClick" Content="District" Style="{StaticResource checkBoxStyle}"/>
+                    <CheckBox Grid.Row="3" Grid.Column="0" Name="districtCheckBox" IsEnabled="False" Click="OnDistrictCheckBoxClick" Content="District" Style="{StaticResource checkBoxStyle}"/>
                     <ComboBox Grid.Row="3" Grid.Column="1" x:Name="districtsCombo"  SelectionChanged="OnDistrictsComboBoxClick" Style="{StaticResource comboBoxStyle}" IsEnabled="False"/>
                 </Grid>
 
