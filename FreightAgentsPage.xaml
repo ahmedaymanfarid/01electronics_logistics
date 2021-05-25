@@ -42,12 +42,12 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,24" Content="FREIGHT AGENTS" Style="{StaticResource primaryHeaderTextStyle}"/>
+            <Label Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24" Content="FREIGHT AGENTS" Style="{StaticResource primaryHeaderTextStyle}"/>
 
-            <Grid Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,48" MinHeight="400">
+            <Grid Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24" MinHeight="400">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -58,7 +58,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Column="0" Margin="48,24,48,48">
+                <Grid Grid.Column="0" Margin="0,0,24,0">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition MinWidth="180"/>
@@ -85,7 +85,7 @@
                     <ComboBox Grid.Row="3" Grid.Column="1" Style="{StaticResource comboBoxStyle}"/>
                 </Grid>
 
-                <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24,48,48" MinHeight="400" MinWidth="360">
+                <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="24,0,0,0" MinHeight="400" MinWidth="360">
                     <TreeView>
 
                     </TreeView>

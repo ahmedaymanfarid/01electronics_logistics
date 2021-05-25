@@ -55,8 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Agents.xaml.cs">
-      <DependentUpon>Agents.xaml</DependentUpon>
+    <Compile Include="FreightAgentsPage.xaml.cs">
+      <DependentUpon>FreightAgentsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="AGENT_MACROS.cs" />
     <Compile Include="LogisticsQueries.cs" />
@@ -68,7 +68,7 @@
     <Compile Include="WorkOrdersPage.xaml.cs">
       <DependentUpon>WorkOrdersPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="Agents.xaml">
+    <Page Include="FreightAgentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
