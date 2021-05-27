@@ -52,6 +52,8 @@ namespace _01electronics_logistics
 
             MainWindow mainWindowOpen = new MainWindow(ref loggedInUser);
             mainWindowOpen.Show();
+
+            Window.GetWindow(this).Close();
         }
 
         private void OnButtonClickedSignUp(object sender, RoutedEventArgs e)

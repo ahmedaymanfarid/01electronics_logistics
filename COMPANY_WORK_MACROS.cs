@@ -30,38 +30,38 @@ namespace _01electronics_erp
         //PRODUCTS OFFERS FORM PATHS
         public const String MODELS_OFFERS_PATH = "erp_system/products_offer_models/generic/";
         public const String MODELS_PHOTOS_PATH = "erp_system/products_photos/";
-        public const String OFFER_FILES_PATH   = "erp_system/work_offers/";
+        public const String OFFER_FILES_PATH = "erp_system/work_offers/";
 
-        public const String YEARLY_SALES_EMPLOYEE_STATISTICS_EXCEL_PATH     = "erp_system/statistics_sheet_models/yearly_sales_employee_statistics.xls";
-        public const String QUARTERLY_SALES_EMPLOYEE_STATISTICS_EXCEL_PATH  = "erp_system/statistics_sheet_models/quarterly_sales_employee_statistics.xls";
-        public const String YEARLY_TECH_EMPLOYEE_STATISTICS_EXCEL_PATH      = "erp_system/statistics_sheet_models/yearly_tech_employee_statistics.xls";
-        public const String QUARTERLY_TECH_EMPLOYEE_STATISTICS_EXCEL_PATH   = "erp_system/statistics_sheet_models/quarterly_tech_employee_statistics.xls";
+        public const String YEARLY_SALES_EMPLOYEE_STATISTICS_EXCEL_PATH = "erp_system/statistics_sheet_models/yearly_sales_employee_statistics.xls";
+        public const String QUARTERLY_SALES_EMPLOYEE_STATISTICS_EXCEL_PATH = "erp_system/statistics_sheet_models/quarterly_sales_employee_statistics.xls";
+        public const String YEARLY_TECH_EMPLOYEE_STATISTICS_EXCEL_PATH = "erp_system/statistics_sheet_models/yearly_tech_employee_statistics.xls";
+        public const String QUARTERLY_TECH_EMPLOYEE_STATISTICS_EXCEL_PATH = "erp_system/statistics_sheet_models/quarterly_tech_employee_statistics.xls";
 
         //WORK ORDERS MARCROS
-        public const int OPEN_WORK_ORDER    = 1;
-        public const int CLOSED_WORK_ORDER  = 2;
+        public const int OPEN_WORK_ORDER = 1;
+        public const int CLOSED_WORK_ORDER = 2;
 
-        public const int TOTALLY_COLLECTED      = 1;
-        public const int PARTIALLY_COLLECTED    = 2;
-        public const int NONE_COLLECTED         = 3;
-                                                
+        public const int TOTALLY_COLLECTED = 1;
+        public const int PARTIALLY_COLLECTED = 2;
+        public const int NONE_COLLECTED = 3;
+
         //WORK OFFERS MACROS                    
-        public const int NO_OF_OFFERS_STATUS    = 3;
-        public const int FAILED_WORK_OFFER      = 1;
-        public const int CONFIRMED_WORK_OFFER   = 2;
-        public const int PENDING_WORK_OFFER     = 3;
-            
-        public const int MAx_NUMBER_OF_OFFER_SERIALS    = 10000;
-        public const int MAx_NUMBER_OF_OFFER_VERSIONS   = 100;
-        
+        public const int NO_OF_OFFERS_STATUS = 3;
+        public const int FAILED_WORK_OFFER = 1;
+        public const int CONFIRMED_WORK_OFFER = 2;
+        public const int PENDING_WORK_OFFER = 3;
+
+        public const int MAx_NUMBER_OF_OFFER_SERIALS = 10000;
+        public const int MAx_NUMBER_OF_OFFER_VERSIONS = 100;
+
         //RFQS MACROS
-        public const int NO_OF_RFQS_STATUS  = 3;
-        public const int PENDING_RFQ        = 1;
-        public const int CONFIRMED_RFQ      = 2;
-        public const int REJECTED_RFQ       = 3;
+        public const int NO_OF_RFQS_STATUS = 3;
+        public const int PENDING_RFQ = 1;
+        public const int CONFIRMED_RFQ = 2;
+        public const int REJECTED_RFQ = 3;
 
 
-        public const int MAX_RFQ_PRODUCTS   = 4;
+        public const int MAX_RFQ_PRODUCTS = 4;
         public const int MAX_OFFER_PRODUCTS = MAX_RFQ_PRODUCTS;
         public const int MAX_ORDER_PRODUCTS = MAX_OFFER_PRODUCTS;
 
@@ -83,25 +83,58 @@ namespace _01electronics_erp
             public int modelId;
         };
 
-        public struct RFQ_PRODUCT_STRUCT
+        public struct RFQ_PRODUCT_STRUCT : IComparable<RFQ_PRODUCT_STRUCT>
         {
             public PRODUCT_STRUCT productType;
             public BRAND_STRUCT productBrand;
             public MODEL_STRUCT productModel;
 
+            public int productNumber;
             public int productQuantity;
+
+            public int CompareTo(RFQ_PRODUCT_STRUCT other)
+            {
+                return this.productNumber.CompareTo(other.productNumber);
+
+                throw new NotImplementedException();
+            }
         };
 
-        public struct OFFER_PRODUCT_STRUCT
+        public struct OFFER_PRODUCT_STRUCT : IComparable<OFFER_PRODUCT_STRUCT>
         {
             public PRODUCT_STRUCT productType;
             public BRAND_STRUCT productBrand;
             public MODEL_STRUCT productModel;
 
+            public int productNumber;
             public int productQuantity;
             public int productPrice;
+
+            public int CompareTo(OFFER_PRODUCT_STRUCT other)
+            {
+                return this.productNumber.CompareTo(other.productNumber);
+
+                throw new NotImplementedException();
+            }
         };
 
+        public struct ORDER_PRODUCT_STRUCT : IComparable<ORDER_PRODUCT_STRUCT>
+        {
+            public PRODUCT_STRUCT productType;
+            public BRAND_STRUCT productBrand;
+            public MODEL_STRUCT productModel;
+
+            public int productNumber;
+            public int productQuantity;
+            public int productPrice;
+
+            public int CompareTo(ORDER_PRODUCT_STRUCT other)
+            {
+                return this.productNumber.CompareTo(other.productNumber);
+
+                throw new NotImplementedException();
+            }
+        };
         public struct RFQ_BASIC_STRUCT
         {
             public String rfq_id;
@@ -144,35 +177,33 @@ namespace _01electronics_erp
             public int sales_person_id;
             public int rfq_serial;
             public int rfq_version;
-            
+
             public int assignee_id;
-            
+
             public int company_serial;
             public int branch_serial;
             public int contact_id;
-            
+
             public int rfq_status_id;
             public int failure_reason_id;
             public int contract_type_id;
-            
+
             public String rfq_id;
 
             public String issue_date;
             public String deadline_date;
-            
+
             public String rfq_status;
             public String failure_reason;
             public String contract_type;
-            
+
             public String sales_person_name;
             public String assignee_name;
-            
+
             public String company_name;
             public String contact_name;
-            
-            public List<PRODUCT_STRUCT> products_type;
-            public List<BRAND_STRUCT> products_brand;
-            public List<MODEL_STRUCT> products_model;
+
+            public List<RFQ_PRODUCT_STRUCT> products;
         };
 
         public struct WORK_OFFER_MAX_STRUCT
@@ -180,66 +211,62 @@ namespace _01electronics_erp
             public int offer_proposer_id;
             public int offer_serial;
             public int offer_version;
-            
+
             public int sales_person_id;
-            
+
             public int company_serial;
             public int branch_serial;
             public int contact_id;
-            
+
             public int offer_status_id;
             public int failure_reason_id;
             public int contract_type_id;
-            
+
             public String offer_id;
-            
+
             public String issue_date;
-            
+
             public String offer_status;
             public String failure_reason;
             public String contract_type;
-            
+
             public String sales_person_name;
             public String offer_proposer_name;
-            
+
             public String company_name;
             public String contact_name;
-            
-            public List<PRODUCT_STRUCT> products_type;
-            public List<BRAND_STRUCT> products_brand;
-            public List<MODEL_STRUCT> products_model;
+
+            public List<OFFER_PRODUCT_STRUCT> products;
         };
 
         public struct WORK_ORDER_MAX_STRUCT
         {
             public int sales_person_id;
             public int order_serial;
-            
+
             public int offer_proposer_id;
-            
+
             public int company_serial;
             public int branch_serial;
             public int contact_id;
-            
+
             public int order_status_id;
             public int contract_type_id;
-            
+
             public String order_id;
-            
+
             public String issue_date;
-            
+
             public String order_status;
             public String contract_type;
-            
+
             public String sales_person_name;
             public String offer_proposer_name;
-            
+
             public String company_name;
             public String contact_name;
-            
-            public List<PRODUCT_STRUCT> products_type;
-            public List<BRAND_STRUCT> products_brand;
-            public List<MODEL_STRUCT> products_model;
+
+            public List<ORDER_PRODUCT_STRUCT> products;
         };
 
         public struct CLIENT_VISIT_STRUCT
@@ -249,15 +276,15 @@ namespace _01electronics_erp
 
             public int visit_purpose_id;
             public int visit_result_id;
-            
+
             public String issue_date;
             public String visit_date;
-            
+
             public String sales_person_name;
-            
+
             public String company_name;
             public String contact_name;
-            
+
             public String visit_purpose;
             public String visit_result;
         };
@@ -266,22 +293,21 @@ namespace _01electronics_erp
         {
             public int sales_person_id;
             public int call_serial;
-                   
+
             public int call_purpose_id;
             public int call_result_id;
-            
+
             public String issue_date;
             public String call_date;
-            
+
             public String sales_person_name;
-            
+
             public String company_name;
             public String contact_name;
-            
+
             public String call_purpose;
             public String call_result;
         };
     }
 }
 
-        
