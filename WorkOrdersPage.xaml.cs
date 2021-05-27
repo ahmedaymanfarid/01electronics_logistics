@@ -45,18 +45,25 @@ namespace _01electronics_logistics
             //OR DO IT IN THE CONSTRUCTOR
             //BUT IT IS PREFERED TO DO IT IN RESET FUNCTIONS
 
-            yearCombo.IsEnabled = false;
-            quarterCombo.IsEnabled = false; 
-            employeeCombo.IsEnabled = false;
-            productCombo.IsEnabled = false;
-            brandCombo.IsEnabled = false;
-            statusCombo.IsEnabled = false;
+           
 
             InitializeComponent();
 
             InitializeOrderList();
 
             InitializeComboBoxes();
+
+            DisableComboBoxes();
+        }
+
+        private void DisableComboBoxes()
+        {
+            yearCombo.IsEnabled = false;
+            quarterCombo.IsEnabled = false;
+            employeeCombo.IsEnabled = false;
+            productCombo.IsEnabled = false;
+            brandCombo.IsEnabled = false;
+            statusCombo.IsEnabled = false;
         }
 
         private void InitializeYearsComboBox()
