@@ -51,6 +51,7 @@
                         <Label Grid.Column="0" Content="Branch" Style="{StaticResource tableHeaderItem}"/>
                         <Label Grid.Column="1" Content="Telephone" Style="{StaticResource tableHeaderItem}"/>
                         <Label Grid.Column="2" Content="Fax" Style="{StaticResource tableHeaderItem}"/>
+
                     </Grid>
                 </ScrollViewer>
             </Grid>

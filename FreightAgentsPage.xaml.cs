@@ -188,12 +188,20 @@ namespace _01electronics_logistics
                 statesCombo.Items.Add(states[i].state_name);
 
             for (int i = 0; i < listOfFullInfoAgents.Count; i++)
-                if (!(listOfFullInfoAgents[i].addressId / 1000000 == countriesCombo.SelectedIndex))
+            {
+                int j;
+                for (j = 0; j < listOfFullInfoAgents[i].branches.Count; j++)
+                    if ((listOfFullInfoAgents[i].branches[j].addressId / 1000000 == countriesCombo.SelectedIndex))
+                        break;
+
+                if (j == listOfFullInfoAgents[i].branches.Count)
                 {
                     listOfAgents.RemoveAt(i);
                     listOfFullInfoAgents.RemoveAt(i);
                     i--;
                 }
+            }
+                
             UpdateTree();
         }
 
@@ -213,13 +221,21 @@ namespace _01electronics_logistics
                 citiesCombo.Items.Add(cities[i].city_name);
 
             for (int i = 0; i < listOfFullInfoAgents.Count; i++)
-                if (!(listOfFullInfoAgents[i].addressId / 10000 % 100 == statesCombo.SelectedIndex
-                    && listOfFullInfoAgents[i].addressId / 1000000 == countriesCombo.SelectedIndex))
+            {
+                int j;
+                for (j = 0; j < listOfFullInfoAgents[i].branches.Count; j++)
+                    if ((listOfFullInfoAgents[i].branches[j].addressId / 10000 % 100 == statesCombo.SelectedIndex
+                    && listOfFullInfoAgents[i].branches[j].addressId / 1000000 == countriesCombo.SelectedIndex))
+                        break;
+                if (j == listOfFullInfoAgents[i].branches.Count)
                 {
                     listOfAgents.RemoveAt(i);
                     listOfFullInfoAgents.RemoveAt(i);
                     i--;
                 }
+            }
+
+
             UpdateTree();
         }
         private void OnCitiesComboBoxClick(object sender, RoutedEventArgs e)
@@ -239,14 +255,21 @@ namespace _01electronics_logistics
                 districtsCombo.Items.Add(districts[i].district_name);
 
             for (int i = 0; i < listOfFullInfoAgents.Count; i++)
-                if (!(listOfFullInfoAgents[i].addressId / 100 % 100 == citiesCombo.SelectedIndex
-                    && listOfFullInfoAgents[i].addressId / 10000 % 100 == statesCombo.SelectedIndex
-                    && listOfFullInfoAgents[i].addressId / 1000000 == countriesCombo.SelectedIndex))
+            {
+                int j;
+                for (j = 0; j < listOfFullInfoAgents[i].branches.Count; j++)
+                    if ((listOfFullInfoAgents[i].branches[j].addressId / 100 % 100 == citiesCombo.SelectedIndex
+                    && listOfFullInfoAgents[i].branches[j].addressId / 10000 % 100 == statesCombo.SelectedIndex
+                    && listOfFullInfoAgents[i].branches[j].addressId / 1000000 == countriesCombo.SelectedIndex))
+                        break;
+                if (j == listOfFullInfoAgents[i].branches.Count)
                 {
                     listOfAgents.RemoveAt(i);
                     listOfFullInfoAgents.RemoveAt(i);
                     i--;
                 }
+            }
+
             UpdateTree();
         }
 
@@ -258,16 +281,23 @@ namespace _01electronics_logistics
 
             for (int i = 0; i < listOfFullInfoAgents.Count; i++)
             {
-                int districtId = LogisticsQueryObject.GetDistrictAddress(districtsCombo.SelectedItem.ToString());
-                if (!(listOfFullInfoAgents[i].addressId / 100 % 100 == citiesCombo.SelectedIndex
-                    && listOfFullInfoAgents[i].addressId / 10000 % 100 == statesCombo.SelectedIndex
-                    && listOfFullInfoAgents[i].addressId / 1000000 == countriesCombo.SelectedIndex
-                    && listOfFullInfoAgents[i].addressId % 100 == districtId % 100))
+                int j;
+                for (j = 0; j < listOfFullInfoAgents[i].branches.Count; j++)
+                {
+                    int districtId = LogisticsQueryObject.GetDistrictAddress(districtsCombo.SelectedItem.ToString());
+                    if ((listOfFullInfoAgents[i].branches[j].addressId / 100 % 100 == citiesCombo.SelectedIndex
+                        && listOfFullInfoAgents[i].branches[j].addressId / 10000 % 100 == statesCombo.SelectedIndex
+                        && listOfFullInfoAgents[i].branches[j].addressId / 1000000 == countriesCombo.SelectedIndex
+                        && listOfFullInfoAgents[i].branches[j].addressId % 100 == districtId % 100))
+                        break;
+                }
+                if (j == listOfFullInfoAgents[i].branches.Count)
                 {
                     listOfAgents.RemoveAt(i);
                     listOfFullInfoAgents.RemoveAt(i);
                     i--;
                 }
+
             }
             UpdateTree();
         }

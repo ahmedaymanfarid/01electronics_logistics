@@ -18,17 +18,37 @@ namespace _01electronics_logistics
 
         public struct AGENCY_FULL_INFO
         {
+
             public String agency_name;
             public String employee_name;
+            public List<String> telephones;
+            public List<String> faxes;
+            public List<AGENCY_ADDRESS> branches;
+
+
+        }
+
+        public struct AGENCY_ADDRESS
+        {
+            public int addressId;
 
             public String country;
             public String state;
             public String city;
             public String district;
 
-            public int addressId;
+        }
 
-            public String telephone;
+        public struct AGENCY_CONTACT_INFO
+        {
+            public int employeeId;
+            public int branchId;
+            public int department;
+
+            public String name;
+            public String email;
+            public String gender;
+
         }
 
         

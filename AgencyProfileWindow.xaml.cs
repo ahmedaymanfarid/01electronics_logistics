@@ -94,6 +94,60 @@ namespace _01electronics_logistics
         //DONT USE NUMBERS, USE WILL FIND ALL NUMBERS DEFINED AS MACROS IN ONE OF THE .cs FILES
         private void FulfillFields()
         {
+            AgencyProfileHeader.Content += " - " + agency.agency_name;
+
+            RowDefinition r = new RowDefinition();
+            telephoneFaxGrid.RowDefinitions.Add(r);
+            StackPanel branchesSP = new StackPanel();
+            Grid.SetRow(branchesSP, 1);
+            Grid.SetColumn(branchesSP, 0);
+            StackPanel telephonesSP = new StackPanel();
+            Grid.SetRow(telephonesSP, 1);
+            Grid.SetColumn(telephonesSP, 1);
+            StackPanel faxesSP = new StackPanel();
+            Grid.SetRow(faxesSP, 1);
+            Grid.SetColumn(faxesSP, 2);
+
+            telephoneFaxGrid.Children.Add(branchesSP);
+            telephoneFaxGrid.Children.Add(telephonesSP);
+            telephoneFaxGrid.Children.Add(faxesSP);
+
+            for (int i = 0; i < agency.branches.Count; i++)
+            {
+                
+                Label l = new Label();
+                l.Style = (Style)FindResource("tableItemValue");
+                l.FontSize = 10;
+                l.Content = agency.branches[i].district + "," + agency.branches[i].city;
+                
+                branchesSP.Children.Add(l);
+            }
+
+            for (int i = 0; i < agency.telephones.Count; i++)
+            {
+
+                Label l = new Label();
+                l.Style = (Style)FindResource("tableItemValue");
+                l.FontSize = 10;
+                Grid.SetColumn(l, 1);
+                l.Content = agency.telephones[i];
+
+                telephonesSP.Children.Add(l);
+            }
+
+            for (int i = 0; i < agency.faxes.Count; i++)
+            {
+
+                Label l = new Label();
+                l.Style = (Style)FindResource("tableItemValue");
+                l.FontSize = 10;
+                Grid.SetColumn(l, 2);
+                l.Content = agency.faxes[i];
+
+                faxesSP.Children.Add(l);
+            }
+
+
             //agencyNameTextBox.Text = agency.agency_name;
 
             //// Employee ComboBox
