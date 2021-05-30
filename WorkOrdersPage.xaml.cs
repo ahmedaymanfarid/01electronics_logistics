@@ -385,12 +385,12 @@ namespace _01electronics_logistics
                 for (int i = 0; i < listOfOrders.Count; i++)
                 {
                     int j;
-                    for (j = 0; j < listOfOrders[i].products_type.Count; j++)
-                        if (listOfOrders[i].products_type[j].typeName.Equals(((ComboBox)sender).SelectedItem.ToString()))
+                    for (j = 0; j < listOfOrders[i].products.Count; j++)
+                        if (listOfOrders[i].products[j].productType.typeName.Equals(((ComboBox)sender).SelectedItem.ToString()))
                         {
                             break;
                         }
-                    if (j == listOfOrders[i].products_type.Count)
+                    if (j == listOfOrders[i].products.Count)
                     {
                         listOfOrders.RemoveAt(i);
                         i--;
@@ -408,12 +408,12 @@ namespace _01electronics_logistics
                 for (int i = 0; i < listOfOrders.Count; i++)
                 {
                     int j;
-                    for (j = 0; j < listOfOrders[i].products_brand.Count; j++)
-                        if (listOfOrders[i].products_brand[j].brandName.Equals(((ComboBox)sender).SelectedItem.ToString()))
+                    for (j = 0; j < listOfOrders[i].products.Count; j++)
+                        if (listOfOrders[i].products[j].productBrand.brandName.Equals(((ComboBox)sender).SelectedItem.ToString()))
                         {
                             break;
                         }
-                    if (j == listOfOrders[i].products_brand.Count)
+                    if (j == listOfOrders[i].products.Count)
                     {
                         listOfOrders.RemoveAt(i);
                         i--;
