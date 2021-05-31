@@ -46,7 +46,7 @@ namespace _01electronics_erp
             outputString = String.Empty;
 
             char[] tempString = new char[BASIC_MACROS.EDIT_BOX_STRING_LENGTH];
-            
+
             int startPoint = 0;
             for (int i = 0; i < inputString.Length; i++)
             {
@@ -75,7 +75,7 @@ namespace _01electronics_erp
                     spaceCount = 0;
                 }
             }
-            
+
             outputString = new String(tempString, 0, inputString.Length - (startPoint + skippedIndeces));
         }
 
@@ -154,7 +154,7 @@ namespace _01electronics_erp
                     isPhoneSpecialCharacter = true;
                 if (inputString[i] == '.')
                     isMonetarySpecialCharacter = true;
-                
+
                 if (checkType == BASIC_MACROS.REGULAR_STRING && (isAlphabet || isNumber || isRegularSpecialCharacter))
                     continue;
                 if (checkType == BASIC_MACROS.EMAIL_STRING && (isAlphabet || isNumber || isEmailSpecialCharacter))
@@ -248,10 +248,10 @@ namespace _01electronics_erp
 
                 for (int i = domainThirdDot.charIndex; i < inputString.Length; i++)
                     tempCountryTld[i - (domainThirdDot.charIndex)] = inputString[i];
-                
+
                 for (int i = domainSecondDot.charIndex; i < domainThirdDot.charIndex; i++)
                     tempOriginalTld[i - (domainSecondDot.charIndex)] = inputString[i];
-                
+
                 countryTld = new String(tempCountryTld, 0, inputString.Length - domainThirdDot.charIndex);
                 originalTld = new String(tempOriginalTld, 0, domainThirdDot.charIndex - domainSecondDot.charIndex);
 
@@ -496,7 +496,7 @@ namespace _01electronics_erp
                 {
                     String expectedCountryTld = String.Empty;
 
-                    if(!commonQueries.GetCountryTLD(countryId, ref expectedCountryTld))
+                    if (!commonQueries.GetCountryTLD(countryId, ref expectedCountryTld))
                         return false;
 
                     for (int j = 1; j < 3; j++)
@@ -737,12 +737,12 @@ namespace _01electronics_erp
         {
             int employeeEmailCount = 0;
 
-            if (!commonQueries.GetEmployeeEmailCount(employeeEmail,ref employeeEmailCount))
+            if (!commonQueries.GetEmployeeEmailCount(employeeEmail, ref employeeEmailCount))
                 return false;
 
             if (employeeEmailCount > 0)
                 return false;
-            
+
             return true;
         }
 
@@ -768,7 +768,19 @@ namespace _01electronics_erp
 
             if (employeePasswordCount > 0)
                 return false;
-            
+
+            return true;
+        }
+        public bool CheckAvailableSignUp(String employeeEmail)
+        {
+            int employeePasswordCount = 0;
+
+            if (!commonQueries.GetEmployeePasswordCount(employeeEmail, ref employeePasswordCount))
+                return false;
+
+            if (employeePasswordCount == 0)
+                return false;
+
             return true;
         }
 
@@ -785,7 +797,7 @@ namespace _01electronics_erp
             return true;
         }
 
-        public bool CheckUpdatedContact(int updatedInfo,ref Contact oldContact,ref Contact newContact)
+        public bool CheckUpdatedContact(int updatedInfo, ref Contact oldContact, ref Contact newContact)
         {
             if ((updatedInfo & BASIC_MACROS.CONTACT_BUSINESS_EMAIL_EDITED) > 0)
             {
@@ -876,6 +888,11 @@ namespace _01electronics_erp
                 MessageBox.Show("The specified email was not found, Please contact your adminstration to complete your employee profile.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
+            if (!CheckAvailableSignUp(outputString))
+            {
+                MessageBox.Show("No existing signup was found for the specified email, Please signup first then try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
 
             return true;
         }
@@ -926,7 +943,7 @@ namespace _01electronics_erp
 
             String employeeHashedPassword = employeePasswordBuilder.ToString();
             String employeeServerHashedPassword = String.Empty;
-            
+
             if (!commonQueries.GetEmployeePassword(employeeId, ref employeeServerHashedPassword))
                 return false;
 
@@ -992,7 +1009,7 @@ namespace _01electronics_erp
                 return false;
             }
 
-            if(!CheckUniqueEmployeeEmail(outputString))
+            if (!CheckUniqueEmployeeEmail(outputString))
             {
                 MessageBox.Show("The provided business email is already associated with another employee.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;

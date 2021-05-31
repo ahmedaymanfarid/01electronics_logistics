@@ -8,6 +8,7 @@ using System.Data.Odbc;
 using System.Data.SqlClient;
 using System.Collections;
 using System.Windows;
+using System.Globalization;
 
 namespace _01electronics_erp
 {
@@ -936,118 +937,6 @@ namespace _01electronics_erp
             return true;
         }
 
-        public bool GetEmployeesPayrollInfo(ref List<COMPANY_ORGANISATION_MACROS.PAYROLL_STRUCT> returnVector)
-        {
-            returnVector.Clear();
-
-            String sqlQueryPart1 = @"select employees_info.employee_id,
-                               		employees_payroll_info.bank_id,
-                               		employees_payroll_info.payroll_id,
-                                    employees_payroll_info.branch_code,
-                               		employees_payroll_info.account_id,
-                                    employees_payroll_info.iban_id,
-                               		employees_info.name,
-                               		banks_names.bank_name
-                                from erp_system.dbo.employees_payroll_info
-                               inner join erp_system.dbo.employees_info
-                               on employees_payroll_info.employee_id = employees_info.employee_id
-                               inner join erp_system.dbo.banks_names
-                               on employees_payroll_info.bank_id = banks_names.id
-                               order by employees_info.name, bank_id;";
-
-            sqlQuery = String.Empty;
-            sqlQuery += sqlQueryPart1;
-
-            BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT queryColumns = new BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT();
-
-            queryColumns.sql_int = 3;
-            queryColumns.sql_smallint = 1;
-            queryColumns.sql_bigint = 2;
-            queryColumns.sql_string = 2;
-
-            if (!commonQueriesSqlObject.GetRows(sqlQuery, queryColumns))
-                return false;
-
-            for (int i = 0; i < commonQueriesSqlObject.rows.Count; i++)
-            {
-                COMPANY_ORGANISATION_MACROS.PAYROLL_STRUCT tempItem = new COMPANY_ORGANISATION_MACROS.PAYROLL_STRUCT();
-                tempItem.banksList = new List<COMPANY_ORGANISATION_MACROS.BANK_STRUCT>();
-
-                tempItem.employee_id = commonQueriesSqlObject.rows[i].sql_int[0];
-                tempItem.employee_name = commonQueriesSqlObject.rows[i].sql_string[0];
-
-                if (i > 0 && returnVector.Last().employee_id == tempItem.employee_id)
-                {
-                    COMPANY_ORGANISATION_MACROS.BANK_STRUCT tempBankItem = new COMPANY_ORGANISATION_MACROS.BANK_STRUCT();
-
-                    tempBankItem.bank_id = commonQueriesSqlObject.rows[i].sql_int[1];
-                    tempBankItem.branch_id = commonQueriesSqlObject.rows[i].sql_smallint[0];
-                    tempBankItem.payroll_id = commonQueriesSqlObject.rows[i].sql_int[2];
-
-                    tempBankItem.bank_name = commonQueriesSqlObject.rows[i].sql_string[1];
-
-                    tempBankItem.account_id = (ulong)commonQueriesSqlObject.rows[i].sql_bigint[0];
-                    tempBankItem.iban_id = (ulong)commonQueriesSqlObject.rows[i].sql_bigint[1];
-
-                    returnVector.Last().banksList.Add(tempBankItem);
-                }
-                else
-                {
-                    COMPANY_ORGANISATION_MACROS.BANK_STRUCT tempBankItem = new COMPANY_ORGANISATION_MACROS.BANK_STRUCT();
-
-                    tempBankItem.bank_id = commonQueriesSqlObject.rows[i].sql_int[1];
-                    tempBankItem.branch_id = commonQueriesSqlObject.rows[i].sql_smallint[0];
-                    tempBankItem.payroll_id = commonQueriesSqlObject.rows[i].sql_int[2];
-
-                    tempBankItem.bank_name = commonQueriesSqlObject.rows[i].sql_string[1];
-
-                    tempBankItem.account_id = (ulong)commonQueriesSqlObject.rows[i].sql_bigint[0];
-                    tempBankItem.iban_id = (ulong)commonQueriesSqlObject.rows[i].sql_bigint[1];
-
-                    tempItem.banksList.Add(tempBankItem);
-                    returnVector.Add(tempItem);
-                }
-            }
-
-            return true;
-        }
-
-        public bool GetEmployeesSalaries(ref List<COMPANY_ORGANISATION_MACROS.SALARY_STRUCT> returnVector)
-        {
-            returnVector.Clear();
-
-            String sqlQueryPart1 = @"select employees_info.employee_id,
-                               		employees_salaries.salary,
-                                    employees_info.name
-                                from erp_system.dbo.employees_salaries
-                               inner join erp_system.dbo.employees_info
-                               on employees_salaries.id = employees_info.employee_id
-                               order by employees_info.name";
-
-            sqlQuery = String.Empty;
-            sqlQuery += sqlQueryPart1;
-
-            BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT queryColumns = new BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT();
-
-            queryColumns.sql_int = 1;
-            queryColumns.sql_money = 1;
-            queryColumns.sql_string = 1;
-
-            if (!commonQueriesSqlObject.GetRows(sqlQuery, queryColumns))
-                return false;
-
-            for (int i = 0; i < commonQueriesSqlObject.rows.Count; i++)
-            {
-                COMPANY_ORGANISATION_MACROS.SALARY_STRUCT tempItem;
-                tempItem.employee_id = commonQueriesSqlObject.rows[i].sql_int[0];
-                tempItem.salary = commonQueriesSqlObject.rows[i].sql_money[0];
-                tempItem.employee_name = commonQueriesSqlObject.rows[i].sql_string[0];
-
-                returnVector.Add(tempItem);
-            }
-
-            return true;
-        }
         public bool GetEmployeeEmailCount(String employeeEmail, ref int returnValue)
         {
             returnValue = 0;
@@ -1192,12 +1081,6 @@ namespace _01electronics_erp
 
             if (!commonQueriesSqlObject.GetRows(sqlQuery, queryColumns))
                 return false;
-
-            if (commonQueriesSqlObject.rows.Count == 0)
-            {
-                MessageBox.Show("There is no existing signup for this email account! Please signup first and then try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
 
             returnValue = commonQueriesSqlObject.rows[0].sql_string[0];
 
@@ -1658,7 +1541,8 @@ namespace _01electronics_erp
             if (!commonQueriesSqlObject.GetRows(sqlQuery, queryColumns))
                 return false;
 
-            returnVector = commonQueriesSqlObject.rows[0].sql_string;
+            for (int i = 0; i < commonQueriesSqlObject.rows.Count; i++)
+                returnVector.Add(commonQueriesSqlObject.rows[i].sql_string[0]);
 
             return true;
         }
