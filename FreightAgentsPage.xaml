@@ -92,8 +92,8 @@
                 </ScrollViewer>
             </Grid>
 
-            <Button Grid.Row="2" HorizontalAlignment="Left"  Margin="200,0" Content="Add" Style="{StaticResource buttonStyle}" Click="OnBtnClickedAdd" Name="viewButton"/>
-            <Button Grid.Row="2" HorizontalAlignment="Right" Margin="200,0" Content="View" Style="{StaticResource buttonStyle}" Click="OnBtnClickedView" IsEnabled="False"/>
+            <Button Grid.Row="2" HorizontalAlignment="Left"  Margin="200,0" Content="Add" Style="{StaticResource buttonStyle}" Click="OnBtnClickedAdd" Name="addButton"/>
+            <Button Grid.Row="2" HorizontalAlignment="Right" Margin="200,0" Content="View" Style="{StaticResource buttonStyle}" Click="OnBtnClickedView" IsEnabled="False" Name="viewButton" />
 
 
 
