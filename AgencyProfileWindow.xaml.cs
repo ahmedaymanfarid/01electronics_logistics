@@ -26,6 +26,8 @@ namespace _01electronics_logistics
 
         private LogisticsQueries logisticsQueryObject = new LogisticsQueries();
 
+        private List<AGENCY_MACROS.AGENCY_CONTACT_INFO> listOfContacts = new List<AGENCY_MACROS.AGENCY_CONTACT_INFO>();
+
         protected bool agencyNameEdited;
 
         //THIS TEXTBOX SHALL REPLACE THE LABEL WHEN DOUBLE CLICKED
@@ -50,6 +52,7 @@ namespace _01electronics_logistics
             if (agencySerial != -1)
                 logisticsQueryObject.GetFullAgentInfo(agencySerial, ref agency);
             FulfillFields();
+            UpdateContacts();
 
         }
 
@@ -89,9 +92,49 @@ namespace _01electronics_logistics
             else
                 agencyNameEdited = false;
         }
+        /////////////////////////////////////////////////////////////////////////////////////
+        /// <BUTTON CLICK HANDLERS>
+        ///////////////////////////////////////////////////////////////////////////////////// 
+        private void OnBtnClkSaveChanges(object sender, RoutedEventArgs e)
+        {
+            //agency.agency_name = agencyNameTextBox.Text;
+            //agency.employee_name = employeesCombo.Text;
+            //agency.country = countriesCombo.Text;
+            //agency.state = statesCombo.Text;
+            //agency.city = citiesCombo.Text;
+            //agency.district = districtsCombo.Text;
+            //agency.telephone = telephoneTextBox.Text;
+            //agency.addressId = countriesCombo.SelectedIndex * 1000000 + statesCombo.SelectedIndex * 10000 + citiesCombo.SelectedIndex * 100 + districtsCombo.SelectedIndex;
 
-        
-        //DONT USE NUMBERS, USE WILL FIND ALL NUMBERS DEFINED AS MACROS IN ONE OF THE .cs FILES
+            //if (agency.agency_name.Length == 0 || agency.employee_name.Length == 0 || agency.country.Length == 0 || agency.state.Length == 0 || agency.city.Length == 0
+            //    || agency.district.Length == 0 || agency.telephone.Length == 0 || agency.addressId == 0)
+            //    return;
+
+            if (this.agencySerial != -1)
+            {
+                if (!logisticsQueryObject.UpdateAgent(agencySerial, ref agency)) ;
+                // show error message
+                else
+                    this.Close();
+                return;
+            }
+
+            if (!logisticsQueryObject.AddAgent(ref agency)) ;
+            // show error message
+            else
+                this.Close();
+        }
+
+        private void OnBtnClkAddBranch(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        /// <FUNCTIONS>
+        ///////////////////////////////////////////////////////////////////////////////////// 
+
         private void FulfillFields()
         {
             AgencyProfileHeader.Content += " - " + agency.agency_name;
@@ -193,40 +236,47 @@ namespace _01electronics_logistics
             //telephoneTextBox.Text = agency.telephone;
         }
 
-        private void OnBtnClkSaveChanges(object sender, RoutedEventArgs e)
+        private void UpdateContacts()
         {
-            //agency.agency_name = agencyNameTextBox.Text;
-            //agency.employee_name = employeesCombo.Text;
-            //agency.country = countriesCombo.Text;
-            //agency.state = statesCombo.Text;
-            //agency.city = citiesCombo.Text;
-            //agency.district = districtsCombo.Text;
-            //agency.telephone = telephoneTextBox.Text;
-            //agency.addressId = countriesCombo.SelectedIndex * 1000000 + statesCombo.SelectedIndex * 10000 + citiesCombo.SelectedIndex * 100 + districtsCombo.SelectedIndex;
+            logisticsQueryObject.GetAllContactsOfBranch(this.agencySerial, this.listOfContacts);
 
-            //if (agency.agency_name.Length == 0 || agency.employee_name.Length == 0 || agency.country.Length == 0 || agency.state.Length == 0 || agency.city.Length == 0
-            //    || agency.district.Length == 0 || agency.telephone.Length == 0 || agency.addressId == 0)
-            //    return;
-
-            if (this.agencySerial != -1)
+            for (int i = 0; i < listOfContacts.Count; i++)
             {
-                if (!logisticsQueryObject.UpdateAgent(agencySerial, ref agency)) ;
-                // show error message
-                else
-                    this.Close();
-                return;
+                StackPanel sp = new StackPanel();
+                sp.Height = 80;
+
+                Label l1 = new Label();
+                l1.Style = (Style)FindResource("stackPanelItemHeader");
+                l1.Content = listOfContacts[i].name;
+                sp.Children.Add(l1);
+
+                Label l2 = new Label();
+                l2.Style = (Style)FindResource("stackPanelItemBody");
+                l2.Content = listOfContacts[i].department.department_name + "Department";
+                sp.Children.Add(l2);
+
+                Label l3= new Label();
+                l3.Style = (Style)FindResource("stackPanelSubItemBody");
+                l3.Content = listOfContacts[i].email;
+                sp.Children.Add(l3);
+
+                
+                if (listOfContacts[i].telephones != null)
+                {
+                    Label l4 = new Label();
+                    l4.Style = (Style)FindResource("stackPanelSubItemBody");
+                    l4.Content = listOfContacts[i].telephones[0];
+                    sp.Children.Add(l4);
+                }
+                   
+
+
+
+
+
+                contactsStackPanel.Children.Add(sp);
             }
-
-            if (!logisticsQueryObject.AddAgent(ref agency)) ;
-            // show error message
-            else
-                this.Close();
         }
-
-        private void OnBtnClkAddBranch(object sender,RoutedEventArgs e)
-        {
-
-        }
-
+        
     }
 }

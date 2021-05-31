@@ -13,7 +13,8 @@ namespace _01electronics_logistics
         private SQLServer commonQueriesSqlObject;
         public LogisticsQueries()
         {
-            commonQueriesSqlObject = new SQLServer();
+            this.commonQueriesSqlObject = new SQLServer();
+
         }
 
         //////////////////////////////////////////////////////////////////////
@@ -129,13 +130,14 @@ AND agency_address.address_serial = " + agentId;
 
         public bool GetAllContactsOfBranch(int branchSerial,List<AGENCY_MACROS.AGENCY_CONTACT_INFO> contacts)
         {
-            String sqlQuery = @"select employee_id,branch_serial,department,email,[name],gender
-from agency_contact_person_info
-where branch_serial = " + branchSerial;
+            String sqlQuery = @"select agency_contact_person_info.contact_id,employee_id,branch_serial,agency_contact_person_info.department,email,[name],gender,departments_type.department
+from agency_contact_person_info,departments_type
+where agency_contact_person_info.department = departments_type.id 
+AND branch_serial = " + branchSerial;
             BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT queryColumns = new BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT();
 
-            queryColumns.sql_int = 3;
-            queryColumns.sql_string = 3;
+            queryColumns.sql_int = 4;
+            queryColumns.sql_string = 4;
 
             if (!commonQueriesSqlObject.GetRows(sqlQuery, queryColumns))
                 return false;
@@ -143,16 +145,46 @@ where branch_serial = " + branchSerial;
             for (int i = 0; i < commonQueriesSqlObject.rows.Count; i++)
             {
                 AGENCY_MACROS.AGENCY_CONTACT_INFO temp = new AGENCY_MACROS.AGENCY_CONTACT_INFO();
-                temp.employeeId = commonQueriesSqlObject.rows[i].sql_int[0];
-                temp.branchId = commonQueriesSqlObject.rows[i].sql_int[1];
-                temp.department = commonQueriesSqlObject.rows[i].sql_int[2];
+
+                temp.contactId = commonQueriesSqlObject.rows[i].sql_int[0];
+                temp.employeeId = commonQueriesSqlObject.rows[i].sql_int[1];
+                temp.branchId = commonQueriesSqlObject.rows[i].sql_int[2];
+                temp.department.department_id = commonQueriesSqlObject.rows[i].sql_int[3];
                 temp.email = commonQueriesSqlObject.rows[i].sql_string[0];
                 temp.name = commonQueriesSqlObject.rows[i].sql_string[1];
                 temp.gender = commonQueriesSqlObject.rows[i].sql_string[2];
+                temp.department.department_name = commonQueriesSqlObject.rows[i].sql_string[3];
+                temp.telephones = new List<String>();
 
                 contacts.Add(temp);
             }
 
+            GetContactTelephones(contacts);
+
+            return true;
+        }
+
+        private bool GetContactTelephones(List<AGENCY_MACROS.AGENCY_CONTACT_INFO> contacts)
+        {
+            for (int i = 0; i < contacts.Count; i++)
+            {
+                AGENCY_MACROS.AGENCY_CONTACT_INFO contact = contacts[i];
+                
+
+                String sqlQuery = @"select mobile from agency_contact_person_mobile where branch_serial = " + contact.branchId + " AND contact_id = " + contact.contactId;
+                BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT queryColumns = new BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT();
+
+                queryColumns.sql_string = 1;
+
+                if (!commonQueriesSqlObject.GetRows(sqlQuery, queryColumns))
+                    return false;
+
+                if (commonQueriesSqlObject.rows.Count == 0)
+                    contact.telephones.Add("");
+
+                for (int j = 0; j < commonQueriesSqlObject.rows.Count; j++)
+                    contact.telephones.Add(commonQueriesSqlObject.rows[j].sql_string[0]);
+            }
             return true;
         }
 

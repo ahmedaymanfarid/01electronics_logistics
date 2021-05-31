@@ -57,19 +57,7 @@
             </Grid>
 
             <ScrollViewer MinWidth="450" Background="#FFFFFF" Margin="24,48" VerticalScrollBarVisibility="Auto">
-                <StackPanel>
-                    <StackPanel Height="80">
-                        <Label Grid.Column="0" Style="{StaticResource stackPanelItemHeader}" Content="Mohamed Rayan"/>
-                        <Label Style="{StaticResource stackPanelItemBody}" Content="Procurement Department"/>
-                        <Label Style="{StaticResource stackPanelSubItemBody}" Content="mohamedrayan@mentor.com"/>
-                        <Label Style="{StaticResource stackPanelSubItemBody}" Content="01002145539"/>
-                    </StackPanel>
-                    <StackPanel Height="80">
-                        <Label Grid.Column="0" Style="{StaticResource stackPanelItemHeader}" Content="Ahmed Mohamed Ahmed"/>
-                        <Label Style="{StaticResource stackPanelItemBody}" Content="Human Resource Department"/>
-                        <Label Style="{StaticResource stackPanelSubItemBody}" Content="ahmedmohamed@ecg.com"/>
-                        <Label Style="{StaticResource stackPanelSubItemBody}" Content="01002145539"/>
-                    </StackPanel>
+                <StackPanel x:Name="contactsStackPanel">
                 </StackPanel>
             </ScrollViewer>
 
