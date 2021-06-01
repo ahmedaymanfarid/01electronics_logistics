@@ -17,9 +17,9 @@ using _01electronics_erp;
 namespace _01electronics_logistics
 {
     /// <summary>
-    /// Interaction logic for FreightAgents.xaml
+    /// Interaction logic for CustomsAgentsPage.xaml
     /// </summary>
-    public partial class FreightAgentsPage : Page
+    public partial class CustomsAgentsPage : Page
     {
         private Employee loggedInUser;
 
@@ -29,8 +29,7 @@ namespace _01electronics_logistics
 
         private LogisticsQueries LogisticsQueryObject = new LogisticsQueries();
         private CommonQueries CommonQueriesObject = new CommonQueries();
-
-        public FreightAgentsPage(ref Employee mLoggedInUser)
+        public CustomsAgentsPage(ref Employee mLoggedInUser)
         {
             loggedInUser = mLoggedInUser;
 
@@ -51,13 +50,13 @@ namespace _01electronics_logistics
             listOfAgents.Clear();
             listOfFullInfoAgents.Clear();
 
-            if (!LogisticsQueryObject.GetAgentsSerialsAndNames(ref listOfAgents))
+            if (!LogisticsQueryObject.GetCustomsAgentsSerialsAndNames(ref listOfAgents))
                 return;
             for (int i = 0; i < listOfAgents.Count; i++)
             {
                 // To get full info about each agent
                 AGENCY_MACROS.AGENCY_FULL_INFO tempAgent = new AGENCY_MACROS.AGENCY_FULL_INFO();
-                LogisticsQueryObject.GetFullAgentInfo(listOfAgents[i].agency_serial, ref tempAgent);
+                LogisticsQueryObject.GetFullCustomsAgentInfo(listOfAgents[i].agency_serial, ref tempAgent);
                 listOfFullInfoAgents.Add(tempAgent);
             }
         }
@@ -201,7 +200,7 @@ namespace _01electronics_logistics
                     i--;
                 }
             }
-                
+
             UpdateTree();
         }
 
@@ -318,13 +317,14 @@ namespace _01electronics_logistics
         }
         private void OnButtonClickedAgents(object sender, RoutedEventArgs e)
         {
-
-        }
-        private void OnButtonClickedCustomsAgents(object sender, RoutedEventArgs e)
-        {
-            CustomsAgentsPage agentsPage = new CustomsAgentsPage(ref loggedInUser);
+            FreightAgentsPage agentsPage = new FreightAgentsPage(ref loggedInUser);
             this.NavigationService.Navigate(agentsPage);
         }
+        private void OnButtonClickedCustomsAgents(object sender,RoutedEventArgs e)
+        {
+
+        }
+
         private void OnTreeSelectionChange(object sender, RoutedEventArgs e)
         {
             if (agentsTree.SelectedItem == null)
@@ -348,7 +348,7 @@ namespace _01electronics_logistics
             if (agentsTree.SelectedItem == null)
                 return;
             int agentSerial = listOfAgents[agentsTree.Items.IndexOf(agentsTree.SelectedItem)].agency_serial;
-            AgencyProfileWindow va = new AgencyProfileWindow(agentSerial);
+            CustomsAgencyProfileWindow va = new CustomsAgencyProfileWindow(agentSerial);
             va.Show();
             va.Closed += (sender1, e1) =>
             {
