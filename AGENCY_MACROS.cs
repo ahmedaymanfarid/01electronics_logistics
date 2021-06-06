@@ -41,13 +41,15 @@ namespace _01electronics_logistics
 
         public struct AGENCY_CONTACT_INFO
         {
+            public int contactId;
             public int employeeId;
             public int branchId;
-            public int department;
+            public COMPANY_ORGANISATION_MACROS.DEPARTMENT_STRUCT department;
 
             public String name;
             public String email;
             public String gender;
+            public List<String> telephones;
 
         }
 

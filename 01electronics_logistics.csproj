@@ -56,7 +56,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AgencyProfileWindow.xaml.cs" />
     <Compile Include="AGENCY_MACROS.cs" />
+    <Compile Include="CustomsAgencyProfileWindow.xaml.cs">
+      <DependentUpon>CustomsAgencyProfileWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomsAgentsPage.xaml.cs">
+      <DependentUpon>CustomsAgentsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FreightAgentsPage.xaml.cs">
       <DependentUpon>FreightAgentsPage.xaml</DependentUpon>
     </Compile>
@@ -69,12 +76,21 @@
     <Compile Include="SignUpPage.xaml.cs" />
     <Compile Include="SQLServer.cs" />
     <Compile Include="UserPortalPage.xaml.cs" />
-    <Compile Include="AgencyProfileWindow.xaml.cs">
-      <DependentUpon>AgencyProfileWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="WorkOrdersPage.xaml.cs">
       <DependentUpon>WorkOrdersPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="AgencyProfileWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomsAgencyProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomsAgentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FreightAgentsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -116,10 +132,6 @@
     <Page Include="UserPortalPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="AgencyProfileWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WorkOrdersPage.xaml">
       <SubType>Designer</SubType>

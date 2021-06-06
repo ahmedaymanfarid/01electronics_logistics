@@ -1,4 +1,4 @@
-﻿<Page x:Class="_01electronics_logistics.FreightAgentsPage"
+﻿<Page x:Class="_01electronics_logistics.CustomsAgentsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:_01electronics_logistics"
       mc:Ignorable="d" 
       Background="#EDEDED"
-      Title="Freight Agents">
+      Title="CustomsAgentsPage">
 
     <Grid>
 
@@ -45,7 +45,7 @@
                 <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24" Content="FREIGHT AGENTS" Style="{StaticResource primaryHeaderTextStyle}"/>
+            <Label Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24" Content="CUSTOM AGENTS" Style="{StaticResource primaryHeaderTextStyle}"/>
 
             <Grid Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24" MinHeight="400">
 

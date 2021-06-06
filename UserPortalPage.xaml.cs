@@ -60,5 +60,10 @@ namespace _01electronics_logistics
             FreightAgentsPage agentsPage = new FreightAgentsPage(ref loggedInUser);
             this.NavigationService.Navigate(agentsPage);
         }
+        private void OnButtonClickedCustomsAgents(object sender, RoutedEventArgs e)
+        {
+            CustomsAgentsPage agentsPage = new CustomsAgentsPage(ref loggedInUser);
+            this.NavigationService.Navigate(agentsPage);
+        }
     }       
 }

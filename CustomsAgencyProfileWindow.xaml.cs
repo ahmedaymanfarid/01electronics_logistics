@@ -13,12 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using _01electronics_erp;
 
+
 namespace _01electronics_logistics
 {
     /// <summary>
-    /// Interaction logic for AgencyProfileWindow.xaml
+    /// Interaction logic for CustomsAgencyProfileWindow.xaml
     /// </summary>
-    public partial class AgencyProfileWindow : Window
+    public partial class CustomsAgencyProfileWindow : Window
     {
         AGENCY_MACROS.AGENCY_FULL_INFO agency = new AGENCY_MACROS.AGENCY_FULL_INFO();
 
@@ -30,30 +31,17 @@ namespace _01electronics_logistics
 
         protected bool agencyNameEdited;
 
-        //THIS TEXTBOX SHALL REPLACE THE LABEL WHEN DOUBLE CLICKED
         private TextBox agencyNameTextBox;
 
-        //YOU SHOULD DESIGN AN AGENCY CLASS
-        //AND AGENT CONTACT CLASS
-        //YOU THEN SHALL PASS AGENCY CLASS OBJECT REFERENCE TO THIS CLASS CONSTRUCTOR
-        //NOT AGENCY SERIAL
-
-        //SAVE CHANGES BUTTON SHALL BE DISABLED UNLESS A CHANGE IS MADE
-        //ADD BRANCH BUTTON SHALL OPEN A NEW WINDOW WHERE COUNTRY, STATE, CITY AND DISTRICT COMBOBOXES SHALL BE SELECTED
-
-        //THE STACK PANEL SHALL VIEW ALL WORK ORDERS THIS AGENCY HAS WORKED ON
-        //ON SINGLE CLICK ON ANY ITEM, THE BACKGROUND SHALL BE BLUE AND FOREGROUND SHALL BE WHITE
-        //ON DOUBLE CLICK ON ANY ITEM, A NEW WINDOW SHALL OPEN THE VIEW ALL DETAILS OF THIS WORK ORDER
         int agencySerial;
-        public AgencyProfileWindow(int agencySerial)
+        public CustomsAgencyProfileWindow(int agencySerial)
         {
             InitializeComponent();
             this.agencySerial = agencySerial;
             if (agencySerial != -1)
-                logisticsQueryObject.GetFullAgentInfo(agencySerial, ref agency);
+                logisticsQueryObject.GetFullCustomsAgentInfo(agencySerial, ref agency);
             FulfillFields();
             UpdateContacts();
-
         }
 
         /////////////////////////////////////////////////////////////////////////////////////
@@ -157,12 +145,12 @@ namespace _01electronics_logistics
 
             for (int i = 0; i < agency.branches.Count; i++)
             {
-                
+
                 Label l = new Label();
                 l.Style = (Style)FindResource("tableItemValue");
                 l.FontSize = 10;
                 l.Content = agency.branches[i].district + "," + agency.branches[i].city;
-                
+
                 branchesSP.Children.Add(l);
             }
 
@@ -255,12 +243,12 @@ namespace _01electronics_logistics
                 l2.Content = listOfContacts[i].department.department_name + "Department";
                 sp.Children.Add(l2);
 
-                Label l3= new Label();
+                Label l3 = new Label();
                 l3.Style = (Style)FindResource("stackPanelSubItemBody");
                 l3.Content = listOfContacts[i].email;
                 sp.Children.Add(l3);
 
-                
+
                 if (listOfContacts[i].telephones != null)
                 {
                     Label l4 = new Label();
@@ -268,7 +256,7 @@ namespace _01electronics_logistics
                     l4.Content = listOfContacts[i].telephones[0];
                     sp.Children.Add(l4);
                 }
-                   
+
 
 
 
@@ -277,6 +265,5 @@ namespace _01electronics_logistics
                 contactsStackPanel.Children.Add(sp);
             }
         }
-        
     }
 }
