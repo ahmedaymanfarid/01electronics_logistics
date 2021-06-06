@@ -58,9 +58,6 @@
     </ApplicationDefinition>
     <Compile Include="AgencyProfileWindow.xaml.cs" />
     <Compile Include="AGENCY_MACROS.cs" />
-    <Compile Include="CustomsAgencyProfileWindow.xaml.cs">
-      <DependentUpon>CustomsAgencyProfileWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CustomsAgentsPage.xaml.cs">
       <DependentUpon>CustomsAgentsPage.xaml</DependentUpon>
     </Compile>
@@ -76,16 +73,21 @@
     <Compile Include="SignUpPage.xaml.cs" />
     <Compile Include="SQLServer.cs" />
     <Compile Include="UserPortalPage.xaml.cs" />
+    <Compile Include="ViewWorkOrderWindow.xaml.cs">
+      <DependentUpon>ViewWorkOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkOrderBasicInfoPage.xaml.cs">
+      <DependentUpon>WorkOrderBasicInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkOrderProductInfoPage.xaml.cs">
+      <DependentUpon>WorkOrderProductInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkOrdersPage.xaml.cs">
       <DependentUpon>WorkOrdersPage.xaml</DependentUpon>
     </Compile>
     <Page Include="AgencyProfileWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="CustomsAgencyProfileWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomsAgentsPage.xaml">
       <SubType>Designer</SubType>
@@ -132,6 +134,18 @@
     <Page Include="UserPortalPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewWorkOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkOrderBasicInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkOrderProductInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WorkOrdersPage.xaml">
       <SubType>Designer</SubType>

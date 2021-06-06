@@ -348,7 +348,7 @@ namespace _01electronics_logistics
             if (agentsTree.SelectedItem == null)
                 return;
             int agentSerial = listOfAgents[agentsTree.Items.IndexOf(agentsTree.SelectedItem)].agency_serial;
-            CustomsAgencyProfileWindow va = new CustomsAgencyProfileWindow(agentSerial);
+            AgencyProfileWindow va = new AgencyProfileWindow(agentSerial);
             va.Show();
             va.Closed += (sender1, e1) =>
             {

@@ -1,0 +1,182 @@
+﻿<Page x:Class="_01electronics_logistics.WorkOrderProductInfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_01electronics_logistics"
+      mc:Ignorable="d" 
+      Title="Work Order Product Info">
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="75"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Background="#105A97" Name="WorkOrderHeader" Content="WORK ORDER PRODUCT INFO" Style="{StaticResource secondaryHeaderTextStyle}"/>
+
+        <WrapPanel Grid.Row="1">
+            <Grid x:Name="Product1Grid" Margin="24">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Content="Product 1" Style="{StaticResource tableHeaderItem}"/>
+
+                <WrapPanel Grid.Row="1" Name="product1TypeWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Type"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product1TypeLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="2" Name="product1BrandWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Brand"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product1BrandLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="3" Name="product1ModelWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Model"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product1ModelLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="4" Name="product1QuantityWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Quantity"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product1QuantityLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="5" Name="product1PriceWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Price / Item"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product1PriceLabel"/>
+                </WrapPanel>
+            </Grid>
+
+            <Grid x:Name="Product2Grid" Margin="24">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Content="Product 2" Style="{StaticResource tableHeaderItem}"/>
+
+                <WrapPanel Grid.Row="1" Name="product2TypeWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Type"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product2TypeLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="2" Name="product2BrandWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Brand"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product2BrandLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="3" Name="product2ModelWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Model"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product2ModelLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="4" Name="product2QuantityWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Quantity"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product2QuantityLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="5" Name="product2PriceWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Price / Item"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product2PriceLabel"/>
+                </WrapPanel>
+            </Grid>
+
+            <Grid x:Name="product3Grid" Margin="24">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Content="Product 3" Style="{StaticResource tableHeaderItem}"/>
+
+                <WrapPanel Grid.Row="1" Name="product3TypeWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Type"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product3TypeLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="2" Name="product3BrandWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Brand"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product3BrandLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="3" Name="product3ModelWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Model"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product3ModelLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="4" Name="product3QuantityWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Quantity"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product3QuantityLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="5" Name="product3PriceWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Price / Item"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product3PriceLabel"/>
+                </WrapPanel>
+            </Grid>
+
+            <Grid x:Name="product4Grid" Margin="24">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Content="Product 4" Style="{StaticResource tableHeaderItem}"/>
+
+                <WrapPanel Grid.Row="1" Name="product4TypeWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Type"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product4TypeLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="2" Name="product4BrandWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Brand"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product4BrandLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="3" Name="product4ModelWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Model"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product4ModelLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="4" Name="product4QuantityWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Quantity"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product4QuantityLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Row="5" Name="product4PriceWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Price / Item"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="product4PriceLabel"/>
+                </WrapPanel>
+            </Grid>
+        </WrapPanel>
+
+        <Button Grid.Row="2" Content="Next" Style="{StaticResource buttonStyle}"/>
+
+
+    </Grid>
+</Page>

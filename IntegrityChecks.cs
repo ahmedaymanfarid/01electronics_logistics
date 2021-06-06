@@ -165,6 +165,8 @@ namespace _01electronics_erp
                     continue;
                 if (checkType == BASIC_MACROS.MONETARY_STRING && (isNumber || isMonetarySpecialCharacter))
                     continue;
+                if (checkType == BASIC_MACROS.NUMERIC_STRING && (isNumber))
+                    continue;
 
                 return false;
             }
@@ -841,54 +843,54 @@ namespace _01electronics_erp
         //EDIT-BOX CHECKER FUNCTIONS
         ///////////////////////////////////////////////////////////
 
-        public bool CheckEmployeeNameEditBox(String inputString, ref String outputString)
+        public bool CheckEmployeeNameEditBox(String inputString, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
+            RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckNonEmptyEditBox(inputString))
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (isRequired && isEmpty)
             {
                 MessageBox.Show("Employee name must be specified.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
             if (!CheckInvalidCharacters(inputString, BASIC_MACROS.REGULAR_STRING))
             {
                 MessageBox.Show("Invalid employee name.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
-            RemoveExtraSpaces(inputString, ref outputString);
             CheckCapitalizedInitials(outputString, ref outputString);
 
             return true;
         }
-        public bool CheckEmployeeLoginEmailEditBox(String inputString, ref String outputString)
+        public bool CheckEmployeeLoginEmailEditBox(String inputString, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
-
             RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckNonEmptyEditBox(outputString))
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (isRequired && isEmpty)
             {
                 MessageBox.Show("Email must be specified", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckInvalidCharacters(outputString, BASIC_MACROS.EMAIL_STRING))
+            if (!isEmpty && !CheckInvalidCharacters(outputString, BASIC_MACROS.EMAIL_STRING))
             {
                 MessageBox.Show("Invalid email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckInBetweenSpaces(outputString))
+            if (!isEmpty && !CheckInBetweenSpaces(outputString))
             {
                 MessageBox.Show("Invalid email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckAvailableEmployeeEmail(outputString))
+            if (!isEmpty && !CheckAvailableEmployeeEmail(outputString))
             {
                 MessageBox.Show("The specified email was not found, Please contact your adminstration to complete your employee profile.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckAvailableSignUp(outputString))
+            if (!isEmpty && !CheckAvailableSignUp(outputString))
             {
                 MessageBox.Show("No existing signup was found for the specified email, Please signup first then try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -896,33 +898,33 @@ namespace _01electronics_erp
 
             return true;
         }
-        public bool CheckEmployeeSignUpEmailEditBox(String inputString, ref String outputString)
+        public bool CheckEmployeeSignUpEmailEditBox(String inputString, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
-
             RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckNonEmptyEditBox(outputString))
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (isRequired && isEmpty)
             {
                 MessageBox.Show("Email must be specified", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckInvalidCharacters(outputString, BASIC_MACROS.EMAIL_STRING))
+            if (!isEmpty && !CheckInvalidCharacters(outputString, BASIC_MACROS.EMAIL_STRING))
             {
                 MessageBox.Show("Invalid email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckInBetweenSpaces(outputString))
+            if (!isEmpty && !CheckInBetweenSpaces(outputString))
             {
                 MessageBox.Show("Invalid email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckAvailableEmployeeEmail(outputString))
+            if (!isEmpty && !CheckAvailableEmployeeEmail(outputString))
             {
                 MessageBox.Show("The specified email was not found, Please contact your adminstration to complete your employee profile.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckUniqueSignUp(outputString))
+            if (!isEmpty && !CheckUniqueSignUp(outputString))
             {
                 MessageBox.Show("An existing signup is already associated with the email specificed, Please contact your adminstration for help.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -955,27 +957,28 @@ namespace _01electronics_erp
 
             return true;
         }
-        public bool CheckEmployeePersonalEmailEditBox(String inputString, ref String outputString)
+        public bool CheckEmployeePersonalEmailEditBox(String inputString, ref String outputString, bool isRequired)
         {
             RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckNonEmptyEditBox(outputString))
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (isRequired && isEmpty)
             {
                 MessageBox.Show("A Personal email must be specified", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckInvalidCharacters(outputString, BASIC_MACROS.EMAIL_STRING))
+            if (!isEmpty && !CheckInvalidCharacters(outputString, BASIC_MACROS.EMAIL_STRING))
             {
                 MessageBox.Show("Invalid personal email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckInBetweenSpaces(outputString))
+            if (!isEmpty && !CheckInBetweenSpaces(outputString))
             {
                 MessageBox.Show("Invalid personal email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
-            if (!CheckEmailForm(outputString))
+            if (!isEmpty && !CheckEmailForm(outputString))
             {
                 MessageBox.Show("Invalid personal email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -983,33 +986,33 @@ namespace _01electronics_erp
 
             return true;
         }
-        public bool CheckEmployeeBusinessEmailEditBox(String inputString, String businessDomain, ref String outputString)
+        public bool CheckEmployeeBusinessEmailEditBox(String inputString, String businessDomain, ref String outputString, bool isRequired)
         {
             RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckNonEmptyEditBox(outputString))
-            {
-                MessageBox.Show("A business email must be specified", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            if (!CheckInvalidCharacters(outputString, BASIC_MACROS.EMAIL_STRING))
-            {
-                MessageBox.Show("Invalid business email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            if (!CheckInBetweenSpaces(outputString))
-            {
-                MessageBox.Show("Invalid business email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
 
-            if (!CheckEmailForm(outputString, businessDomain))
+            if (isRequired && isEmpty)
+            {
+                MessageBox.Show("Business Email must be specified.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!isEmpty && !CheckInvalidCharacters(outputString, BASIC_MACROS.EMAIL_STRING))
             {
                 MessageBox.Show("Invalid business email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
-            if (!CheckUniqueEmployeeEmail(outputString))
+            if (!isEmpty && !CheckInBetweenSpaces(outputString))
+            {
+                MessageBox.Show("Invalid business email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!isEmpty && !CheckEmailForm(outputString, businessDomain))
+            {
+                MessageBox.Show("Invalid business email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!isEmpty && !CheckUniqueEmployeeEmail(outputString))
             {
                 MessageBox.Show("The provided business email is already associated with another employee.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -1017,55 +1020,54 @@ namespace _01electronics_erp
 
             return true;
         }
-        public bool CheckCompanyNameEditBox(String inputString, ref String outputString)
+        public bool CheckCompanyNameEditBox(String inputString, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
+            RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckNonEmptyEditBox(inputString))
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (!isEmpty && !CheckNonEmptyEditBox(inputString))
             {
                 MessageBox.Show("Company name must be specified.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
-            if (!CheckInvalidCharacters(inputString, BASIC_MACROS.REGULAR_STRING))
+            if (!isEmpty && !CheckInvalidCharacters(inputString, BASIC_MACROS.REGULAR_STRING))
             {
                 MessageBox.Show("Invalid company name.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
-            RemoveExtraSpaces(inputString, ref outputString);
             CheckCapitalizedInitials(outputString, ref outputString);
 
             return true;
         }
-        public bool CheckCompanyDomainEditBox(String inputString, int countryId, ref String outputString)
+        public bool CheckCompanyDomainEditBox(String inputString, int countryId, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
-
             RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckNonEmptyEditBox(outputString))
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (isRequired && isEmpty)
             {
                 MessageBox.Show("Domain name must be specified", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckInvalidCharacters(outputString, BASIC_MACROS.DOMAIN_STRING))
+            if (!isEmpty && !CheckInvalidCharacters(outputString, BASIC_MACROS.DOMAIN_STRING))
             {
                 MessageBox.Show("Invalid domain name.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckInBetweenSpaces(outputString))
+            if (!isEmpty && !CheckInBetweenSpaces(outputString))
             {
                 MessageBox.Show("Invalid domain name.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckDomainForm(outputString, countryId))
+            if (!isEmpty && !CheckDomainForm(outputString, countryId))
             {
                 MessageBox.Show("Invalid domain name.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
-            if (!CheckUniqueDomainName(outputString))
+            if (!isEmpty && !CheckUniqueDomainName(outputString))
             {
                 String messageString = String.Empty;
                 String existingCompanyName = String.Empty;
@@ -1084,25 +1086,28 @@ namespace _01electronics_erp
             return true;
         }
 
-        public bool CheckCompanyPhoneEditBox(String inputString, ref String outputString)
+        public bool CheckCompanyPhoneEditBox(String inputString, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
-
             RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckInvalidCharacters(outputString, BASIC_MACROS.PHONE_STRING))
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (isRequired && isEmpty)
+            {
+                MessageBox.Show("Company phone must be specified", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!isEmpty && !CheckInvalidCharacters(outputString, BASIC_MACROS.PHONE_STRING))
             {
                 MessageBox.Show("Invalid phone number.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
-            if (!CheckInBetweenSpaces(outputString))
+            if (!isEmpty && !CheckInBetweenSpaces(outputString))
             {
                 MessageBox.Show("Invalid phone number.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
-            if (!CheckPhoneForm(outputString))
+            if (!isEmpty && !CheckPhoneForm(outputString))
             {
                 MessageBox.Show("Invalid phone number.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -1110,25 +1115,28 @@ namespace _01electronics_erp
 
             return true;
         }
-        public bool CheckCompanyFaxEditBox(String inputString, ref String outputString)
+        public bool CheckCompanyFaxEditBox(String inputString, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
-
             RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckInvalidCharacters(outputString, BASIC_MACROS.PHONE_STRING))
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (isRequired && isEmpty)
+            {
+                MessageBox.Show("Company fax must be specified", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!isEmpty && !CheckInvalidCharacters(outputString, BASIC_MACROS.PHONE_STRING))
             {
                 MessageBox.Show("Invalid fax number.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
-            if (!CheckInBetweenSpaces(outputString))
+            if (!isEmpty && !CheckInBetweenSpaces(outputString))
             {
                 MessageBox.Show("Invalid fax number.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
-            if (!CheckPhoneForm(outputString))
+            if (!isEmpty && !CheckPhoneForm(outputString))
             {
                 MessageBox.Show("Invalid fax number.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -1137,50 +1145,51 @@ namespace _01electronics_erp
             return true;
         }
 
-        public bool CheckContactNameEditBox(String inputString, ref String outputString)
+        public bool CheckContactNameEditBox(String inputString, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
+            RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckNonEmptyEditBox(inputString))
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (isRequired && isEmpty)
             {
                 MessageBox.Show("Contact name must be specified.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
-            if (!CheckInvalidCharacters(inputString, BASIC_MACROS.REGULAR_STRING))
+            if (!isEmpty && !CheckInvalidCharacters(inputString, BASIC_MACROS.REGULAR_STRING))
             {
                 MessageBox.Show("Invalid contact name.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
-            RemoveExtraSpaces(inputString, ref outputString);
+
             CheckCapitalizedInitials(outputString, ref outputString);
 
             return true;
         }
 
-        public bool CheckContactBusinessEmailEditBox(String inputString, int countryId, ref String outputString)
+        public bool CheckContactBusinessEmailEditBox(String inputString, int countryId, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
-
             RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckNonEmptyEditBox(outputString))
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (isRequired && isEmpty)
             {
                 MessageBox.Show("Contact business email must be specified", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckInvalidCharacters(outputString, BASIC_MACROS.EMAIL_STRING))
+            if (!isEmpty && !CheckInvalidCharacters(outputString, BASIC_MACROS.EMAIL_STRING))
             {
                 MessageBox.Show("Invalid contact business email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckInBetweenSpaces(outputString))
+            if (!isEmpty && !CheckInBetweenSpaces(outputString))
             {
                 MessageBox.Show("Invalid contact business email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckEmailForm(outputString, countryId))
+            if (!isEmpty && !CheckEmailForm(outputString, countryId))
             {
                 MessageBox.Show("Invalid contact business email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -1188,29 +1197,28 @@ namespace _01electronics_erp
 
             return true;
         }
-
-        public bool CheckContactPersonalEmailEditBox(String inputString, int countryId, ref String outputString)
+        public bool CheckContactPersonalEmailEditBox(String inputString, int countryId, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
-
             RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckNonEmptyEditBox(outputString))
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (isRequired && isEmpty)
             {
                 MessageBox.Show("Contact email must be specified", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckInvalidCharacters(outputString, BASIC_MACROS.EMAIL_STRING))
+            if (!isEmpty && !CheckInvalidCharacters(outputString, BASIC_MACROS.EMAIL_STRING))
             {
                 MessageBox.Show("Invalid personal email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckInBetweenSpaces(outputString))
+            if (!isEmpty && !CheckInBetweenSpaces(outputString))
             {
                 MessageBox.Show("Invalid personal email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckEmailForm(outputString, countryId))
+            if (!isEmpty && !CheckEmailForm(outputString, countryId))
             {
                 MessageBox.Show("Invalid personal email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -1218,11 +1226,11 @@ namespace _01electronics_erp
 
             return true;
         }
-        public bool CheckContactPersonalEmailEditBox(String inputString, int emailEditNumber, int countryId, ref String outputString)
+        public bool CheckContactPersonalEmailEditBox(String inputString, int emailEditNumber, int countryId, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
-
             RemoveExtraSpaces(inputString, ref outputString);
+
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
 
             String messageString;
 
@@ -1231,22 +1239,22 @@ namespace _01electronics_erp
             messageString += emailEditNumber;
             messageString += ".";
 
-            if (!CheckNonEmptyEditBox(outputString))
-            {
-                MessageBox.Show("Contact email must be specified", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            if (!CheckInvalidCharacters(outputString, BASIC_MACROS.EMAIL_STRING))
+            if (isRequired && isEmpty)
             {
                 MessageBox.Show(messageString, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckInBetweenSpaces(outputString))
+            if (!isEmpty && !CheckInvalidCharacters(outputString, BASIC_MACROS.EMAIL_STRING))
             {
                 MessageBox.Show(messageString, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            if (!CheckEmailForm(outputString, countryId))
+            if (!isEmpty && !CheckInBetweenSpaces(outputString))
+            {
+                MessageBox.Show(messageString, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!isEmpty && !CheckEmailForm(outputString, countryId))
             {
                 MessageBox.Show(messageString, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -1255,25 +1263,28 @@ namespace _01electronics_erp
             return true;
         }
 
-        public bool CheckContactPhoneEditBox(String inputString, ref String outputString)
+        public bool CheckContactPhoneEditBox(String inputString, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
-
             RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckInvalidCharacters(outputString, BASIC_MACROS.PHONE_STRING))
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (isRequired && isEmpty)
+            {
+                MessageBox.Show("Contact Phone must be specified", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!isEmpty && !CheckInvalidCharacters(outputString, BASIC_MACROS.PHONE_STRING))
             {
                 MessageBox.Show("Invalid Contact Phone.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
-            if (!CheckInBetweenSpaces(outputString))
+            if (!isEmpty && !CheckInBetweenSpaces(outputString))
             {
                 MessageBox.Show("Invalid Contact Phone.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
-            if (!CheckPhoneForm(outputString))
+            if (!isEmpty && !CheckPhoneForm(outputString))
             {
                 MessageBox.Show("Invalid Contact Phone.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -1281,11 +1292,11 @@ namespace _01electronics_erp
 
             return true;
         }
-        public bool CheckContactPhoneEditBox(String inputString, int phoneEditNumber, ref String outputString)
+        public bool CheckContactPhoneEditBox(String inputString, int phoneEditNumber, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
-
             RemoveExtraSpaces(inputString, ref outputString);
+
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
 
             String messageString = String.Empty;
 
@@ -1293,19 +1304,22 @@ namespace _01electronics_erp
             messageString += phoneEditNumber;
             messageString += ".";
 
-            if (!CheckInvalidCharacters(outputString, BASIC_MACROS.PHONE_STRING))
+            if (isRequired && isEmpty)
             {
                 MessageBox.Show(messageString, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
-            if (!CheckInBetweenSpaces(outputString))
+            if (!isEmpty && !CheckInvalidCharacters(outputString, BASIC_MACROS.PHONE_STRING))
             {
                 MessageBox.Show(messageString, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
-            if (!CheckPhoneForm(outputString))
+            if (!isEmpty && !CheckInBetweenSpaces(outputString))
+            {
+                MessageBox.Show(messageString, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!isEmpty && !CheckPhoneForm(outputString))
             {
                 MessageBox.Show(messageString, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -1314,43 +1328,67 @@ namespace _01electronics_erp
             return true;
         }
 
-        public bool CheckDistrictEditBox(String inputString, ref String outputString)
+        public bool CheckDistrictEditBox(String inputString, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
+            RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckInvalidCharacters(inputString, BASIC_MACROS.REGULAR_STRING))
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (isRequired && isEmpty)
+            {
+                MessageBox.Show("District name must be specified", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!isEmpty && !CheckInvalidCharacters(inputString, BASIC_MACROS.REGULAR_STRING))
             {
                 MessageBox.Show("Invalid district name.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
-            RemoveExtraSpaces(inputString, ref outputString);
             CheckCapitalizedInitials(outputString, ref outputString);
 
             return true;
         }
 
-        public bool CheckMonetaryEditBox(String inputString, ref String outputString)
+        public bool CheckEmployeeSalaryEditBox(String inputString, ref String outputString, bool isRequired)
         {
-            outputString = String.Empty;
+            RemoveExtraSpaces(inputString, ref outputString);
 
-            if (!CheckNonEmptyEditBox(inputString))
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (isRequired && isEmpty)
             {
                 MessageBox.Show("Employee salary must be specified.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
-            if (!CheckInvalidCharacters(inputString, BASIC_MACROS.MONETARY_STRING))
+            if (!isEmpty && !CheckInvalidCharacters(inputString, BASIC_MACROS.MONETARY_STRING))
             {
                 MessageBox.Show("Invalid employee salary.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
+            return true;
+        }
+        public bool CheckNationalIdEditBox(String inputString, ref String outputString, bool isRequired)
+        {
             RemoveExtraSpaces(inputString, ref outputString);
+
+            bool isEmpty = !CheckNonEmptyEditBox(outputString);
+
+            if (isRequired && isEmpty)
+            {
+                MessageBox.Show("National ID must be specified.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (!isEmpty && !CheckInvalidCharacters(inputString, BASIC_MACROS.NUMERIC_STRING))
+            {
+                MessageBox.Show("Invalid National ID.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
 
             return true;
         }
-
         public bool CheckFileEditBox(String inputString)
         {
             if (!CheckNonEmptyEditBox(inputString))

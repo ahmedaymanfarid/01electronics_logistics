@@ -62,7 +62,7 @@
             <TextBox Name="employeeEmailTextBox" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,30,30,90" Width="200" Padding="0,5" />
 
             <Label Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="15,90,0,30" Padding="10" Content="Password" FontFamily="Copperplate Gothic Light" Foreground="#105A97" FontSize="14" />
-            <TextBox Name="employeePasswordTextBox" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,90,30,30" Width="200" Padding="0,5"/>
+            <PasswordBox Name="employeePasswordTextBox" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,90,30,30" Width="200" Padding="0,5"/>
 
 
             <Button Name="SignInButton" Grid.Row="2" Content="Sign In" Margin="60,15,60,0" Width="150" Padding="0,5" VerticalAlignment="Top" FontFamily="Copperplate Gothic Bold" FontSize="20" Background="#FF105A97" Foreground="White" Click="OnButtonClickedSignIn"/>

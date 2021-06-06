@@ -22,8 +22,9 @@ namespace _01electronics_erp
         public const int EMAIL_STRING = 2;
         public const int DOMAIN_STRING = 3;
         public const int PHONE_STRING = 4;
-        public const int MONETARY_STRING = 4;
-        public const int FILE_PATH_STRING = 5;
+        public const int MONETARY_STRING = 5;
+        public const int FILE_PATH_STRING = 6;
+        public const int NUMERIC_STRING = 7;
 
         public const int CONTACT_BUSINESS_EMAIL_EDITED = 0x00000001;
         public const int CONTACT_PHONE1_EDITED = 0x00000010;
@@ -39,8 +40,6 @@ namespace _01electronics_erp
         public const int EDIT_BOX_STRING_LENGTH = 100;
 
         //YEAR QUARTERS MACROS
-        public const int CRM_START_YEAR = 2020;
-
         public const int NO_OF_QUARTERS = 4;
         public const int FIRST_QUARTER = 1;
         public const int SECOND_QUARTER = 2;

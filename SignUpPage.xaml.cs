@@ -42,7 +42,7 @@ namespace _01electronics_logistics
             String inputString = businessEmailTextBox.Text;
             String modifiedString = null;
 
-            if (!integrityChecker.CheckEmployeeSignUpEmailEditBox(inputString, ref modifiedString))
+            if (!integrityChecker.CheckEmployeeSignUpEmailEditBox(inputString, ref modifiedString, true))
                 return false;
 
             if (!signupEmployee.InitializeEmployeeInfo(modifiedString))
@@ -58,7 +58,7 @@ namespace _01electronics_logistics
             String inputString = personalEmailTextBox.Text;
             String modifiedString = null;
 
-            if (!integrityChecker.CheckEmployeePersonalEmailEditBox(inputString, ref modifiedString))
+            if (!integrityChecker.CheckEmployeePersonalEmailEditBox(inputString, ref modifiedString, true))
                 return false;
 
             signupEmployee.SetEmployeePersonalEmail(modifiedString);
@@ -69,8 +69,8 @@ namespace _01electronics_logistics
 
         bool CheckEmployeePasswordEdits()
         {
-            employeePassword = passwordTextBox.Text;
-            confirmPassword = confirmPasswordTextBox.Text;
+            employeePassword = passwordTextBox.Password;
+            confirmPassword = confirmPasswordTextBox.Password;
 
             if (employeePassword != confirmPassword)
                 return false;
@@ -102,6 +102,8 @@ namespace _01electronics_logistics
             if (!InsertIntoEmployeePersonalEmails())
                 return;
 
+            SignInPage signIn = new SignInPage();
+            this.NavigationService.Navigate(signIn);
         }
 
         private bool InsertIntoEmployeesPasswords()

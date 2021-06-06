@@ -22,41 +22,27 @@
         <Label Grid.Row="0" Background="#105A97" Name="AgencyProfileHeader" Content="AGENCY PROFILE" Style="{StaticResource secondaryHeaderTextStyle}"/>
 
         <WrapPanel Grid.Row="1">
-            
-            <Grid MinWidth="440" MaxWidth="450" Margin="24,48">
+       
+            <ScrollViewer MinWidth="440" MinHeight="350" Margin="24,48" VerticalScrollBarVisibility="Auto">
+                <Grid Background="#FFFFFF" x:Name="telephoneFaxGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
 
-                <WrapPanel Grid.Row="0">
-                    <Label Content="Name" Style="{StaticResource labelStyle}"/>
-                    <Label x:Name="agencyNameLabel" Style="{StaticResource labelStyle}" MouseDoubleClick="OnMouseDoubleClickLabelToTextBox"/>
-                </WrapPanel>
+                    <Label Grid.Column="0" Content="Branch" Style="{StaticResource tableHeaderItem}"/>
+                    <Label Grid.Column="1" Content="Telephone" Style="{StaticResource tableHeaderItem}"/>
+                    <Label Grid.Column="2" Content="Fax" Style="{StaticResource tableHeaderItem}"/>
 
+                </Grid>
+            </ScrollViewer>
 
-                <ScrollViewer Grid.Row="1" MinHeight="200" Margin="24" VerticalScrollBarVisibility="Auto">
-                    <Grid Background="#FFFFFF" x:Name="telephoneFaxGrid">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                        </Grid.RowDefinitions>
-
-                        <Label Grid.Column="0" Content="Branch" Style="{StaticResource tableHeaderItem}"/>
-                        <Label Grid.Column="1" Content="Telephone" Style="{StaticResource tableHeaderItem}"/>
-                        <Label Grid.Column="2" Content="Fax" Style="{StaticResource tableHeaderItem}"/>
-
-                    </Grid>
-                </ScrollViewer>
-            </Grid>
-
-            <ScrollViewer MinWidth="450" Background="#FFFFFF" Margin="24,48" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer MinWidth="440" MinHeight="350" Margin="24,48" Background="#FFFFFF" VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="contactsStackPanel">
                 </StackPanel>
             </ScrollViewer>

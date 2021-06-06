@@ -40,18 +40,18 @@ namespace _01electronics_logistics
         {
             employeeEmail = employeeEmailTextBox.Text;
 
-            if (!integrityChecker.CheckEmployeeLoginEmailEditBox(employeeEmail, ref employeeEmail))
+            if (!integrityChecker.CheckEmployeeLoginEmailEditBox(employeeEmail, ref employeeEmail, true))
                 return;
 
             loggedInUser.InitializeEmployeeInfo(employeeEmail);
 
-            employeePassword = employeePasswordTextBox.Text;
+            employeePassword = employeePasswordTextBox.Password;
 
             if (!integrityChecker.CheckEmployeePasswordEditBox(employeePassword, loggedInUser.GetEmployeeId()))
                 return;
 
-            MainWindow mainWindowOpen = new MainWindow(ref loggedInUser);
-            mainWindowOpen.Show();
+            MainWindow portalWindowOpen = new MainWindow(ref loggedInUser);
+            portalWindowOpen.Show();
 
             Window.GetWindow(this).Close();
         }

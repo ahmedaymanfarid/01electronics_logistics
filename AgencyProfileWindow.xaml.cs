@@ -72,27 +72,6 @@ namespace _01electronics_logistics
         }
 
         /////////////////////////////////////////////////////////////////////////////////////
-        /// <MOUSE LEAVE HANDLERS>
-        ///////////////////////////////////////////////////////////////////////////////////// 
-        ///
-        protected void OnMouseLeaveAgencyName(object sender, RoutedEventArgs e)
-        {
-            agencyNameLabel.Visibility = Visibility.Visible;
-            agencyNameTextBox.Visibility = Visibility.Collapsed;
-
-            if (agencyNameTextBox.Text != agency.agency_name)
-            {
-                BrushConverter brush = new BrushConverter();
-
-                agencyNameLabel.Content = agencyNameTextBox.Text;
-                agencyNameLabel.Foreground = (Brush)brush.ConvertFrom("#FF0000");
-
-                agencyNameEdited = true;
-            }
-            else
-                agencyNameEdited = false;
-        }
-        /////////////////////////////////////////////////////////////////////////////////////
         /// <BUTTON CLICK HANDLERS>
         ///////////////////////////////////////////////////////////////////////////////////// 
         private void OnBtnClkSaveChanges(object sender, RoutedEventArgs e)

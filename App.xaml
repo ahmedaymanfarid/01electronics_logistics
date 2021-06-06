@@ -113,7 +113,7 @@
             <Setter Property="Width" Value="384" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Margin" Value="12,12,12,12"/>
+            <Setter Property="Margin" Value="30,12,12,12"/>
             <Setter Property="FontFamily" Value="Sans Serif" />
             <Setter Property="FontWeight" Value="DemiBold" />
             <Setter Property="FontSize" Value="16" />
@@ -121,10 +121,21 @@
         </Style>
 
         <Style x:Key="comboBoxStyle" TargetType="{x:Type ComboBox}">
-            <Setter Property="Width" Value="100" />
+            <Setter Property="Width" Value="384" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="Margin" Value="12,12,12,12"/>
+            <Setter Property="Margin" Value="30,12,12,12"/>
+            <Setter Property="FontFamily" Value="Sans Serif" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="#105A97" />
+        </Style>
+
+        <Style x:Key="datePickerStyle" TargetType="{x:Type DatePicker}">
+            <Setter Property="Width" Value="384" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="30,12,12,12"/>
             <Setter Property="FontFamily" Value="Sans Serif" />
             <Setter Property="FontWeight" Value="DemiBold" />
             <Setter Property="FontSize" Value="16" />
@@ -141,7 +152,7 @@
             <Setter Property="FontSize" Value="16" />
             <Setter Property="Foreground" Value="#105A97" />
         </Style>
-        
+
         <Style x:Key="labelStyle" TargetType="{x:Type Label}">
             <Setter Property="Width" Value="100" />
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -152,7 +163,7 @@
             <Setter Property="FontSize" Value="16" />
             <Setter Property="Foreground" Value="#105A97" />
         </Style>
-        
+
         <Style x:Key="buttonStyle" TargetType="{x:Type Button}">
             <Setter Property="Width" Value="150" />
             <Setter Property="Height" Value="50" />
@@ -200,8 +211,7 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="FontFamily" Value="Sans Serif" />
             <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="Height" Value="27"/>
+            <Setter Property="FontSize" Value="16" />
         </Style>
 
         <Style x:Key="stackPanelItemBody" TargetType="{x:Type Label}">
@@ -209,14 +219,6 @@
             <Setter Property="Padding" Value="10,0,0,0" />
             <Setter Property="FontFamily" Value="Sans Serif" />
             <Setter Property="FontSize" Value="12" />
-        </Style>
-
-        <Style x:Key="stackPanelSubItemBody" TargetType="{x:Type Label}">
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="Padding" Value="10,0,0,0" />
-            <Setter Property="FontFamily" Value="Sans Serif" />
-            <Setter Property="FontSize" Value="10" />
-            <Setter Property="FontStyle" Value="Italic" />
         </Style>
     </Application.Resources>
 </Application>
