@@ -68,11 +68,8 @@ namespace _01electronics_logistics
 
         private void InitializeYearsComboBox()
         {
-            
-            int initialYear = 2020;
-            int finalYear = Int32.Parse(DateTime.Now.Year.ToString());
-            for (; initialYear <= finalYear; initialYear++)
-                yearCombo.Items.Add(initialYear);
+            for (int year = 2020; year <= DateTime.Now.Year; year++)
+                yearCombo.Items.Add(year);
         }
         private void InitializeQuartersComboBox()
         {

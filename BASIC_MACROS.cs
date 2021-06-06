@@ -39,6 +39,8 @@ namespace _01electronics_erp
         public const int EDIT_BOX_STRING_LENGTH = 100;
 
         //YEAR QUARTERS MACROS
+        public const int CRM_START_YEAR = 2020;
+
         public const int NO_OF_QUARTERS = 4;
         public const int FIRST_QUARTER = 1;
         public const int SECOND_QUARTER = 2;

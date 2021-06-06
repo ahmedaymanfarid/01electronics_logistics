@@ -173,7 +173,19 @@ namespace _01electronics_erp
 				return 30;
 		}
 
-		int GetCurrentQuarter()
+		public int GetQuarter(DateTime currentDate)
+		{
+			if (currentDate.Month >= BASIC_MACROS.FIRST_QUARTER_START_MONTH && currentDate.Month < BASIC_MACROS.SECOND_QUARTER_START_MONTH)
+				return BASIC_MACROS.FIRST_QUARTER;
+			else if (currentDate.Month >= BASIC_MACROS.SECOND_QUARTER_START_MONTH && currentDate.Month < BASIC_MACROS.THIRD_QUARTER_START_MONTH)
+				return BASIC_MACROS.SECOND_QUARTER;
+			else if (currentDate.Month >= BASIC_MACROS.THIRD_QUARTER_START_MONTH && currentDate.Month < BASIC_MACROS.FOURTH_QUARTER_START_MONTH)
+				return BASIC_MACROS.THIRD_QUARTER;
+			else
+				return BASIC_MACROS.FOURTH_QUARTER;
+		}
+
+		public int GetCurrentQuarter()
 		{
 			DateTime todaysDate = DateTime.Now;
 
