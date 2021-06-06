@@ -23,6 +23,8 @@ namespace _01electronics_logistics
         public ViewWorkOrderWindow()
         {
             InitializeComponent();
+
+            WorkOrderBasicInfoPage viewBasicInfo = new WorkOrderBasicInfoPage(); 
         }
     }
 }
