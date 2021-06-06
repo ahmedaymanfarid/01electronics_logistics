@@ -45,7 +45,7 @@
                 <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24" Content="FREIGHT AGENTS" Style="{StaticResource primaryHeaderTextStyle}"/>
+            <Label Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24" Content="CUSTOM AGENTS" Style="{StaticResource primaryHeaderTextStyle}"/>
 
             <Grid Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="48,24" MinHeight="400">
 
