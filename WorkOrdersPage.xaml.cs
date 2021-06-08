@@ -171,6 +171,7 @@ namespace _01electronics_logistics
 
                 OrdersStackPanel.Children.Add(selectedOrderStackPanel);
             }
+            viewButton.IsEnabled = false;
         }
 
         private void InitializeOrderList()
@@ -208,6 +209,8 @@ namespace _01electronics_logistics
 
             foreach (Label childLabel in currentSelectedOrderStackPanel.Children)
                 childLabel.Foreground = (Brush)brush.ConvertFrom("#FFFFFF");
+
+            viewButton.IsEnabled = true;
         }
 
         private void OnButtonClickedMyProfile(object sender, RoutedEventArgs e)
@@ -424,7 +427,10 @@ namespace _01electronics_logistics
 
         }
 
+        private void OnViewButtonClicked(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 
     

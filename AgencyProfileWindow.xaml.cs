@@ -235,7 +235,7 @@ namespace _01electronics_logistics
                 sp.Children.Add(l2);
 
                 Label l3= new Label();
-                l3.Style = (Style)FindResource("stackPanelSubItemBody");
+                l3.Style = (Style)FindResource("stackPanelItemBody");
                 l3.Content = listOfContacts[i].email;
                 sp.Children.Add(l3);
 
@@ -243,7 +243,7 @@ namespace _01electronics_logistics
                 if (listOfContacts[i].telephones != null)
                 {
                     Label l4 = new Label();
-                    l4.Style = (Style)FindResource("stackPanelSubItemBody");
+                    l4.Style = (Style)FindResource("stackPanelItemBody");
                     l4.Content = listOfContacts[i].telephones[0];
                     sp.Children.Add(l4);
                 }

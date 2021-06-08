@@ -24,7 +24,7 @@ namespace _01electronics_logistics
         {
             returnVector.Clear();
 
-            String sqlQueryPart1 = "select agency_serial, agency_name from erp_system.dbo.agency_name order by agency_name;";
+            String sqlQueryPart1 = "select agency_serial, freight_agency_name from erp_system.dbo.freight_agency_name order by freight_agency_name;";
 
             sqlQuery = String.Empty;
             sqlQuery += sqlQueryPart1;
@@ -53,10 +53,10 @@ namespace _01electronics_logistics
 
         public bool GetFullAgentInfo(int agentId,ref AGENCY_MACROS.AGENCY_FULL_INFO agency)
         {
-            String sqlQuery = @"select agency_name.agency_name,[name]
-from agency_name,employees_info
-where agency_name.added_by = employees_info.employee_id
-AND agency_name.agency_serial = " + agentId;
+            String sqlQuery = @"select freight_agency_name.freight_agency_name,[name]
+from freight_agency_name,employees_info
+where freight_agency_name.added_by = employees_info.employee_id
+AND freight_agency_name.agency_serial = " + agentId;
             BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT queryColumns = new BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT();
             
             queryColumns.sql_string = 2;
@@ -67,13 +67,13 @@ AND agency_name.agency_serial = " + agentId;
             agency.agency_name = commonQueriesSqlObject.rows[0].sql_string[0];
             agency.employee_name = commonQueriesSqlObject.rows[0].sql_string[1];
 
-            sqlQuery = @"select agency_address.[address],district,cities.city,states_governorates.state_governorate,countries.country 
-from agency_address,districts,cities,states_governorates,countries
-where districts.id = agency_address.[address]
+            sqlQuery = @"select freight_agency_address.[address],district,cities.city,states_governorates.state_governorate,countries.country 
+from freight_agency_address,districts,cities,states_governorates,countries
+where districts.id = freight_agency_address.[address]
 AND districts.city = cities.id 
 AND cities.state_governorate = states_governorates.id
 AND states_governorates.country = countries.id
-AND agency_address.agency_serial = "+agentId;
+AND freight_agency_address.agency_serial = " + agentId;
 
             queryColumns.sql_int = 1;
             queryColumns.sql_string = 4;
@@ -93,9 +93,9 @@ AND agency_address.agency_serial = "+agentId;
             }
 
             sqlQuery = @"select telephone_number
-from agency_telephone,agency_address
-where agency_address.address_serial = agency_telephone.branch_serial
-AND agency_address.address_serial = " + agentId;
+from freight_agency_telephone,freight_agency_address
+where freight_agency_address.address_serial = freight_agency_telephone.branch_serial
+AND freight_agency_address.address_serial = " + agentId;
 
             queryColumns.sql_int = 0;
             queryColumns.sql_string = 1;
@@ -109,9 +109,9 @@ AND agency_address.address_serial = " + agentId;
             }
 
             sqlQuery = @"select fax
-from agency_fax,agency_address
-where agency_address.address_serial = agency_fax.branch_serial
-AND agency_address.address_serial = " + agentId;
+from freight_agency_fax,freight_agency_address
+where freight_agency_address.address_serial = freight_agency_fax.branch_serial
+AND freight_agency_address.address_serial = " + agentId;
 
             queryColumns.sql_int = 0;
             queryColumns.sql_string = 1;
@@ -130,9 +130,9 @@ AND agency_address.address_serial = " + agentId;
 
         public bool GetAllContactsOfBranch(int branchSerial,List<AGENCY_MACROS.AGENCY_CONTACT_INFO> contacts)
         {
-            String sqlQuery = @"select agency_contact_person_info.contact_id,employee_id,branch_serial,agency_contact_person_info.department,email,[name],gender,departments_type.department
-from agency_contact_person_info,departments_type
-where agency_contact_person_info.department = departments_type.id 
+            String sqlQuery = @"select freight_contact_person_info.contact_id,employee_id,branch_serial,freight_contact_person_info.department,email,[name],gender,departments_type.department
+from freight_contact_person_info,departments_type
+where freight_contact_person_info.department = departments_type.id 
 AND branch_serial = " + branchSerial;
             BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT queryColumns = new BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT();
 
@@ -171,7 +171,7 @@ AND branch_serial = " + branchSerial;
                 AGENCY_MACROS.AGENCY_CONTACT_INFO contact = contacts[i];
                 
 
-                String sqlQuery = @"select mobile from agency_contact_person_mobile where branch_serial = " + contact.branchId + " AND contact_id = " + contact.contactId;
+                String sqlQuery = @"select mobile from freight_contact_person_mobile where branch_serial = " + contact.branchId + " AND contact_id = " + contact.contactId;
                 BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT queryColumns = new BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT();
 
                 queryColumns.sql_string = 1;
