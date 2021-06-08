@@ -17,7 +17,7 @@ namespace _01electronics_erp
         protected String sqlQuery;
 
         //SQL OBJECTS
-        protected SQLServer initializationObject;
+        protected SQLServer sqlDatabase;
 
         //COMPANY IDENTIFIERS
         private int ownerUserId;
@@ -57,7 +57,17 @@ namespace _01electronics_erp
 
         public Company()
         {
-            initializationObject = new SQLServer();
+            sqlDatabase = new SQLServer();
+        }
+
+        public Company(SQLServer mSqlDatabase)
+        {
+            sqlDatabase = mSqlDatabase;
+        }
+
+        public void SetDatabase(SQLServer mSqlDatabase)
+        {
+            sqlDatabase = mSqlDatabase;
         }
 
         public bool InitializeCompanyInfo(int mCompanySerial)
@@ -97,17 +107,17 @@ namespace _01electronics_erp
             queryColumns.sql_int = 3;
             queryColumns.sql_string = 4;
 
-            if (!initializationObject.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
+            if (!sqlDatabase.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
                 return false;
 
-            primaryFieldId = initializationObject.rows[0].sql_int[0];
-            secondaryFieldId = initializationObject.rows[1].sql_int[0];
-            ownerUserId = initializationObject.rows[2].sql_int[0];
+            primaryFieldId = sqlDatabase.rows[0].sql_int[0];
+            secondaryFieldId = sqlDatabase.rows[1].sql_int[0];
+            ownerUserId = sqlDatabase.rows[2].sql_int[0];
 
-            companyName = initializationObject.rows[0].sql_string[0];
-            primaryField = initializationObject.rows[1].sql_string[0];
-            secondaryField = initializationObject.rows[2].sql_string[0];
-            ownerUser = initializationObject.rows[3].sql_string[0];
+            companyName = sqlDatabase.rows[0].sql_string[0];
+            primaryField = sqlDatabase.rows[1].sql_string[0];
+            secondaryField = sqlDatabase.rows[2].sql_string[0];
+            ownerUser = sqlDatabase.rows[3].sql_string[0];
 
             addressKnown = false;
 
@@ -155,19 +165,19 @@ namespace _01electronics_erp
             queryColumns.sql_int = 5;
             queryColumns.sql_string = 4;
 
-            if (!initializationObject.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_LOW))
+            if (!sqlDatabase.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_LOW))
                 return false;
 
-            companySerial = initializationObject.rows[0].sql_int[0];
-            address = initializationObject.rows[0].sql_int[1];
-            primaryFieldId = initializationObject.rows[0].sql_int[2];
-            secondaryFieldId = initializationObject.rows[0].sql_int[3];
-            ownerUserId = initializationObject.rows[0].sql_int[4];
+            companySerial = sqlDatabase.rows[0].sql_int[0];
+            address = sqlDatabase.rows[0].sql_int[1];
+            primaryFieldId = sqlDatabase.rows[0].sql_int[2];
+            secondaryFieldId = sqlDatabase.rows[0].sql_int[3];
+            ownerUserId = sqlDatabase.rows[0].sql_int[4];
 
-            companyName = initializationObject.rows[0].sql_string[0];
-            primaryField = initializationObject.rows[0].sql_string[1];
-            secondaryField = initializationObject.rows[0].sql_string[2];
-            ownerUser = initializationObject.rows[0].sql_string[3];
+            companyName = sqlDatabase.rows[0].sql_string[0];
+            primaryField = sqlDatabase.rows[0].sql_string[1];
+            secondaryField = sqlDatabase.rows[0].sql_string[2];
+            ownerUser = sqlDatabase.rows[0].sql_string[3];
 
             SetCompanyAddressIDs();
 
@@ -392,10 +402,10 @@ namespace _01electronics_erp
 
             queryColumns.sql_int = 1;
 
-            if (!initializationObject.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
+            if (!sqlDatabase.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
                 return false;
 
-            SetCompanySerial(initializationObject.rows[0].sql_int[0] + 1);
+            SetCompanySerial(sqlDatabase.rows[0].sql_int[0] + 1);
 
             return true;
         }
@@ -410,10 +420,10 @@ namespace _01electronics_erp
 
             queryColumns.sql_int = 1;
 
-            if (!initializationObject.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
+            if (!sqlDatabase.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
                 return false;
 
-            SetAddressSerial(initializationObject.rows[0].sql_int[0] + 1);
+            SetAddressSerial(sqlDatabase.rows[0].sql_int[0] + 1);
 
             return true;
         }
@@ -439,13 +449,13 @@ namespace _01electronics_erp
 
             queryColumns.sql_string = 4;
 
-            if (!initializationObject.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
+            if (!sqlDatabase.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
                 return false;
 
-            country = initializationObject.rows[3].sql_string[0];
-            state = initializationObject.rows[2].sql_string[0];
-            city = initializationObject.rows[1].sql_string[0];
-            district = initializationObject.rows[0].sql_string[0];
+            country = sqlDatabase.rows[3].sql_string[0];
+            state = sqlDatabase.rows[2].sql_string[0];
+            city = sqlDatabase.rows[1].sql_string[0];
+            district = sqlDatabase.rows[0].sql_string[0];
 
             return true;
         }
@@ -464,11 +474,11 @@ namespace _01electronics_erp
 
             queryColumns.sql_string = 1;
 
-            if (!initializationObject.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_LOW))
+            if (!sqlDatabase.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_LOW))
                 return false;
 
-            for (int i = 0; i < initializationObject.rows.Count; i++)
-                companyPhones.Add(initializationObject.rows[0].sql_string[i]);
+            for (int i = 0; i < sqlDatabase.rows.Count; i++)
+                companyPhones.Add(sqlDatabase.rows[0].sql_string[i]);
 
             return true;
         }
@@ -486,11 +496,11 @@ namespace _01electronics_erp
 
             queryColumns.sql_string = 1;
 
-            if (!initializationObject.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_LOW))
+            if (!sqlDatabase.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_LOW))
                 return false;
 
-            for (int i = 0; i < initializationObject.rows.Count; i++)
-                companyFaxes.Add(initializationObject.rows[0].sql_string[i]);
+            for (int i = 0; i < sqlDatabase.rows.Count; i++)
+                companyFaxes.Add(sqlDatabase.rows[0].sql_string[i]);
 
 
             return true;

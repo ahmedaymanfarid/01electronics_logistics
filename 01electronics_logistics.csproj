@@ -68,6 +68,7 @@
       <DependentUpon>FreightAgentsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="LogisticsQueries.cs" />
+    <Compile Include="RFQ.cs" />
     <Compile Include="SignInPage.xaml.cs" />
     <Compile Include="SignInWindow.xaml.cs" />
     <Compile Include="SignUpPage.xaml.cs" />
@@ -76,6 +77,8 @@
     <Compile Include="ViewWorkOrderWindow.xaml.cs">
       <DependentUpon>ViewWorkOrderWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WorkOffer.cs" />
+    <Compile Include="WorkOrder.cs" />
     <Compile Include="WorkOrderBasicInfoPage.xaml.cs">
       <DependentUpon>WorkOrderBasicInfoPage.xaml</DependentUpon>
     </Compile>

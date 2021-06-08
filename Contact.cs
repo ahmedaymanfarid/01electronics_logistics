@@ -40,6 +40,10 @@ namespace _01electronics_erp
         {
             new Company();
         }
+        public Contact(SQLServer mSqlDatabase)
+        {
+            new Company(mSqlDatabase);
+        }
 
         public bool InitializeContactInfo(int mContactId)
         {
@@ -91,30 +95,30 @@ namespace _01electronics_erp
             queryColumns.sql_int = 3;
             queryColumns.sql_string = 6;
 
-            if (!initializationObject.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
+            if (!sqlDatabase.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
                 return false;
 
-            contactName = initializationObject.rows[0].sql_string[0];
-            gender = initializationObject.rows[0].sql_string[1];
-            businessEmail = initializationObject.rows[0].sql_string[2];
-            department = initializationObject.rows[0].sql_string[3];
+            contactName = sqlDatabase.rows[0].sql_string[0];
+            gender = sqlDatabase.rows[0].sql_string[1];
+            businessEmail = sqlDatabase.rows[0].sql_string[2];
+            department = sqlDatabase.rows[0].sql_string[3];
 
-            departmentId = initializationObject.rows[0].sql_int[2];
+            departmentId = sqlDatabase.rows[0].sql_int[2];
 
-            for (int i = 0; i < initializationObject.rows.Count; i++)
+            for (int i = 0; i < sqlDatabase.rows.Count; i++)
             {
-                numberOfSavedPhones = initializationObject.rows[i].sql_int[0];
+                numberOfSavedPhones = sqlDatabase.rows[i].sql_int[0];
 
                 if (numberOfSavedPhones > 0)
-                    contactPhones[numberOfSavedPhones - 1] = initializationObject.rows[i].sql_string[4];
+                    contactPhones[numberOfSavedPhones - 1] = sqlDatabase.rows[i].sql_string[4];
             }
 
-            for (int i = 0; i < initializationObject.rows.Count; i++)
+            for (int i = 0; i < sqlDatabase.rows.Count; i++)
             {
-                numberOfSavedEmails = initializationObject.rows[i].sql_int[1];
+                numberOfSavedEmails = sqlDatabase.rows[i].sql_int[1];
 
                 if (numberOfSavedEmails > 0)
-                    contactPersonalEmails[numberOfSavedEmails - 1] = initializationObject.rows[i].sql_string[5];
+                    contactPersonalEmails[numberOfSavedEmails - 1] = sqlDatabase.rows[i].sql_string[5];
             }
 
 
@@ -189,15 +193,15 @@ namespace _01electronics_erp
             queryColumns.sql_datetime = 1;
             queryColumns.sql_string = 1;
 
-            if (!initializationObject.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_LOW))
+            if (!sqlDatabase.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_LOW))
                 return false;
 
-            for (int i = 0; i < initializationObject.rows.Count; i++)
+            for (int i = 0; i < sqlDatabase.rows.Count; i++)
             {
                 COMPANY_ORGANISATION_MACROS.CONTACT_COMMENT_STRUCT tempItem;
 
-                tempItem.commentDate = initializationObject.rows[i].sql_datetime[0].ToString();
-                tempItem.comment = initializationObject.rows[i].sql_string[0];
+                tempItem.commentDate = sqlDatabase.rows[i].sql_datetime[0].ToString();
+                tempItem.comment = sqlDatabase.rows[i].sql_string[0];
 
                 commentsList.Add(tempItem);
             }
@@ -297,10 +301,10 @@ namespace _01electronics_erp
 
             queryColumns.sql_int = 1;
 
-            if (!initializationObject.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
+            if (!sqlDatabase.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
                 return false;
 
-            contactId = initializationObject.rows[0].sql_int[0] + 1;
+            contactId = sqlDatabase.rows[0].sql_int[0] + 1;
 
             return true;
         }
