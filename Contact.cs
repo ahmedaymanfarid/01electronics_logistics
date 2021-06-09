@@ -39,10 +39,12 @@ namespace _01electronics_erp
         public Contact()
         {
             new Company();
+            salesPerson = new Employee();
         }
         public Contact(SQLServer mSqlDatabase)
         {
             new Company(mSqlDatabase);
+            salesPerson = new Employee(mSqlDatabase);
         }
 
         public bool InitializeContactInfo(int mContactId)

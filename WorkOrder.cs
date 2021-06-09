@@ -48,7 +48,10 @@ namespace _01electronics_erp
         public WorkOrder(SQLServer mSqlDatabase)
         {
             new WorkOffer(mSqlDatabase);
+
             orderStatusId = COMPANY_WORK_MACROS.OPEN_WORK_ORDER;
+
+            orderIdString = new char[BASE_ORDER_ID_LENGTH + 1];
         }
 
         //////////////////////////////////////////////////////////////////////

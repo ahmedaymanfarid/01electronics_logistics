@@ -15,13 +15,39 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Background="#105A97" Name="WorkOrderHeader" Content="WORK ORDER PRODUCT INFO" Style="{StaticResource secondaryHeaderTextStyle}"/>
 
-        <WrapPanel Grid.Row="1">
+        <Grid Grid.Row="1" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Style="{StaticResource unSelectedTabBorder}" MouseLeftButtonDown="OnClickBasicInfo">
+                <Label Content="Basic Info" Style="{StaticResource unselectedTabLabelItem}" MouseLeftButtonDown="OnClickBasicInfo"/>
+            </Border>
+            <Border Grid.Column="1" Style="{StaticResource selectedTabBorder}" MouseLeftButtonDown="OnClickProductsInfo">
+                <Label Content="Products Info" Style="{StaticResource selectedTabLabelItem}" MouseLeftButtonDown="OnClickProductsInfo"/>
+            </Border>
+            <Border Grid.Column="2" Style="{StaticResource unSelectedTabBorder}" MouseLeftButtonDown="OnClickProductsInfo">
+                <Label Content="Contract Info" Style="{StaticResource unselectedTabLabelItem}" MouseLeftButtonDown="OnClickProductsInfo"/>
+            </Border>
+            <Border Grid.Column="3" Style="{StaticResource unSelectedTabBorder}" MouseLeftButtonDown="OnClickAdditionalInfo">
+                <Label Content="Logistics Info" Style="{StaticResource unselectedTabLabelItem}" MouseLeftButtonDown="OnClickAdditionalInfo"/>
+            </Border>
+            <Border Grid.Column="4" Style="{StaticResource unSelectedTabBorder}" MouseLeftButtonDown="OnClickAdditionalInfo">
+                <Label Content="Track Order" Style="{StaticResource unselectedTabLabelItem}" MouseLeftButtonDown="OnClickAdditionalInfo"/>
+            </Border>
+        </Grid>
+        
+        <WrapPanel Grid.Row="2">
             <Grid x:Name="Product1Grid" Margin="24">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -174,9 +200,6 @@
                 </WrapPanel>
             </Grid>
         </WrapPanel>
-
-        <Button Grid.Row="2" Content="Next" Style="{StaticResource buttonStyle}"/>
-
 
     </Grid>
 </Page>

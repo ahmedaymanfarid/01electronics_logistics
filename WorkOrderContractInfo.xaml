@@ -1,0 +1,107 @@
+﻿<Page x:Class="_01electronics_logistics.WorkOrderContractInfo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_01electronics_logistics"
+      mc:Ignorable="d" 
+      Title="WorkOrder Contract Info">
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Background="#105A97" Name="WorkOrderHeader" Content="WORK ORDER CONTRACT INFO" Style="{StaticResource secondaryHeaderTextStyle}"/>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Style="{StaticResource unSelectedTabBorder}" MouseLeftButtonDown="OnClickBasicInfo">
+                <Label Content="Basic Info" Style="{StaticResource unselectedTabLabelItem}" MouseLeftButtonDown="OnClickBasicInfo"/>
+            </Border>
+            <Border Grid.Column="1" Style="{StaticResource unSelectedTabBorder}" MouseLeftButtonDown="OnClickProductsInfo">
+                <Label Content="Products Info" Style="{StaticResource unselectedTabLabelItem}" MouseLeftButtonDown="OnClickProductsInfo"/>
+            </Border>
+            <Border Grid.Column="2" Style="{StaticResource selectedTabBorder}" MouseLeftButtonDown="OnClickProductsInfo">
+                <Label Content="Contract Info" Style="{StaticResource selectedTabLabelItem}" MouseLeftButtonDown="OnClickProductsInfo"/>
+            </Border>
+            <Border Grid.Column="3" Style="{StaticResource unSelectedTabBorder}" MouseLeftButtonDown="OnClickAdditionalInfo">
+                <Label Content="Logistics Info" Style="{StaticResource unselectedTabLabelItem}" MouseLeftButtonDown="OnClickAdditionalInfo"/>
+            </Border>
+            <Border Grid.Column="4" Style="{StaticResource unSelectedTabBorder}" MouseLeftButtonDown="OnClickAdditionalInfo">
+                <Label Content="Track Order" Style="{StaticResource unselectedTabLabelItem}" MouseLeftButtonDown="OnClickAdditionalInfo"/>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <WrapPanel Grid.Row="0">
+                <WrapPanel Name="contractTypeWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Contract Type"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="contractTypeLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Name="deliveryTimeWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Delivery Time"/>
+                    <Label Style="{StaticResource tableItemValue}"  Name="deliveryTimeLabel"/>
+                </WrapPanel>
+            </WrapPanel>
+
+            <WrapPanel Grid.Row="1">
+                <WrapPanel Name="deliveryPointWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Delivery Point"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="deliveryPointLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Name="incotermWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Incoterm"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="incotermLabel"/>
+                </WrapPanel>
+            </WrapPanel>
+
+            <WrapPanel Grid.Row="2">
+                <WrapPanel Name="totalPriceWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Total Price"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="totalPriceLabel"/>
+                </WrapPanel>
+
+                <WrapPanel Name="paymentTermsWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Payment Terms"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="paymentTermsLabel"/>
+                </WrapPanel>
+            </WrapPanel>
+
+            <WrapPanel Grid.Row="3">
+                <WrapPanel Name="drawingSubmissionWrapPanel">
+                    <Label Style="{StaticResource tableItemLabel}" Content="Drawing Submission Deadline"/>
+                    <Label Style="{StaticResource tableItemValue}" Name="drawingSubmissionLabel"/>
+                </WrapPanel>
+
+
+            </WrapPanel>
+        </Grid>
+
+
+    </Grid>
+
+</Page>

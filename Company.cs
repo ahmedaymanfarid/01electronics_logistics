@@ -70,6 +70,7 @@ namespace _01electronics_erp
             sqlDatabase = mSqlDatabase;
         }
 
+
         public bool InitializeCompanyInfo(int mCompanySerial)
         {
             companySerial = mCompanySerial;
@@ -452,9 +453,9 @@ namespace _01electronics_erp
             if (!sqlDatabase.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
                 return false;
 
-            country = sqlDatabase.rows[3].sql_string[0];
-            state = sqlDatabase.rows[2].sql_string[0];
-            city = sqlDatabase.rows[1].sql_string[0];
+            country = sqlDatabase.rows[0].sql_string[3];
+            state = sqlDatabase.rows[0].sql_string[2];
+            city = sqlDatabase.rows[0].sql_string[1];
             district = sqlDatabase.rows[0].sql_string[0];
 
             return true;

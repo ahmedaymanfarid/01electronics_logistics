@@ -99,6 +99,29 @@
             <Setter Property="Foreground" Value="#105A97" />
         </Style>
 
+        <Style x:Key="selectedTabLabelItem" TargetType="{x:Type Label}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#105A97" />
+            <Setter Property="FontFamily" Value="Sans Serif" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+
+        <Style x:Key="unselectedTabLabelItem" TargetType="{x:Type Label}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="FontFamily" Value="Sans Serif" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+
+
         <Style x:Key="ProgressBarStyle" TargetType="{x:Type ProgressBar}">
             <Setter Property="Width" Value="384" />
             <Setter Property="Height" Value="20" />
@@ -219,6 +242,20 @@
             <Setter Property="Padding" Value="10,0,0,0" />
             <Setter Property="FontFamily" Value="Sans Serif" />
             <Setter Property="FontSize" Value="12" />
+        </Style>
+
+        <Style x:Key="selectedTabBorder" TargetType="{x:Type Border}">
+            <Setter Property="CornerRadius" Value="0,0,30,0"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Background" Value="#E3E3E3" />
+            <Setter Property="BorderBrush" Value="#E3E3E3" />
+        </Style>
+
+        <Style x:Key="unSelectedTabBorder" TargetType="{x:Type Border}">
+            <Setter Property="CornerRadius" Value="0,0,20,0"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Background" Value="#105A97" />
+            <Setter Property="BorderBrush" Value="#105A97" />
         </Style>
     </Application.Resources>
 </Application>

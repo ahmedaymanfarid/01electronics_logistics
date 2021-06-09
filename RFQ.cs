@@ -8,24 +8,24 @@ namespace _01electronics_erp
 {
     public class RFQ
     {
-        protected const int RFQ_ID_IDENTIFIER_TOKEN			=	3;
-        protected const int RFQ_ID_SERIAL_TOKEN				=	4;
-        protected const int RFQ_ID_EMPLOYEE_INITIALS_TOKEN	=	9;
-        protected const int RFQ_ID_DATE_TOKEN				=	8;
-        protected const int RFQ_ID_REVISION_OFFSET_TOKEN	=	3;
-        protected const int RFQ_ID_REVISION_SERIAL_TOKEN     =   2;
-        
-        protected const int BASE_RFQ_ID_DASH_SEPARATORS        =    3;
-        protected const int REVISED_RFQ_ID_DASH_SEPARATORS     =    BASE_RFQ_ID_DASH_SEPARATORS + 1;
-        
+        protected const int RFQ_ID_IDENTIFIER_TOKEN = 3;
+        protected const int RFQ_ID_SERIAL_TOKEN = 4;
+        protected const int RFQ_ID_EMPLOYEE_INITIALS_TOKEN = 9;
+        protected const int RFQ_ID_DATE_TOKEN = 8;
+        protected const int RFQ_ID_REVISION_OFFSET_TOKEN = 3;
+        protected const int RFQ_ID_REVISION_SERIAL_TOKEN = 2;
+
+        protected const int BASE_RFQ_ID_DASH_SEPARATORS = 3;
+        protected const int REVISED_RFQ_ID_DASH_SEPARATORS = BASE_RFQ_ID_DASH_SEPARATORS + 1;
+
         protected const int BASE_RFQ_ID_LENGTH = RFQ_ID_IDENTIFIER_TOKEN + RFQ_ID_SERIAL_TOKEN + RFQ_ID_EMPLOYEE_INITIALS_TOKEN + RFQ_ID_DATE_TOKEN + BASE_RFQ_ID_DASH_SEPARATORS;
         protected const int REVISED_RFQ_ID_LENGTH = BASE_RFQ_ID_LENGTH + RFQ_ID_REVISION_OFFSET_TOKEN + RFQ_ID_REVISION_SERIAL_TOKEN + 1;
-        
+
         protected const int RFQ_ID_SERIAL_START_INDEX = RFQ_ID_IDENTIFIER_TOKEN + 1;
         protected const int RFQ_ID_EMPLOYEE_INITIALS_START_INDEX = RFQ_ID_SERIAL_START_INDEX + RFQ_ID_SERIAL_TOKEN + 1;
         protected const int RFQ_ID_DATE_START_INDEX = RFQ_ID_EMPLOYEE_INITIALS_START_INDEX + RFQ_ID_EMPLOYEE_INITIALS_TOKEN + 1;
         protected const int RFQ_ID_REVISION_SERIAL_START_INDEX = RFQ_ID_DATE_START_INDEX + RFQ_ID_DATE_TOKEN + RFQ_ID_REVISION_OFFSET_TOKEN + 1;
-        
+
         protected const string RFQ_ID_FORMAT = "RFQ-0001-XXXX.XXXX-DDMMYYYY";
         protected const string REVISED_RFQ_ID_FORMAT = "RFQ-0001-XXXX.XXXX-DDMMYYYY";
 

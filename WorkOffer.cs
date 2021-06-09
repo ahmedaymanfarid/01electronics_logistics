@@ -50,11 +50,11 @@ namespace _01electronics_erp
         protected String priceCurrency;
 
         protected int priceCurrencyId;
-        
+
         protected int percentDownPayment;
         protected int percentOnDelivery;
         protected int percentOnInstallation;
-        
+
         protected int totalPriceValue;
         protected int priceValueDownPayment;
         protected int priceValueOnDelivery;
@@ -79,9 +79,9 @@ namespace _01electronics_erp
         protected int deliveryTimeMinimum;
         protected int deliveryTimeMaximum;
         protected int deliveryTimeUnitId;
-        
+
         protected int deliveryPointId;
-        
+
         protected String deliveryTimeUnit;
         protected String deliveryPoint;
 
@@ -90,16 +90,16 @@ namespace _01electronics_erp
         //////////////////////////////////////////////////////////////////////
 
         protected int modifiedContractTypeId;
-        
+
         protected int warrantyPeriod;
         protected int warrantyPeriodTimeUnitId;
-        
+
         protected int offerValidityPeriod;
         protected int offerValidityTimeUnitId;
-        
+
         protected String warrantyPeriodTimeUnit;
         protected String offerValidityTimeUnit;
-        
+
         protected String offerLocalPath;
         protected String offerServerPath;
 
@@ -108,14 +108,14 @@ namespace _01electronics_erp
         //////////////////////////////////////////////////////////////////////
 
         protected COMPANY_WORK_MACROS.OFFER_PRODUCT_STRUCT[] OfferProductsList;
-        
+
         protected bool modifiedProduct1Valid;
         protected bool modifiedProduct2Valid;
         protected bool modifiedProduct3Valid;
         protected bool modifiedProduct4Valid;
-        
+
         protected bool[] OfferProductsValid;
-        
+
         protected int noOfSavedOfferProducts;
 
         //////////////////////////////////////////////////////////////////////
@@ -125,12 +125,12 @@ namespace _01electronics_erp
 
         protected DateTime offerIssueDate;
         protected DateTime offerRejectionDate;
-        
+
         protected String offerNotes;
-        
+
         protected String offerStatus;
         protected String offerFailureReason;
-        
+
         public WorkOffer()
         {
             new RFQ();
@@ -226,7 +226,7 @@ namespace _01electronics_erp
             BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT queryColumns = new BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT();
 
             queryColumns.sql_int = 3;
-            
+
             if (!sqlDatabase.GetRows(sqlQuery, queryColumns))
                 return false;
 

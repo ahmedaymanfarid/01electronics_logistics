@@ -82,6 +82,9 @@
     <Compile Include="WorkOrderBasicInfoPage.xaml.cs">
       <DependentUpon>WorkOrderBasicInfoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WorkOrderContractInfo.xaml.cs">
+      <DependentUpon>WorkOrderContractInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkOrderProductInfoPage.xaml.cs">
       <DependentUpon>WorkOrderProductInfoPage.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WorkOrderBasicInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkOrderContractInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
