@@ -188,7 +188,7 @@ namespace _01electronics_erp
 		educational_degrees.id, 
 		educational_majors.id,
 
-        banks_names.id,
+        payroll_types.id,
         employees_payroll_info.payroll_id,
         employees_payroll_info.account_id,
 
@@ -215,7 +215,7 @@ namespace _01electronics_erp
 
 		employees_initials.employee_initial,
 
-		banks_names.bank_name
+		payroll_types.payroll_type
 
 		from erp_system.dbo.employees_info 
 		inner join erp_system.dbo.departments_type 
@@ -242,8 +242,8 @@ namespace _01electronics_erp
         on employees_info.employee_id = employees_salaries.id
         left join erp_system.dbo.employees_payroll_info
         on employees_info.employee_id = employees_payroll_info.employee_id
-        inner join erp_system.dbo.banks_names
-        on employees_payroll_info.bank_id = banks_names.id
+        inner join erp_system.dbo.payroll_types
+        on employees_payroll_info.bank_id = payroll_types.id
 	where employees_info.employee_id = ";
         
     String sqlQueryPart2 = ";";
@@ -308,7 +308,7 @@ namespace _01electronics_erp
                 tempItem.payroll_id = sqlDatabase.rows[i].sql_int[7];
                 tempItem.account_id = (ulong) sqlDatabase.rows[i].sql_bigint[0];
 
-                tempItem.bank_name = sqlDatabase.rows[i].sql_string[12];
+                tempItem.payroll_type = sqlDatabase.rows[i].sql_string[12];
 
                 payrollInfo.Add(tempItem);
             }

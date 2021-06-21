@@ -40,11 +40,21 @@ namespace _01electronics_erp
         {
             new Company();
             salesPerson = new Employee();
+
+            contactPhones = new String[COMPANY_ORGANISATION_MACROS.MAX_TELEPHONES_PER_CONTACT];
+            contactPersonalEmails = new String[COMPANY_ORGANISATION_MACROS.MAX_EMAILS_PER_CONTACT];
+
+            commentsList = new List<COMPANY_ORGANISATION_MACROS.CONTACT_COMMENT_STRUCT>();
         }
         public Contact(SQLServer mSqlDatabase)
         {
             new Company(mSqlDatabase);
             salesPerson = new Employee(mSqlDatabase);
+
+            contactPhones = new String[COMPANY_ORGANISATION_MACROS.MAX_TELEPHONES_PER_CONTACT];
+            contactPersonalEmails = new String[COMPANY_ORGANISATION_MACROS.MAX_EMAILS_PER_CONTACT];
+
+            commentsList = new List<COMPANY_ORGANISATION_MACROS.CONTACT_COMMENT_STRUCT>();
         }
 
         public bool InitializeContactInfo(int mContactId)

@@ -58,11 +58,17 @@ namespace _01electronics_erp
         public Company()
         {
             sqlDatabase = new SQLServer();
+
+            companyPhones = new List<String>();
+            companyFaxes = new List<String>();
         }
 
         public Company(SQLServer mSqlDatabase)
         {
             sqlDatabase = mSqlDatabase;
+
+            companyPhones = new List<String>();
+            companyFaxes = new List<String>();
         }
 
         public void SetDatabase(SQLServer mSqlDatabase)
@@ -335,11 +341,11 @@ namespace _01electronics_erp
 
         public int GetNumberOfSavedCompanyPhones()
         {
-            return (int) companyPhones.Count;
+            return (int)companyPhones.Count;
         }
         public int GetNumberOfSavedCompanyFaxes()
         {
-            return (int) companyFaxes.Count;
+            return (int)companyFaxes.Count;
         }
 
         public String GetOwnerUser()

@@ -87,7 +87,7 @@ namespace _01electronics_erp
         //PAYROLL AND SALARIES STRUCTS
         public struct BANK_STRUCT
         {
-            public String bank_name;
+            public String payroll_type;
             public int bank_id;
 
             public String branch_name;
