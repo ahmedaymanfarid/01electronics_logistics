@@ -429,7 +429,8 @@ namespace _01electronics_logistics
 
         private void OnViewButtonClicked(object sender, RoutedEventArgs e)
         {
-
+            ViewWorkOrderWindow window = new ViewWorkOrderWindow();
+            window.Show();
         }
     }
 

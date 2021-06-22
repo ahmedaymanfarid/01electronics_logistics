@@ -36,8 +36,8 @@
             <Border Grid.Column="1" Style="{StaticResource selectedTabBorder}" MouseLeftButtonDown="OnClickProductsInfo">
                 <Label Content="Products Info" Style="{StaticResource selectedTabLabelItem}" MouseLeftButtonDown="OnClickProductsInfo"/>
             </Border>
-            <Border Grid.Column="2" Style="{StaticResource unSelectedTabBorder}" MouseLeftButtonDown="OnClickProductsInfo">
-                <Label Content="Contract Info" Style="{StaticResource unselectedTabLabelItem}" MouseLeftButtonDown="OnClickProductsInfo"/>
+            <Border Grid.Column="2" Style="{StaticResource unSelectedTabBorder}" MouseLeftButtonDown="OnClickContractInfo">
+                <Label Content="Contract Info" Style="{StaticResource unselectedTabLabelItem}" MouseLeftButtonDown="OnClickContractInfo"/>
             </Border>
             <Border Grid.Column="3" Style="{StaticResource unSelectedTabBorder}" MouseLeftButtonDown="OnClickAdditionalInfo">
                 <Label Content="Logistics Info" Style="{StaticResource unselectedTabLabelItem}" MouseLeftButtonDown="OnClickAdditionalInfo"/>

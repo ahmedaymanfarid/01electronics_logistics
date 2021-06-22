@@ -26,21 +26,34 @@ namespace _01electronics_logistics
         {
             this.order = order;
             InitializeComponent();
+            UpdateInfo();
         }
 
         public void UpdateInfo()
         {
             orderSerialLabel.Content = order.GetAssigneeId();
+            issueDateLabel.Content = order.GetOrderIssueDate();
+            salesPersonLabel.Content = order.GetSalesPersonName();
+            offerProposerLabel.Content = order.GetOfferProposerName();
+            companyNameLabel.Content = order.GetCompanyName();
+            contactPersonNameLabel.Content = order.GetContactName();
         }
 
         private void OnClickBasicInfo(object sender, RoutedEventArgs e)
         {
-            
+           
         }
 
         private void OnClickProductsInfo(object sender, RoutedEventArgs e)
         {
+            WorkOrderProductInfoPage page = new WorkOrderProductInfoPage(this.order);
+            this.NavigationService.Navigate(page);
+        }
 
+        private void OnClickContractInfo(object sender, RoutedEventArgs e)
+        {
+            WorkOrderContractInfo page = new WorkOrderContractInfo(this.order);
+            this.NavigationService.Navigate(page);
         }
 
         private void OnClickAdditionalInfo(object sender, RoutedEventArgs e)

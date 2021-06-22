@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
+using _01electronics_erp;
 
 namespace _01electronics_logistics
 {
@@ -24,7 +25,10 @@ namespace _01electronics_logistics
         {
             InitializeComponent();
 
-            WorkOrderBasicInfoPage viewBasicInfo = new WorkOrderBasicInfoPage(); 
+            WorkOrder order = new WorkOrder();
+            order.InitializeWorkOrderInfo(2, 15);
+            WorkOrderBasicInfoPage viewBasicInfo = new WorkOrderBasicInfoPage(order);
+            this.NavigationService.Navigate(viewBasicInfo);
         }
     }
 }
