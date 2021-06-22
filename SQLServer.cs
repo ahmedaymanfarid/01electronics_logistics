@@ -13,8 +13,8 @@ namespace _01electronics_erp
 {
     public class SQLServer
     {
-        private String sqlConnectionString = "Data Source=AHMED-AYMAN;Initial Catalog=erp_system;Integrated Security=True";
-        //private String sqlConnectionString = "Data Source=dev-01\\sqlexpress;Initial Catalog=erp_system;Integrated Security=True";
+        //private String sqlConnectionString = "Data Source=AHMED-AYMAN;Initial Catalog=erp_system;Integrated Security=True";
+        private String sqlConnectionString = "Data Source=dev-01\\sqlexpress;Initial Catalog=erp_system;Integrated Security=True";
         private SqlConnection sqlConnection = null;
         private SqlCommand sqlCommand = null;
         private SqlDataReader sqlReader = null;
@@ -65,7 +65,8 @@ namespace _01electronics_erp
                         if (sqlReader[currentColumn] == DBNull.Value)
                             currentRow.sql_int.Add(0);
                         else
-                            currentRow.sql_int.Add((Int32)sqlReader[currentColumn]);
+                            currentRow.sql_int.Add(Convert.ToInt32(sqlReader[currentColumn]));
+                            
 
                         currentColumn++;
                     }
