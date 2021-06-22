@@ -9,6 +9,17 @@ namespace _01electronics_logistics
 {
     class AGENCY_MACROS
     {
+
+        // TIME UNITES
+        public const int DAYS = 1;
+        public const int WEEKS = 2;
+        public const int MONTHS = 3;
+        public const int YEARS = 4;
+        public const int HOURS = 5;
+        public const int MINUTES = 6;
+        public const int SECONDS = 7;
+
+
         // AGENCIES STRUCTS
         public struct AGENCY_STRUCT
         {
@@ -52,6 +63,8 @@ namespace _01electronics_logistics
             public List<String> telephones;
 
         }
+
+
 
         
     }
