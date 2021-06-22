@@ -183,12 +183,7 @@ namespace _01electronics_erp
             String sqlQueryPart1 = @"select employees_info.employee_department, 
 		employees_info.employee_team, 
 		employees_info.employee_position, 
-		employees_info.graduation_year, 
 
-		educational_degrees.id, 
-		educational_majors.id,
-
-        payroll_types.id,
         employees_payroll_info.payroll_id,
         employees_payroll_info.account_id,
 
@@ -210,12 +205,8 @@ namespace _01electronics_erp
 		employees_business_phones.phone, 
 		employees_personal_phones.phone, 
 
-		educational_degrees.educational_degree, 
-		educational_majors.educational_major, 
 
-		employees_initials.employee_initial,
-
-		payroll_types.payroll_type
+		employees_initials.employee_initial
 
 		from erp_system.dbo.employees_info 
 		inner join erp_system.dbo.departments_type 
@@ -234,16 +225,10 @@ namespace _01electronics_erp
 		on employees_info.employee_id = employees_personal_phones.id 
 		left join erp_system.dbo.employees_initials 
 		on employees_info.employee_id = employees_initials.id 
-		left join erp_system.dbo.educational_degrees 
-		on employees_info.educational_degree = educational_degrees.id 
-		left join erp_system.dbo.educational_majors 
-		on employees_info.major = educational_majors.id 
         left join erp_system.dbo.employees_salaries
         on employees_info.employee_id = employees_salaries.id
         left join erp_system.dbo.employees_payroll_info
         on employees_info.employee_id = employees_payroll_info.employee_id
-        inner join erp_system.dbo.payroll_types
-        on employees_payroll_info.bank_id = payroll_types.id
 	where employees_info.employee_id = ";
         
     String sqlQueryPart2 = ";";
@@ -255,11 +240,17 @@ namespace _01electronics_erp
 
             BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT queryColumns = new BASIC_STRUCTS.SQL_COLUMN_COUNT_STRUCT();
 
-            queryColumns.sql_int = 8;
+            //queryColumns.sql_int = 8;
+            //queryColumns.sql_bigint = 1;
+            //queryColumns.sql_money = 1;
+            //queryColumns.sql_datetime = 2;
+            //queryColumns.sql_string = 13;
+
+            queryColumns.sql_int = 4;
             queryColumns.sql_bigint = 1;
             queryColumns.sql_money = 1;
             queryColumns.sql_datetime = 2;
-            queryColumns.sql_string = 13;
+            queryColumns.sql_string = 10;
 
             if (!sqlDatabase.GetRows(sqlQuery, queryColumns, BASIC_MACROS.SEVERITY_HIGH))
                 return false;
@@ -269,8 +260,8 @@ namespace _01electronics_erp
             positionId = sqlDatabase.rows[0].sql_int[2];
             graduationYear = sqlDatabase.rows[0].sql_int[3];
 
-            educationalQualificationId = sqlDatabase.rows[0].sql_int[4];
-            majorId = sqlDatabase.rows[0].sql_int[5];
+            //educationalQualificationId = sqlDatabase.rows[0].sql_int[4];
+            //majorId = sqlDatabase.rows[0].sql_int[5];
 
             salary = sqlDatabase.rows[0].sql_money[0];
 
@@ -294,24 +285,24 @@ namespace _01electronics_erp
             personalPhone = sqlDatabase.rows[0].sql_string[8];
 
             educationalQualification = sqlDatabase.rows[0].sql_string[9];
-            major = sqlDatabase.rows[0].sql_string[10];
+            //major = sqlDatabase.rows[0].sql_string[10];
 
-            initials = sqlDatabase.rows[0].sql_string[11];
+            //initials = sqlDatabase.rows[0].sql_string[11];
 
-            payrollInfo = new List<COMPANY_ORGANISATION_MACROS.BANK_STRUCT>();
+            //payrollInfo = new List<COMPANY_ORGANISATION_MACROS.BANK_STRUCT>();
 
-            for (int i = 0; i < sqlDatabase.rows.Count; i++)
-            {
-                COMPANY_ORGANISATION_MACROS.BANK_STRUCT tempItem = new COMPANY_ORGANISATION_MACROS.BANK_STRUCT();
+            //for (int i = 0; i < sqlDatabase.rows.Count; i++)
+            //{
+            //    COMPANY_ORGANISATION_MACROS.BANK_STRUCT tempItem = new COMPANY_ORGANISATION_MACROS.BANK_STRUCT();
 
-                tempItem.bank_id = sqlDatabase.rows[i].sql_int[6];
-                tempItem.payroll_id = sqlDatabase.rows[i].sql_int[7];
-                tempItem.account_id = (ulong) sqlDatabase.rows[i].sql_bigint[0];
+            //    tempItem.bank_id = sqlDatabase.rows[i].sql_int[6];
+            //    tempItem.payroll_id = sqlDatabase.rows[i].sql_int[7];
+            //    tempItem.account_id = (ulong) sqlDatabase.rows[i].sql_bigint[0];
 
-                tempItem.payroll_type = sqlDatabase.rows[i].sql_string[12];
+            //    tempItem.payroll_type = sqlDatabase.rows[i].sql_string[12];
 
-                payrollInfo.Add(tempItem);
-            }
+            //    payrollInfo.Add(tempItem);
+            //}
 
             return true;
         }
