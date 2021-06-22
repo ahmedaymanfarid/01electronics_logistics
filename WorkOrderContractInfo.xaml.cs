@@ -32,6 +32,28 @@ namespace _01electronics_logistics
         public void UpdateInfo()
         {
             contractTypeLabel.Content = order.GetOfferContractType();
+
+            DateTime date = order.GetOfferIssueDate();
+            if (order.GetDeliveryTimeUnitId() == AGENCY_MACROS.DAYS)
+                date.AddDays(order.GetDeliveryTimeMinimum());
+            else if (order.GetDeliveryTimeUnitId() == AGENCY_MACROS.WEEKS)
+                date.AddDays(order.GetDeliveryTimeMinimum()*7);
+            else if (order.GetDeliveryTimeUnitId() == AGENCY_MACROS.MONTHS)
+                date.AddMonths(order.GetDeliveryTimeMinimum());
+            else if (order.GetDeliveryTimeUnitId() == AGENCY_MACROS.YEARS)
+                date.AddYears(order.GetDeliveryTimeMinimum());
+            else if (order.GetDeliveryTimeUnitId() == AGENCY_MACROS.HOURS)
+                date.AddHours(order.GetDeliveryTimeMinimum());
+            else if (order.GetDeliveryTimeUnitId() == AGENCY_MACROS.MINUTES)
+                date.AddMinutes(order.GetDeliveryTimeMinimum());
+            else if (order.GetDeliveryTimeUnitId() == AGENCY_MACROS.SECONDS)
+                date.AddSeconds(order.GetDeliveryTimeMinimum());
+            deliveryTimeLabel.Content = date.ToString("dd/MM/yyyy H:mm");
+
+            deliveryPointLabel.Content = order.GetDeliveryPoint();
+
+            totalPriceLabel.Content = order.GetTotalPriceValue();
+            
         }
 
         private void OnClickBasicInfo(object sender, RoutedEventArgs e)

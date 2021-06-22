@@ -21,12 +21,10 @@ namespace _01electronics_logistics
     /// </summary>
     public partial class ViewWorkOrderWindow : NavigationWindow
     {
-        public ViewWorkOrderWindow()
+        public ViewWorkOrderWindow(WorkOrder order)
         {
             InitializeComponent();
 
-            WorkOrder order = new WorkOrder();
-            order.InitializeWorkOrderInfo(2, 15);
             WorkOrderBasicInfoPage viewBasicInfo = new WorkOrderBasicInfoPage(order);
             this.NavigationService.Navigate(viewBasicInfo);
         }

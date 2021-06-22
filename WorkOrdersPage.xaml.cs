@@ -30,7 +30,7 @@ namespace _01electronics_logistics
         private CommonFunctions CommonFunctionObject = new CommonFunctions();
 
         private Employee loggedInUser;
-        private Employee selectedEmployee;
+        private COMPANY_WORK_MACROS.WORK_ORDER_MAX_STRUCT selectedOrder;
 
         private List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT> marketingEmployees = new List<COMPANY_ORGANISATION_MACROS.EMPLOYEE_STRUCT>();
         private List<COMPANY_WORK_MACROS.PRODUCT_STRUCT> productTypes = new List<COMPANY_WORK_MACROS.PRODUCT_STRUCT>();
@@ -206,6 +206,7 @@ namespace _01electronics_logistics
             }
 
             currentSelectedOrderStackPanel.Background = (Brush)brush.ConvertFrom("#105A97");
+            this.selectedOrder = this.listOfOrders[OrdersStackPanel.Children.IndexOf(currentSelectedOrderStackPanel)];
 
             foreach (Label childLabel in currentSelectedOrderStackPanel.Children)
                 childLabel.Foreground = (Brush)brush.ConvertFrom("#FFFFFF");
@@ -429,7 +430,9 @@ namespace _01electronics_logistics
 
         private void OnViewButtonClicked(object sender, RoutedEventArgs e)
         {
-            ViewWorkOrderWindow window = new ViewWorkOrderWindow();
+            WorkOrder order = new WorkOrder();
+            order.InitializeWorkOrderInfo(selectedOrder.order_serial, selectedOrder.sales_person_id);
+            ViewWorkOrderWindow window = new ViewWorkOrderWindow(order);
             window.Show();
         }
     }
