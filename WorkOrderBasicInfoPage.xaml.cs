@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using _01electronics_erp;
 
 namespace _01electronics_logistics
 {
@@ -20,9 +21,35 @@ namespace _01electronics_logistics
     /// </summary>
     public partial class WorkOrderBasicInfoPage : Page
     {
-        public WorkOrderBasicInfoPage()
+        WorkOrder order;
+        public WorkOrderBasicInfoPage(WorkOrder order)
         {
+            this.order = order;
             InitializeComponent();
         }
+
+        public void UpdateInfo()
+        {
+            orderSerialLabel.Content = order.GetAssigneeId();
+        }
+
+        private void OnClickBasicInfo(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void OnClickProductsInfo(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnClickAdditionalInfo(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+       
+        
+
     }
 }

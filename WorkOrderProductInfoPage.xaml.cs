@@ -24,5 +24,20 @@ namespace _01electronics_logistics
         {
             InitializeComponent();
         }
+
+        private void OnClickBasicInfo(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnClickProductsInfo(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnClickAdditionalInfo(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
