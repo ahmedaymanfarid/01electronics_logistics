@@ -117,7 +117,7 @@ namespace _01electronics_erp
 
             return true;
         }
-        bool InitializeWorkOrderInfo(int mOrderSerial, int mSalesPersonId)
+        public bool InitializeWorkOrderInfo(int mOrderSerial, int mSalesPersonId)
         {
             if (!InitializeSalesPersonInfo(mSalesPersonId))
                 return false;

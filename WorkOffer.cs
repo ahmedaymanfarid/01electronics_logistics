@@ -402,7 +402,7 @@ namespace _01electronics_erp
             SetPercentOnDelivery(sqlDatabase.rows[0].sql_int[intColumnsCount++]);
             SetPercentOnInstallation(sqlDatabase.rows[0].sql_int[intColumnsCount++]);
 
-            SetHasDrawings(sqlDatabase.rows[0].sql_bit[intColumnsCount++]);
+            SetHasDrawings(sqlDatabase.rows[0].sql_bit[0]);
 
             SetDeliveryTimeMinimum(sqlDatabase.rows[0].sql_int[intColumnsCount++]);
             SetDeliveryTimeMaximum(sqlDatabase.rows[0].sql_int[intColumnsCount++]);
@@ -461,47 +461,37 @@ namespace _01electronics_erp
             offerVersion = mOfferVersion;
 
             String sqlQueryPart1 = @"with get_product_type		as	(	select products_type.id as product_type_id, 
-        products_type.product_name as product_type
-
-        from erp_system.dbo.products_type
+		products_type.product_name as product_type 
+		from erp_system.dbo.products_type 
 		), 
 		get_product_brand as (select brands_type.id as product_brand_id, 
-		brands_type.brand_name as product_brand
-
-        from erp_system.dbo.brands_type
+		brands_type.brand_name as product_brand 
+		from erp_system.dbo.brands_type 
 		), 
 		get_product_model as (select brands_models.model_id as product_model_id, 
 		brands_models.product_id as product_type_id, 
 		brands_models.brand_id as product_brand_id, 
-		brands_models.brand_model as product_model
-
-        from erp_system.dbo.brands_models
+		brands_models.brand_model as product_model 
+		from erp_system.dbo.brands_models 
 		), 
 		get_price_currency as (select currencies_type.id as price_currency_id, 
-		currencies_type.currency as price_currency
-
-        from erp_system.dbo.currencies_type
+		currencies_type.currency as price_currency 
+		from erp_system.dbo.currencies_type 
 		), 
 		get_delivery_time_unit as (select time_units.id as delivery_unit_id, 
-		time_units.time_unit as delivery_point_unit
-
-        from erp_system.dbo.time_units
+		time_units.time_unit as delivery_point_unit 
+		from erp_system.dbo.time_units 
 		), 
 		get_warranty_time_unit as (select time_units.id as warranty_unit_id, 
-		time_units.time_unit as warranty_unit
-
-        from erp_system.dbo.time_units
+		time_units.time_unit as warranty_unit 
+		from erp_system.dbo.time_units 
 		), 
 		get_validity_time_unit as (select time_units.id as validity_unit_id, 
-		time_units.time_unit as validity_unit
-
-        from erp_system.dbo.time_units
+		time_units.time_unit as validity_unit 
+		from erp_system.dbo.time_units 
 		) 
 		
-		select work_offers.branch_serial, 
-		work_offers.contact_id, 
-		
-		get_price_currency.price_currency_id, 
+		select get_price_currency.price_currency_id, 
 		
 		work_offers.percent_down_payment, 
 		work_offers.percent_on_delivery, 
@@ -528,7 +518,7 @@ namespace _01electronics_erp
 		work_offers_products_info.product_model, 
 		work_offers_products_info.product_quantity, 
 		work_offers_products_info.product_price, 
-
+		
 		work_offers.issue_date, 
 		
 		work_offers.offer_id, 
@@ -549,62 +539,57 @@ namespace _01electronics_erp
 		get_product_type.product_type, 
 		get_product_brand.product_brand, 
 		get_product_model.product_model,
+		
+		work_offers.isDrawing
+		
+		from erp_system.dbo.work_offers 
+		
+		inner join erp_system.dbo.work_offers_rfqs 
+		on work_offers.offer_proposer = work_offers_rfqs.offer_proposer 
+		and work_offers.offer_serial = work_offers_rfqs.offer_serial 
+		and work_offers.offer_version = work_offers_rfqs.offer_version 
+		
+		inner join erp_system.dbo.rfqs 
+		on work_offers_rfqs.sales_person = rfqs.sales_person 
+		and work_offers_rfqs.rfq_serial = rfqs.rfq_serial 
+		and work_offers_rfqs.rfq_version = rfqs.rfq_version 
+		
+		inner join erp_system.dbo.work_offers_products_info 
+		on work_offers.offer_proposer = work_offers_products_info.offer_proposer 
+		and work_offers.offer_serial = work_offers_products_info.offer_serial 
+		and work_offers.offer_version = work_offers_products_info.offer_version 
+		
+		inner join get_product_type 
+		on work_offers_products_info.product_type = get_product_type.product_type_id 
+		inner join get_product_brand 
+		on work_offers_products_info.product_brand = get_product_brand.product_brand_id 
+		left join get_product_model 
+		on work_offers_products_info.product_model = get_product_model.product_model_id 
+		and work_offers_products_info.product_type = get_product_model.product_type_id 
+		and work_offers_products_info.product_brand = get_product_model.product_brand_id 
+		
+		inner join get_delivery_time_unit 
+		on work_offers.delivery_time_unit = get_delivery_time_unit.delivery_unit_id 
+		
+		inner join erp_system.dbo.delivery_points 
+		on work_offers.delivery_point = delivery_points.id 
+		
+		inner join erp_system.dbo.contracts_type 
+		on work_offers.contract_type = contracts_type.id 
+		
+		inner join get_warranty_time_unit 
+		on work_offers.warranty_time_unit = get_warranty_time_unit.warranty_unit_id 
+		
+		inner join get_validity_time_unit 
+		on work_offers.offer_validity_unit = get_validity_time_unit.validity_unit_id 
+		
+		inner join erp_system.dbo.offers_status 
+		on work_offers.offer_status = offers_status.id 
+		
+		inner join get_price_currency 
+		on work_offers.price_currency = get_price_currency.price_currency_id
 
-        work_offers.isDrawing
-
-        from erp_system.dbo.work_offers
-
-        inner join erp_system.dbo.work_offers_products_info
-        on work_offers.offer_proposer = work_offers_products_info.offer_proposer
-
-        and work_offers.offer_serial = work_offers_products_info.offer_serial
-
-        and work_offers.offer_version = work_offers_products_info.offer_version
-
-
-        inner join get_product_type
-        on work_offers_products_info.product_type = get_product_type.product_type_id
-
-        inner join get_product_brand
-        on work_offers_products_info.product_brand = get_product_brand.product_brand_id
-
-        left join get_product_model
-        on work_offers_products_info.product_model = get_product_model.product_model_id
-
-        and work_offers_products_info.product_type = get_product_model.product_type_id
-
-        and work_offers_products_info.product_brand = get_product_model.product_brand_id
-
-
-        inner join get_delivery_time_unit
-        on work_offers.delivery_time_unit = get_delivery_time_unit.delivery_unit_id
-
-
-        inner join erp_system.dbo.delivery_points
-        on work_offers.delivery_point = delivery_points.id
-
-
-        inner join erp_system.dbo.contracts_type
-        on work_offers.contract_type = contracts_type.id
-
-
-        inner join get_warranty_time_unit
-        on work_offers.warranty_time_unit = get_warranty_time_unit.warranty_unit_id
-
-
-        inner join get_validity_time_unit
-        on work_offers.offer_validity_unit = get_validity_time_unit.validity_unit_id
-
-
-        inner join erp_system.dbo.offers_status
-        on work_offers.offer_status = offers_status.id
-
-
-        inner join get_price_currency
-        on work_offers.price_currency = get_price_currency.price_currency_id
-
-
-        where work_offers.offer_proposer = ";
+		where work_offers.offer_proposer = ";
 
             String sqlQueryPart2 = " and work_offers.offer_serial = ";
             String sqlQueryPart3 = " and work_offers.offer_version = ";
